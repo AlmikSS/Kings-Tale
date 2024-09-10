@@ -7,6 +7,7 @@ public class GameData : NetworkBehaviour
     public static GameData Instance { get; private set; }
 
     private Dictionary<ushort, BuildingConfig> _buildingConfigs = new();
+    private Dictionary<ushort, UnitConfig> _unitConfigs = new();
     
     public async void Initialize()
     {
@@ -21,10 +22,18 @@ public class GameData : NetworkBehaviour
         }
     }
 
-    public BuildingConfig GetBuildingConfig(ushort buildingId)
+    public Config GetConfig(ushort id, bool isBuilding)
     {
-        if (_buildingConfigs.ContainsKey(buildingId))
-            return _buildingConfigs[buildingId];
+        if (isBuilding)
+        {
+            if (_buildingConfigs.ContainsKey(id))
+                return _buildingConfigs[id];
+        }
+        else
+        {
+            if (_unitConfigs.ContainsKey(id))
+                return _unitConfigs[id];
+        }
         
         return null;
     }

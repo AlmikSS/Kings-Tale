@@ -5,41 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Buildings.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Buildings/BuildingConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Buildings/BuildingConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Config.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Config.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/Bootstrap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/Bootstrap.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/GameEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/GameEntity.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/PlayerData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/PlayerData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Enums.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyBuildingRequestStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyBuildingRequestStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyRequestStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyRequestStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/CancelClientRequestStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/CancelClientRequestStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/InputManagerResponseStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/InputManagerResponseStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/PlaceBuildingRequestStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/PlaceBuildingRequestStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/PlayersData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/PlayersData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Units.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Units/UnitConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Units/UnitConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyUnitRequestStruct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyUnitRequestStruct.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Temp.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Temp/ServerLogicTester.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Temp/ServerLogicTester.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/Bootstrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/GameEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/GameEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Enums.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/ServerCore/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UniversalRenderPipelineGlobalSettings.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +38,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Buildings/BuildingConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Config.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Core/Bootstrap.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Sctructures/BuyBuildingRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Temp/ServerLogicTester.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Temp/TempNetworkManagerBtns.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -135,7 +121,8 @@
       <workItem from="1725903994285" duration="30000" />
       <workItem from="1725905069812" duration="1579000" />
       <workItem from="1725907843588" duration="8240000" />
-      <workItem from="1725973353014" duration="1181000" />
+      <workItem from="1725973353014" duration="5502000" />
+      <workItem from="1725991372186" duration="1630000" />
     </task>
     <servers />
   </component>

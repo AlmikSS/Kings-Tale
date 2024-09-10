@@ -55,4 +55,28 @@ public class InputManager : NetworkBehaviour
         responseStruct = new InputManagerResponseStruct("Request sent successfully", true);
         return responseStruct;
     }
+
+    public async Task<InputManagerResponseStruct> HandleBuyUnitRequest(BuyUnitRequestStruct requestStruct)
+    {
+        if (!IsServer) { return default; }
+
+        InputManagerResponseStruct responseStruct;
+        
+        if (!GameManager.Instance.IsPlayerExist(requestStruct.PlayerId))
+        {
+            responseStruct = new InputManagerResponseStruct("Player does not exist!", false);
+            return responseStruct;
+        }
+
+        if (!GameManager.Instance.IsUnitExist(requestStruct.UnitId))
+        {
+            responseStruct = new InputManagerResponseStruct("Unit does not exist!", false);
+            return responseStruct;
+        }
+        
+        GameManager.Instance.HandleBuyRequest(new BuyRequestStruct(requestStruct.PlayerId, false, requestStruct.UnitId));
+        
+        responseStruct = new InputManagerResponseStruct("Request sent successfully", true);
+        return responseStruct;
+    }
 }

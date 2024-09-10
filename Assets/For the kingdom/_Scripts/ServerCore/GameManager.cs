@@ -15,6 +15,12 @@ public class GameManager : NetworkBehaviour
             Destroy(gameObject);
         
         Instance = this;
+
+        var entities = FindObjectsOfType<GameEntity>();
+        foreach (var entity in entities)
+        {
+            _gameEntities.Add(entity);
+        }
     }
 
     public void StartGame()
@@ -36,10 +42,7 @@ public class GameManager : NetworkBehaviour
     public void HandleBuyRequest(BuyRequestStruct requestStruct)
     {
         PlayerData playerData = PlayersData.Instance.GetPlayerData(requestStruct.PlayerId);
-        Config config = null;
-
-        if (requestStruct.IsBuilding)
-            config = GameData.Instance.GetBuildingConfig(requestStruct.Id);
+        Config config = GameData.Instance.GetConfig(requestStruct.Id, requestStruct.IsBuilding);
 
         if (IsEnaughRes(config, playerData))
             AllowClientBuyRequest(requestStruct);
@@ -57,17 +60,17 @@ public class GameManager : NetworkBehaviour
 
     private void AllowClientPlaceBuilding(PlaceBuildingRequestStruct requestStruct)
     {
-        // Дописать
+        Debug.Log(requestStruct.PlayerId + "Place");
     }
     
     private void AllowClientBuyRequest(BuyRequestStruct requestStruct)
     {
-        // Дописать
+        Debug.Log(requestStruct.PlayerId + "Buy response");
     }
 
     private void CancelClientRequest(CancelClientRequestStruct requestStruct)
     {
-        // Дописать
+        // In progress
     }
     
     private void UpdateGameEntitiesTick()
@@ -76,8 +79,13 @@ public class GameManager : NetworkBehaviour
         
         foreach (var gameEntity in _gameEntities)
         {
-            gameEntity.UpdateTick();
-            Debug.Log("Entity " + gameEntity.name + " has been updated");
+            if (gameEntity == null)
+                _gameEntities.Remove(gameEntity);
+            else
+            {
+                gameEntity.UpdateTick();
+                Debug.Log("Entity " + gameEntity.name + " has been updated");
+            }
         }
     }
     
@@ -87,6 +95,11 @@ public class GameManager : NetworkBehaviour
     }
     
     public bool IsPlayerExist(ushort playerId)
+    {
+        return true;
+    }
+
+    public bool IsUnitExist(ushort unitId)
     {
         return true;
     }
