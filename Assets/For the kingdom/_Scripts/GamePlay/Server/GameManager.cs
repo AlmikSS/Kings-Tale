@@ -1,12 +1,17 @@
-using System.Threading.Tasks;
 using Unity.Netcode;
 
 public class GameManager : NetworkBehaviour
 {
-    public void Initialize()
+    private GameData _gameData;
+    private PlayersData _playersData;
+    
+    public void Initialize(GameData gameData, PlayersData playersData)
     {
         if (!IsServer)
             Destroy(gameObject);
+
+        _gameData = gameData;
+        _playersData = playersData;
     }
 
     public void HandleBuyRequest(ServerBuyRequestStruct request)
@@ -14,18 +19,25 @@ public class GameManager : NetworkBehaviour
         
     }
     
-    public async Task<bool> IsPlayerExist(ushort id)
+    public bool IsPlayerExist(ushort id)
+    {
+        var player = _playersData.GetPlayer(id);
+        return player != null;
+    }
+
+    public bool IsBuildingIdExist(ushort id)
     {
         return true;
     }
 
-    public async Task<bool> IsBuildingIdExist(ushort id)
+    public bool IsUnitIdExist(ushort id)
     {
         return true;
     }
 
-    public async Task<bool> IsUnitIdExist(ushort id)
+    private bool CanPlayerBuy(ServerBuyRequestStruct request)
     {
+        
         return true;
     }
 }
