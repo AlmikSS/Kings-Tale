@@ -5,50 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/PlayersData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/PlayersData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Structs/PlayerDataStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Structs/PlayerDataStruct.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/BaseConfigSO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/BaseConfigSO.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/BuildingConfigSO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/BuildingConfigSO.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/PriceConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/PriceConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/UnitConfigSO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/UnitConfigSO.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Interfaces.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Interfaces/IGameConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Interfaces/IGameConfig.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Core/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Core/Bootstrap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/TMP Settings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_SDF.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Sprites/EmojiOne.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/GameData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/MultiplayerManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/MultiplayerManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +37,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/BuildingConfigSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Core/PriceConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Configs/Interfaces/IGameConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Core/Bootstrap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Structs/InputManagerResponseStruct.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -158,6 +138,9 @@
       <workItem from="1726165057374" duration="1246000" />
       <workItem from="1726249636029" duration="765000" />
       <workItem from="1726401305439" duration="2478000" />
+      <workItem from="1726424999308" duration="981000" />
+      <workItem from="1726900384345" duration="3253000" />
+      <workItem from="1728811252258" duration="518000" />
     </task>
     <servers />
   </component>

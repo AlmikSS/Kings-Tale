@@ -10,6 +10,9 @@ public class Bootstrap : NetworkBehaviour
     
     public override void OnNetworkSpawn()
     {
+        if (!IsServer)
+            { return; }
+        
         var gameManager = Instantiate(_gameManagerPrefab);
         var inputManager = Instantiate(_inputManagerPrefab);
         var gameData = Instantiate(_gameDataPrefab);
