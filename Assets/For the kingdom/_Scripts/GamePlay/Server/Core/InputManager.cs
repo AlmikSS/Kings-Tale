@@ -16,7 +16,7 @@ public class InputManager : NetworkBehaviour
       _gameManager = gameManager;
    }
 
-   public async Task<InputManagerResponseStruct> HandleBuyRequest(ServerBuyRequestStruct request)
+   public async Task<InputManagerResponseStruct> HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       var validateResponse = await ValidateRequest(request);
       var response = new InputManagerResponseStruct(validateResponse.IsValidate, validateResponse.Message);
@@ -41,6 +41,11 @@ public class InputManager : NetworkBehaviour
       return Task.FromResult(response);
    }
 
+   private Task<ValidateResponseStruct> ValidateRequest(ServerPlaceBuildingRequestStruct request)
+   {
+      return default;
+   }
+    
    private ValidateResponseStruct IsPlayerExistValidation(ServerBuyRequestStruct request, ValidateResponseStruct response)
    {
       if (!_gameManager.IsPlayerExist(request.PlayerId))

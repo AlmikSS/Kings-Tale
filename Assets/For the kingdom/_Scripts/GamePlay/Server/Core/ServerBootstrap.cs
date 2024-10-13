@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class Bootstrap : NetworkBehaviour
+public class ServerBootstrap : NetworkBehaviour
 {
     [SerializeField] private GameManager _gameManagerPrefab;
     [SerializeField] private InputManager _inputManagerPrefab;
