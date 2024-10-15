@@ -18,8 +18,8 @@ public class ServerBootstrap : NetworkBehaviour
         var gameData = Instantiate(_gameDataPrefab);
         var playersData = Instantiate(_playersDataPrefab);
         
-        gameManager.NetworkObject.Spawn();
         inputManager.NetworkObject.Spawn();
+        gameManager.NetworkObject.Spawn();
         // gameData.NetworkObject.Spawn();
         // playersData.NetworkObject.Spawn();
         

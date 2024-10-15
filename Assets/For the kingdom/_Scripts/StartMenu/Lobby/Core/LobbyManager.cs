@@ -11,13 +11,13 @@ using UnityEngine;
 
 public class LobbyManager
 {
-    public delegate void OpenInLobbyMenuDelegate(Lobby lobby, bool isHost);
+    public delegate void OpenInLobbyMenuDelegate(Lobby lobby, bool isLobbyOwner);
     public event OpenInLobbyMenuDelegate OpenInLobbyMenuEvent;
     public event Action CloseInLobbyMenuEvent;
     
     private Lobby _currentLobby;
     private bool _isTryingToChangeLobby;
-    private bool _isHost;
+    private bool _isLobbyOwner;
 
     public async void CreateLobbyAsync(int maxPlayers, string gameMode, string playerNickName, bool isPrivate = false)
     {
@@ -53,7 +53,7 @@ public class LobbyManager
             HandleLobbyHeartBeatAsync();
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "udp"));
             NetworkManager.Singleton.StartHost();
-            _isHost = true;
+            _isLobbyOwner = true;
             _isTryingToChangeLobby = false;
         }
         catch (LobbyServiceException e)
@@ -64,7 +64,7 @@ public class LobbyManager
         }
         
         Debug.Log("Lobby created.");
-        OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isHost);
+        OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isLobbyOwner);
     }
 
     public async void JoinLobbyAsync(string lobbyCode, string playerNickName)
@@ -103,7 +103,7 @@ public class LobbyManager
         }
         
         Debug.Log("Lobby joined.");
-        OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isHost);
+        OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isLobbyOwner);
     }
 
     private async Task<Allocation> CreateAllocationAsync(int maxConnections)
