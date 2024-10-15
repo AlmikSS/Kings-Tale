@@ -5,26 +5,39 @@ public class InputManager : NetworkBehaviour
 {
    public static InputManager Instance { get; private set; }
 
+   private NetworkVariable<ulong> _inputManagerId = new();
    private GameManager _gameManager;
    
-   public void Initialize(GameManager gameManager)
+   public override void OnNetworkSpawn()
    {
-      if (!IsServer)
-         Destroy(gameObject);
-
-      Instance = this;
-      _gameManager = gameManager;
+      if (IsServer)
+      {
+         _inputManagerId.Value = NetworkObjectId;
+      }
+   }
+    
+   [Rpc(SendTo.Everyone)]
+   public void InitializeRpc(ulong gameManagerId)
+   { 
+      if (IsServer)
+         _gameManager = NetworkManager.Singleton.SpawnManager.SpawnedObjects[gameManagerId].GetComponent<GameManager>();
+      
+      Instance = NetworkManager.Singleton.SpawnManager.SpawnedObjects[_inputManagerId.Value].GetComponent<InputManager>();
+   }
+   
+   [Rpc(SendTo.Server)]
+   public void HandleBuyRequestRpc(ServerBuyRequestStruct request)
+   {
+      HandleBuyRequestAsync(request);
    }
 
-   public async Task<InputManagerResponseStruct> HandleBuyRequestAsync(ServerBuyRequestStruct request)
+   private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
-      var validateResponse = await ValidateRequest(request);
-      var response = new InputManagerResponseStruct(validateResponse.IsValidate, validateResponse.Message);
-
+      if (!IsServer) return;
+       
+      var validateResponse = await ValidateRequest(request); 
       if (validateResponse.IsValidate)
-         _gameManager.HandleBuyRequest(request);
-
-      return response;
+         _gameManager.HandleBuyRequestRpc(request);
    }
 
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)

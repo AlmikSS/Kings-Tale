@@ -9,7 +9,7 @@ using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
 
-public class LobbyManager : MonoBehaviour
+public class LobbyManager
 {
     public delegate void OpenInLobbyMenuDelegate(Lobby lobby, bool isHost);
     public event OpenInLobbyMenuDelegate OpenInLobbyMenuEvent;
@@ -165,11 +165,11 @@ public class LobbyManager : MonoBehaviour
     
     private async void HandleLobbyHeartBeatAsync()
     {
-        if (_currentLobby != null)
+        while (_currentLobby != null)
         {
             Debug.Log("Heartbeat sent. LobbyID: " + _currentLobby.Id);
             await LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
-            Invoke(nameof(HandleLobbyHeartBeatAsync), 15f);
+            await Task.Delay(15000);
         }
     }
 }

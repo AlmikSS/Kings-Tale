@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
@@ -7,22 +8,24 @@ public class GameManager : NetworkBehaviour
     
     public void Initialize(GameData gameData, PlayersData playersData)
     {
-        if (!IsServer)
-            Destroy(gameObject);
-
         _gameData = gameData;
         _playersData = playersData;
     }
 
-    public void HandleBuyRequest(ServerBuyRequestStruct request)
+    [Rpc(SendTo.Server)]
+    public void HandleBuyRequestRpc(ServerBuyRequestStruct request)
     {
-        
+        Debug.Log($"Handle buy request. Client: {request.PlayerId}, Id: {request.Id}, IsBuilding: {request.IsBuilding}");
+        var tester = NetworkManager.Singleton.ConnectedClients[request.PlayerId].PlayerObject.GetComponent<Tester>();
+        if (tester != null)
+            tester.TestRpc();
     }
     
-    public bool IsPlayerExist(ushort id)
+    public bool IsPlayerExist(ulong id)
     {
         var player = _playersData.GetPlayer(id);
-        return player != null;
+        //return player != null;
+        return true;
     }
 
     public bool IsBuildingIdExist(ushort id)

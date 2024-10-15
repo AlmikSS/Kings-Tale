@@ -8,7 +8,7 @@ public class ServerBootstrap : NetworkBehaviour
     [SerializeField] private GameData _gameDataPrefab;
     [SerializeField] private PlayersData _playersDataPrefab;
     
-    public override void OnNetworkSpawn()
+    public void Init()
     {
         if (!IsServer)
             { return; }
@@ -17,15 +17,15 @@ public class ServerBootstrap : NetworkBehaviour
         var inputManager = Instantiate(_inputManagerPrefab);
         var gameData = Instantiate(_gameDataPrefab);
         var playersData = Instantiate(_playersDataPrefab);
-
-        gameData.Initialize();
-        playersData.Initialize();
-        gameManager.Initialize(gameData, playersData);
-        inputManager.Initialize(gameManager);
         
         gameManager.NetworkObject.Spawn();
         inputManager.NetworkObject.Spawn();
-        gameData.NetworkObject.Spawn();
-        playersData.NetworkObject.Spawn();
+        // gameData.NetworkObject.Spawn();
+        // playersData.NetworkObject.Spawn();
+        
+        gameData.Initialize();
+        playersData.Initialize();
+        gameManager.Initialize(gameData, playersData);
+        inputManager.InitializeRpc(gameManager.NetworkObjectId);
     }
 }

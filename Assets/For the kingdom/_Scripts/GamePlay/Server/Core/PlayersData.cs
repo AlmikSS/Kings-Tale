@@ -3,14 +3,14 @@ using Unity.Netcode;
 
 public class PlayersData : NetworkBehaviour
 {
-    private Dictionary<ushort, PlayerDataStruct> _players = new();
+    private Dictionary<ulong, PlayerDataStruct> _players = new();
     
     public void Initialize()
     {
         
     }
 
-    public PlayerDataStruct? GetPlayer(ushort id)
+    public PlayerDataStruct? GetPlayer(ulong id)
     {
         if (_players.TryGetValue(id, out var player))
             return player;
