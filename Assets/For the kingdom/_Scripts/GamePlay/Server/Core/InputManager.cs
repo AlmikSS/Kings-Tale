@@ -31,6 +31,18 @@ public class InputManager : NetworkBehaviour
       HandleBuyRequestAsync(request);
    }
 
+   [Rpc(SendTo.Server)]
+   public void HandlePlaceBuildingRequestRpc(ServerPlaceBuildingRequestStruct request)
+   {
+      HandlePlaceBuildingRequestAsync(request);
+   }
+
+   [Rpc(SendTo.Server)]
+   public void HandleAddResourcesRequestRpc(ServerAddResourcesRequestStruct request)
+   {
+      HandleAddResourcesRequestAsync(request);
+   }
+   
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       if (!IsServer) return;
@@ -40,28 +52,58 @@ public class InputManager : NetworkBehaviour
          _gameManager.HandleBuyRequestRpc(request);
    }
 
+   private async void HandlePlaceBuildingRequestAsync(ServerPlaceBuildingRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request); 
+      if (validateResponse.IsValidate)
+         _gameManager.HandlePlaceBuildingRequestRpc(request);
+   }
+
+   private async void HandleAddResourcesRequestAsync(ServerAddResourcesRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request); 
+      if (validateResponse.IsValidate)
+         _gameManager.HandleAddResourcesRequestRpc(request);
+   }
+   
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       
-      response = IsPlayerExistValidation(request, response);
+      response = IsPlayerExistValidation(request.PlayerId, response);
 
       if (request.IsBuilding)
-         response = IsBuildingExistValidation(request, response);
+         response = IsBuildingExistValidation(request.Id, response);
       else
-         response = IsUnitExistValidation(request, response);
+         response = IsUnitExistValidation(request.Id, response);
 
       return Task.FromResult(response);
    }
 
    private Task<ValidateResponseStruct> ValidateRequest(ServerPlaceBuildingRequestStruct request)
    {
-      return default;
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsBuildingExistValidation(request.BuildingId, response);
+      
+      return Task.FromResult(response);
    }
-    
-   private ValidateResponseStruct IsPlayerExistValidation(ServerBuyRequestStruct request, ValidateResponseStruct response)
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerAddResourcesRequestStruct request)
    {
-      if (!_gameManager.IsPlayerExist(request.PlayerId))
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      return Task.FromResult(response);
+   }
+   
+   private ValidateResponseStruct IsPlayerExistValidation(ulong playerId, ValidateResponseStruct response)
+   {
+      if (!_gameManager.IsPlayerExist(playerId))
       {
          response.IsValidate = false;
          response.Message += "Player does not exist. ";
@@ -70,9 +112,9 @@ public class InputManager : NetworkBehaviour
       return response;
    }
    
-   private ValidateResponseStruct IsBuildingExistValidation(ServerBuyRequestStruct request, ValidateResponseStruct response)
+   private ValidateResponseStruct IsBuildingExistValidation(ushort buildingId, ValidateResponseStruct response)
    {
-      if (!_gameManager.IsBuildingIdExist(request.Id))
+      if (!_gameManager.IsBuildingIdExist(buildingId))
       {
          response.IsValidate = false;
          response.Message += "Building does not exist. ";
@@ -81,9 +123,9 @@ public class InputManager : NetworkBehaviour
       return response;
    }
    
-   private ValidateResponseStruct IsUnitExistValidation(ServerBuyRequestStruct request, ValidateResponseStruct response)
+   private ValidateResponseStruct IsUnitExistValidation(ushort unitId, ValidateResponseStruct response)
    {
-      if (!_gameManager.IsUnitIdExist(request.Id))
+      if (!_gameManager.IsUnitIdExist(unitId))
       {
          response.IsValidate = false;
          response.Message += "Unit does not exist. ";

@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/For the kingdom/Scenes/StartMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/For the kingdom/Scenes/GamePlay.unity
+    guid: e339c9e66699d7f40b16daa188a78ab6
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

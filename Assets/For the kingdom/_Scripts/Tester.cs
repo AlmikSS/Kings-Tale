@@ -11,6 +11,12 @@ public class Tester : NetworkBehaviour
         {
             InputManager.Instance.HandleBuyRequestRpc(new ServerBuyRequestStruct(NetworkObject.OwnerClientId, 1, true));
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            var res = new ResourcesStruct(1, 12, 0);
+            InputManager.Instance.HandleAddResourcesRequestRpc(new ServerAddResourcesRequestStruct(res, NetworkObject.OwnerClientId));
+        }
     }
 
     [Rpc(SendTo.Owner)]

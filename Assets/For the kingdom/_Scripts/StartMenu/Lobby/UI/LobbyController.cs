@@ -1,6 +1,8 @@
 using TMPro;
+using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviour
@@ -16,6 +18,7 @@ public class LobbyController : MonoBehaviour
     [Header("Options")]
     [SerializeField] private TMP_InputField _playerNickNameInputField;
     [SerializeField] private InLobbyPlayerObject _inLobbyPlayerObjectPrefab;
+    [SerializeField] private string _gamePlaysceneName;
 
     [Header("InLobbyMenu")]
     [SerializeField] private GameObject _inLobbyMenuOrigin;
@@ -87,5 +90,10 @@ public class LobbyController : MonoBehaviour
             var playerObject = Instantiate(_inLobbyPlayerObjectPrefab, _inLobbyPlayersViewTransform);
             playerObject.UpdateState(player, _lobbyManagement, isLobbyOwner);
         }
+    }
+
+    public void StartGame()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(_gamePlaysceneName, LoadSceneMode.Single);
     }
 }

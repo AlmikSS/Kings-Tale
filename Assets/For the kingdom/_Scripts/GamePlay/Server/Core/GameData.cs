@@ -13,4 +13,19 @@ public class GameData : NetworkBehaviour
         var configs = Resources.LoadAll("Configs/Units");
         Debug.Log(configs);
     }
+
+    public ResourcesStruct? GetPrice(uint id, bool isBuilding)
+    {
+        return default;
+    }
+
+    public BuildingBase GetBuilding(ushort id)
+    {
+        return default;
+    }
+
+    public GameObject GetUnit(ushort id)
+    {
+        return default;
+    }
 }
