@@ -44,9 +44,9 @@ public class InputManager : NetworkBehaviour
    }
 
    [Rpc(SendTo.Server)]
-   public void HandleSetUnitDestinationRequestRpc()
+   public void HandleSetUnitDestinationRequestRpc(ServerSetUnitDestinationRequestStruct request)
    {
-      HandleSetUnitDestinationRequestAsync();
+      HandleSetUnitDestinationRequestAsync(request);
    }
     
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
@@ -76,9 +76,13 @@ public class InputManager : NetworkBehaviour
          _gameManager.HandleAddResourcesRequestRpc(request);
    }
    
-   public async void HandleSetUnitDestinationRequestAsync()
+   public async void HandleSetUnitDestinationRequestAsync(ServerSetUnitDestinationRequestStruct request)
    {
+      if (!IsServer) return;
       
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleSetUnitDestinationRequestRpc(request);
    }
    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
@@ -109,6 +113,13 @@ public class InputManager : NetworkBehaviour
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       response = IsPlayerExistValidation(request.PlayerId, response);
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerSetUnitDestinationRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      response = IsUnitExistValidation(request.UnitId, response);
       return Task.FromResult(response);
    }
    

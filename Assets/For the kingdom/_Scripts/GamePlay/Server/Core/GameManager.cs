@@ -69,6 +69,15 @@ public class GameManager : NetworkBehaviour
         
         _playersData.AddResourcesToPlayer(request.PlayerId, request.ResourcesToAdd);
     }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSetUnitDestinationRequestRpc(ServerSetUnitDestinationRequestStruct request)
+    {
+        Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
+
+        var player = _playersData.GetPlayer(request.PlayerId);
+        //TODO player.GetUnit(request.UnitId).SetDestination(request.Point);
+    }
     
     public bool IsPlayerExist(ulong id)
     {
