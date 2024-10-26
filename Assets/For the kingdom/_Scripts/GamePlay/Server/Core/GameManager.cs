@@ -34,7 +34,8 @@ public class GameManager : NetworkBehaviour
             else
             {
                 _playersData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
-                //TODO Spawn unit
+                var unit = Instantiate(_gameData.GetUnit(request.Id), request.Position, Quaternion.identity);
+                unit.GetComponent<NetworkObject>().SpawnWithOwnership(request.PlayerId);
             }
         }
     }
@@ -53,7 +54,8 @@ public class GameManager : NetworkBehaviour
         if (CanPlayerBuy(resources, price) && CanPlaceBuilding(request))
         {
             _playersData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
-            //TODO Place building
+            var building = Instantiate(_gameData.GetBuilding(request.BuildingId), request.Position, Quaternion.identity);
+            building.GetComponent<NetworkObject>().SpawnWithOwnership(request.PlayerId);
         }
     }
 

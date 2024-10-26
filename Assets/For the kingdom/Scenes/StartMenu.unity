@@ -1998,7 +1998,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
-    ServerListenAddress: 0.0.0.0
+    ServerListenAddress: 127.0.0.1
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -3569,7 +3569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 1429946074888142920
+    rid: 1429946171197227256
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -3579,22 +3579,16 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1429946074888142920
+    - rid: 1429946171197227256
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime,
         asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Mobile 4G [4G, LTE, ''13]'
-        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
-          that ping (and overall connection quality and stability) may be quite poor.
-
-
-          Expect
-          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
-          you handle reconnections.'
-        <PacketDelayMs>k__BackingField: 100
-        <PacketJitterMs>k__BackingField: 20
+        <Name>k__BackingField: None
+        <Description>k__BackingField: 
+        <PacketDelayMs>k__BackingField: 0
+        <PacketJitterMs>k__BackingField: 0
         <PacketLossInterval>k__BackingField: 0
-        <PacketLossPercent>k__BackingField: 4
+        <PacketLossPercent>k__BackingField: 0
 --- !u!4 &1608797556
 Transform:
   m_ObjectHideFlags: 0

@@ -5,43 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Bootstrap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Buildings.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Buildings/BuildingBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Buildings/BuildingBase.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/GamePlayConstants.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/GamePlayConstants.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ResourcesStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ResourcesStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerAddResourcesRequestStruct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerAddResourcesRequestStruct.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Core.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Core/GameController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Core/GameController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerSetUnitDestinationRequestStruct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerSetUnitDestinationRequestStruct.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DefaultVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultVolumeProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/PlayersData.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/PlayersData.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/SampleScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/StartMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/StartMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/ServerBootstrap.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/ServerBootstrap.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Bootstrap.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/InputManagerResponseStruct.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/InputManagerResponseStruct.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/PlayerDataStruct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/PlayerDataStruct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerBuyRequestStruct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerBuyRequestStruct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerPlaceBuildingRequestStruct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerPlaceBuildingRequestStruct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/StartMenuConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Core/StartMenuConstants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/StartMenuConstants.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Core/StartMenuConstants.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Tester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Tester.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UserChoices.choices" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UserChoices.choices.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Lobby/Core/LobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Lobby/Core/LobbyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +138,8 @@
       <workItem from="1729022607390" duration="2960000" />
       <workItem from="1729117657428" duration="7147000" />
       <workItem from="1729240347192" duration="5265000" />
+      <workItem from="1729605833143" duration="12000" />
+      <workItem from="1729935750631" duration="2782000" />
     </task>
     <servers />
   </component>

@@ -42,7 +42,13 @@ public class InputManager : NetworkBehaviour
    {
       HandleAddResourcesRequestAsync(request);
    }
-   
+
+   [Rpc(SendTo.Server)]
+   public void HandleSetUnitDestinationRequestRpc()
+   {
+      HandleSetUnitDestinationRequestAsync();
+   }
+    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       if (!IsServer) return;
@@ -68,6 +74,11 @@ public class InputManager : NetworkBehaviour
       var validateResponse = await ValidateRequest(request); 
       if (validateResponse.IsValidate)
          _gameManager.HandleAddResourcesRequestRpc(request);
+   }
+   
+   public async void HandleSetUnitDestinationRequestAsync()
+   {
+      
    }
    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)

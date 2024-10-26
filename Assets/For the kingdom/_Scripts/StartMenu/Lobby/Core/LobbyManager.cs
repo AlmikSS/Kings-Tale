@@ -12,9 +12,10 @@ using UnityEngine;
 public class LobbyManager
 {
     public delegate void OpenInLobbyMenuDelegate(Lobby lobby, bool isLobbyOwner);
+
     public event OpenInLobbyMenuDelegate OpenInLobbyMenuEvent;
     public event Action CloseInLobbyMenuEvent;
-    
+
     private Lobby _currentLobby;
     private bool _isTryingToChangeLobby;
     private bool _isLobbyOwner;
@@ -22,12 +23,12 @@ public class LobbyManager
     public async void CreateLobbyAsync(int maxPlayers, string gameMode, string playerNickName, bool isPrivate = false)
     {
         if (_isTryingToChangeLobby) return;
-        
+
         _isTryingToChangeLobby = true;
         Debug.Log("Start lobby creating.");
         Allocation allocation = await CreateAllocationAsync(maxPlayers);
         var relayCode = await GetRelayCodeAsync(allocation);
-        
+
         CreateLobbyOptions options = new()
         {
             IsPrivate = isPrivate,
@@ -35,7 +36,10 @@ public class LobbyManager
             {
                 Data = new()
                 {
-                    { StartMenuConstants.PLAYER_NICKNAME, new(PlayerDataObject.VisibilityOptions.Member, playerNickName)}
+                    {
+                        StartMenuConstants.PLAYER_NICKNAME,
+                        new(PlayerDataObject.VisibilityOptions.Member, playerNickName)
+                    }
                 }
             },
             Data = new()
@@ -48,10 +52,12 @@ public class LobbyManager
         try
         {
             Debug.Log("Try to create lobby.");
-            var lobby = await LobbyService.Instance.CreateLobbyAsync(StartMenuConstants.LOBBY_NAME, maxPlayers, options);
+            var lobby = await LobbyService.Instance.CreateLobbyAsync(StartMenuConstants.LOBBY_NAME, maxPlayers,
+                options);
             _currentLobby = lobby;
             HandleLobbyHeartBeatAsync();
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "udp"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>()
+                .SetRelayServerData(new RelayServerData(allocation, "udp"));
             NetworkManager.Singleton.StartHost();
             _isLobbyOwner = true;
             _isTryingToChangeLobby = false;
@@ -62,7 +68,7 @@ public class LobbyManager
             CloseInLobbyMenuEvent?.Invoke();
             return;
         }
-        
+
         Debug.Log("Lobby created.");
         OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isLobbyOwner);
     }
@@ -70,7 +76,7 @@ public class LobbyManager
     public async void JoinLobbyAsync(string lobbyCode, string playerNickName)
     {
         if (_isTryingToChangeLobby) return;
-        
+
         _isTryingToChangeLobby = true;
         Debug.Log("Joining lobby by code started. Code: " + lobbyCode);
 
@@ -80,7 +86,10 @@ public class LobbyManager
             {
                 Data = new()
                 {
-                    { StartMenuConstants.PLAYER_NICKNAME, new(PlayerDataObject.VisibilityOptions.Member, playerNickName) }
+                    {
+                        StartMenuConstants.PLAYER_NICKNAME,
+                        new(PlayerDataObject.VisibilityOptions.Member, playerNickName)
+                    }
                 }
             }
         };
@@ -90,7 +99,8 @@ public class LobbyManager
             Debug.Log("Try to join lobby by code. Code: " + lobbyCode);
             var lobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode, options);
             var joinAllocation = await JoinAllocationAsync(lobby.Data[StartMenuConstants.RELAY_CODE].Value);
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "udp"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>()
+                .SetRelayServerData(new RelayServerData(joinAllocation, "udp"));
             NetworkManager.Singleton.StartClient();
             _currentLobby = lobby;
             _isTryingToChangeLobby = false;
@@ -101,7 +111,7 @@ public class LobbyManager
             CloseInLobbyMenuEvent?.Invoke();
             return;
         }
-        
+
         Debug.Log("Lobby joined.");
         OpenInLobbyMenuEvent?.Invoke(_currentLobby, _isLobbyOwner);
     }
@@ -158,18 +168,17 @@ public class LobbyManager
             Debug.Log(e);
             return default;
         }
-        
+
         Debug.Log("Allocation joined.");
         return allocation;
     }
-    
+
     private async void HandleLobbyHeartBeatAsync()
     {
-        while (_currentLobby != null)
-        {
-            Debug.Log("Heartbeat sent. LobbyID: " + _currentLobby.Id);
-            await LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
-            await Task.Delay(15000);
-        }
+        Debug.Log("Heartbeat sent. LobbyID: " + _currentLobby.Id);
+        await LobbyService.Instance.SendHeartbeatPingAsync(_currentLobby.Id);
+        await Task.Delay(15000);
+        if (_currentLobby != null)
+            HandleLobbyHeartBeatAsync();
     }
 }
