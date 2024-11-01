@@ -36,6 +36,7 @@ public class GameManager : NetworkBehaviour
                 _playersData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
                 var unit = Instantiate(_gameData.GetUnit(request.Id), request.Position, Quaternion.identity);
                 unit.GetComponent<NetworkObject>().SpawnWithOwnership(request.PlayerId);
+                _playersData.GetPlayer(request.PlayerId)?.AddUnit(unit.GetComponent<NetworkObject>().NetworkObjectId);
             }
         }
     }
@@ -76,7 +77,7 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
 
         var player = _playersData.GetPlayer(request.PlayerId);
-        //TODO player.GetUnit(request.UnitId).SetDestination(request.Point);
+        player.GetUnit(request.UnitId).GetComponent<UnitConfigSO>();
     }
     
     public bool IsPlayerExist(ulong id)

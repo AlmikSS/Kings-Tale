@@ -6,20 +6,20 @@ public class PlayersData : NetworkBehaviour
 {
     [SerializeField] private GameObject _playerObject; 
     
-    private Dictionary<ulong, PlayerDataStruct> _players = new();
+    private Dictionary<ulong, PlayerData> _players = new();
 
     public void RegisterClient(ulong clientId)
     {
         if (!IsServer) return;
         
-        PlayerDataStruct playerData = new(new ResourcesStruct());
+        PlayerData playerData = new(new ResourcesStruct());
         var newObj = Instantiate(_playerObject).GetComponent<NetworkObject>();
         newObj.SpawnAsPlayerObject(clientId);
         _players.Add(clientId, playerData);
         Debug.Log("Registering" + clientId);
     }
     
-    public PlayerDataStruct? GetPlayer(ulong id)
+    public PlayerData? GetPlayer(ulong id)
     {
         if (_players.TryGetValue(id, out var player))
             return player;
@@ -39,9 +39,7 @@ public class PlayersData : NetworkBehaviour
     {
         if (_players.TryGetValue(playerId, out var player))
         {
-            player.Resources.Wood += resourcesToAdd.Wood;
-            player.Resources.Gold += resourcesToAdd.Gold;
-            player.Resources.Food += resourcesToAdd.Food;
+            player.ChangeResources(resourcesToAdd, 0);
         }
     }
 
@@ -49,9 +47,7 @@ public class PlayersData : NetworkBehaviour
     {
         if (_players.TryGetValue(playerId, out var player))
         {
-            player.Resources.Wood -= resourcesToRemove.Wood;
-            player.Resources.Gold -= resourcesToRemove.Gold;
-            player.Resources.Food -= resourcesToRemove.Food;
+            player.ChangeResources(resourcesToRemove, 1);
         }
     }
 }

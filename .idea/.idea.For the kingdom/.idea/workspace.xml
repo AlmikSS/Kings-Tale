@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerSetUnitDestinationRequestStruct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerSetUnitDestinationRequestStruct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/PlayerDataStruct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/PlayerDataStruct.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +137,8 @@
       <workItem from="1729240347192" duration="5265000" />
       <workItem from="1729605833143" duration="12000" />
       <workItem from="1729935750631" duration="3602000" />
+      <workItem from="1730129885074" duration="548000" />
+      <workItem from="1730130675398" duration="2000000" />
     </task>
     <servers />
   </component>

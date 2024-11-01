@@ -10,8 +10,7 @@ public class GameData : NetworkBehaviour
     
     private void GetConfigs()
     {
-        var configs = Resources.LoadAll("Configs/Units");
-        Debug.Log(configs);
+        
     }
 
     public ResourcesStruct? GetPrice(uint id, bool isBuilding)
