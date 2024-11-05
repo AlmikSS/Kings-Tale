@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/BuildingShop/ClientBuyResponseStruct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/BuildingShop/ClientBuyResponseStruct.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Client.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Fonts/Bloodmoon SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Fonts/Bloodmoon SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Bootstrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Client/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayerData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Client/PlayerData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/PlayersData.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +29,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/52/3ab6125b/ICollection`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/GamePlayBootstrap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/BuildingShop/BuildingShop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Structs/ServerPlaceBuildingRequestStruct.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/Lobby/Core/LobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/StartMenu/StartMenuConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Tester.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/VP/mppma42abaf1/Library/PackageCache/com.unity.netcode.gameobjects/Runtime/Messaging/Messages/RpcMessages.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -140,7 +146,7 @@
       <workItem from="1729935750631" duration="3602000" />
       <workItem from="1730129885074" duration="548000" />
       <workItem from="1730130675398" duration="2000000" />
-      <workItem from="1730800909601" duration="1087000" />
+      <workItem from="1730800909601" duration="7940000" />
     </task>
     <servers />
   </component>
