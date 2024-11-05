@@ -4,7 +4,7 @@ public class PlayerData : INetworkSerializable
 {
     private ResourcesStruct _resources;
     private NetworkList<ulong> _units = new();
-
+    
     public ResourcesStruct Resources => _resources;
     
     public PlayerData(ResourcesStruct resources)

@@ -48,7 +48,7 @@ public class InputManager : NetworkBehaviour
    {
       HandleSetUnitDestinationRequestAsync(request);
    }
-    
+   
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       if (!IsServer) return;
