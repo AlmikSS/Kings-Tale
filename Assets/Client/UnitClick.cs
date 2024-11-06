@@ -48,10 +48,12 @@ public class UnitClick : MonoBehaviour
         else if(UnitSelections.Instance.unitSelected.Count != 0 && Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
         {
             pos = hit.point;
+            //Request (playerid, pos, UnitSelections.Instance.unitSelected) can we move here or not (response send to units)
             UnitSelections.Instance.Deselect();
         } else if (UnitSelections.Instance.unitSelected.Count != 0 &&
                    Physics.Raycast(ray, out hit, Mathf.Infinity, building))
         {
+            //Request (playerid, buildid, UnitSelections.Instance.unitsSelected) to get can we send units here or not (response send to units)
             build = hit.collider.gameObject;
         }
     }

@@ -36,6 +36,8 @@ public class MakeBuild : MonoBehaviour
     }
     public void BuyBuild(GameObject buildPrefab)
     {
+        //Request send (buildid, playerid) can we make this build or not
+        //Response dependent
         Ray ray = _myCam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         
@@ -60,12 +62,14 @@ public class MakeBuild : MonoBehaviour
 
     private void MakeBuilding(InputAction.CallbackContext ctx)
     {
-        if (_currBuildPrefab != null)
+        if (_currBuildPrefab != null && _buildPrefabScript.canBuild)
         {
             Ray ray = _myCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
                     
             Physics.Raycast(ray, out hit, Mathf.Infinity, ground);
+            //Request (buildid, position, playerid) can we build here or not
+            //Response dependent
             Instantiate(_buildPrefabScript.buildActual, hit.point, Quaternion.identity);
             UnitControlSystem.SetActive(true);
             Destroy(_currBuildPrefab);

@@ -6,8 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="5709d1bb-6792-4d96-9e37-6997efefb2c0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For-the-kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For-the-kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/Build.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/Build.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildHolo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/BuildHolo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildHologram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/BuildHologram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildingShop.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildingShop.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/ClientBuyResponseStruct.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/ClientBuyResponseStruct.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/MakeBuild.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/MakeBuild.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/UnitClick.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +103,8 @@
       <workItem from="1730630518261" duration="1410000" />
       <workItem from="1730819547394" duration="4810000" />
       <workItem from="1730899589530" duration="681000" />
-      <workItem from="1730900391976" duration="10387000" />
+      <workItem from="1730900391976" duration="11046000" />
+      <workItem from="1730911964465" duration="1608000" />
     </task>
     <servers />
   </component>

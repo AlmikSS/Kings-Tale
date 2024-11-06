@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - GenericObject
+  - Target
+  - Boundary
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -12,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Build
   - 
   - 
   - 
