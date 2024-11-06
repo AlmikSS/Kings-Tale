@@ -1,14 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UnitEnlight : MonoBehaviour
 {
     private Maininput _mainInput;
-    private Camera _myCam;
+    [SerializeField] private Camera _myCam;
     private bool _click = false;
 
     [SerializeField] private RectTransform boxVisual;
+    [SerializeField] private UnitSelections _unitSelections;
 
     private Rect _selectionBox;
     private Vector2 _startPos;
@@ -106,11 +106,11 @@ public class UnitEnlight : MonoBehaviour
 
     private void SelectUnits()
     {
-        foreach (var unit in UnitSelections.Instance.unitList)
+        foreach (var unit in _unitSelections.unitList)
         {
             if(_selectionBox.Contains(_myCam.WorldToScreenPoint(unit.transform.position)))
             {
-                UnitSelections.Instance.DragSelect(unit);
+                _unitSelections.DragSelect(unit);
             }
         }
     }

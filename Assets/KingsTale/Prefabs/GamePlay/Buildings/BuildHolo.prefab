@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5136746264362247232}
   - component: {fileID: 2360324458595650497}
   - component: {fileID: 7033418177692193414}
-  - component: {fileID: -8496221438057919353}
   - component: {fileID: -2110818841070602142}
+  - component: {fileID: 1789178343684233317}
   m_Layer: 0
   m_Name: BuildHolo
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2856386631055887647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1738842, y: 8.2340975, z: -10.41193}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,20 +110,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8496221438057919353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856386631055887647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e7b09d6c7c0d8243b4af59ec10d68c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildActual: {fileID: 1117238171598312230, guid: ad11ccdcdf03a1c4fa53fdfb5275eca4,
-    type: 3}
 --- !u!54 &-2110818841070602142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,3 +137,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1789178343684233317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856386631055887647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e921530beeea66f4c9f01e09a1fe8e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _buildHealth: 10
+  _buildType: 1
+  _id: 0

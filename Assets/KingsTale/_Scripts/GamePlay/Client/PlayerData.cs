@@ -1,19 +1,27 @@
 using System.Collections.Generic;
 using Unity.Netcode;
 
-public class PlayerData 
+public class PlayerData
 {
+    private PlayerManager _playerManager;
     private ResourcesStruct _resources;
     private List<ulong> _units = new();
     private List<ulong> _buildings = new();
     
     public ResourcesStruct Resources => _resources;
+    public PlayerManager PlayerManager => _playerManager;
     
-    public PlayerData(ResourcesStruct resources)
+    public PlayerData(ResourcesStruct resources, PlayerManager playerManager)
     {
         _resources = resources;
+        _playerManager = playerManager;
     }
 
+    public void UpdatePlayer()
+    {
+        
+    }
+    
     public void AddUnit(ulong id)
     {
         if (!_units.Contains(id))

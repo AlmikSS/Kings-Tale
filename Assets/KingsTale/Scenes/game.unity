@@ -172,6 +172,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   pos: {x: 0, y: 0, z: 0}
+  _unitSelections: {fileID: 1454714613}
 --- !u!1 &188187365
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aef1e6315155b84fa58406af910294d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRot: 0.1
+  _speedRot: 1
   speed: 5
 --- !u!1 &258295298
 GameObject:
@@ -383,6 +384,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &258295300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxVisual: {fileID: 1380619209}
+  _unitSelections: {fileID: 1454714613}
 --- !u!1 &784831593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1015,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1521809252}
         m_TargetAssemblyTypeName: MakeBuild, Assembly-CSharp
-        m_MethodName: BuyBuild
+        m_MethodName: StartPlacingBuilding
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2856386631055887647, guid: 809ca41c517125840b199ef99fb62467,
@@ -1335,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0daa20a78726b3409ca6e4dd9a61669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitControlSystem: {fileID: 836545503}
+  _unitControlSystem: {fileID: 836545503}
   ground:
     serializedVersion: 2
     m_Bits: 64

@@ -27,7 +27,7 @@ public class GameManager : NetworkBehaviour
             
             if (request.IsBuilding)
             {
-                
+                player.PlayerManager.GetComponent<BuildingSystem>().StartPlacingBuildingRpc(request.Id);
             }
             else
             {
@@ -54,7 +54,9 @@ public class GameManager : NetworkBehaviour
         {
             _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
             var building = Instantiate(_gameData.GetBuilding(request.BuildingId), request.Position, Quaternion.identity);
-            building.GetComponent<NetworkObject>().SpawnWithOwnership(request.PlayerId);
+            building.SpawnWithOwnership(request.PlayerId);
+            _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
+            player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc();
         }
     }
 
@@ -104,7 +106,7 @@ public class GameManager : NetworkBehaviour
     {
         var buildingPrefab = _gameData.GetBuilding(request.BuildingId);
         var building = Instantiate(buildingPrefab, request.Position, Quaternion.identity);
-        var canPlace = building.GetComponent<BuildingBase>().CanPlace;
+        var canPlace = building.GetComponent<Building>().CanBuild;
         Destroy(building.gameObject);
         return canPlace;
     }

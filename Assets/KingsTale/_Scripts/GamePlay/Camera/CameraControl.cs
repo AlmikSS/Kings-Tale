@@ -1,10 +1,11 @@
-using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraControl : MonoBehaviour
+public class CameraControl : NetworkBehaviour
 {
-    [SerializeField] private float speedRot = 1f, speed = 1f;
+    [SerializeField] private float _speedRot = 1f;
+    [SerializeField] private float speed = 1f;
     private Maininput _maininput;
     private Camera _myCam;
     private Vector2 _mousePos;
@@ -24,6 +25,8 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer) return;
+        
         if (Input.GetKey(KeyCode.W))
         {
             _myCam.transform.Translate(Vector3.up * speed * Time.deltaTime);
@@ -71,7 +74,7 @@ public class CameraControl : MonoBehaviour
 
     private void CameraMove()
     {
-        _myCam.gameObject.transform.rotation = Quaternion.Euler(_mouseRot.eulerAngles.x - (Input.mousePosition.y - _mousePos.y) / (1 / speedRot)
-            ,_mouseRot.eulerAngles.y - (Input.mousePosition.x - _mousePos.x) / (1 / speedRot), 0);
+        _myCam.gameObject.transform.rotation = Quaternion.Euler(_mouseRot.eulerAngles.x - (Input.mousePosition.y - _mousePos.y) / (1 / _speedRot)
+            ,_mouseRot.eulerAngles.y - (Input.mousePosition.x - _mousePos.x) / (1 / _speedRot), 0);
     }
 }

@@ -7,7 +7,7 @@ public class GameData : NetworkBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<NetworkObject> _unitsPrefabs = new();
     [SerializeField] private List<NetworkObject> _buildingsPrefabs = new();
-    [SerializeField] private GameObject _playerObject;
+    [SerializeField] private NetworkObject _playerObject;
 
     [Header("Configs/Units")]
     [SerializeField] private List<UnitAttackConfigSO> _attackUnitsConfigs = new();
@@ -26,8 +26,8 @@ public class GameData : NetworkBehaviour
     {
         if (!IsServer) return;
         
-        PlayerData playerData = new(new ResourcesStruct());
-        var newObj = Instantiate(_playerObject).GetComponent<NetworkObject>();
+        PlayerData playerData = new(new ResourcesStruct(), new PlayerManager());
+        var newObj = Instantiate(_playerObject);
         newObj.SpawnAsPlayerObject(clientId);
         _players.Add(clientId, playerData);
         Debug.Log("Registering" + clientId);
