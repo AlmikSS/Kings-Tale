@@ -72,6 +72,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _unitsPrefabs: []
+  _buildingsPrefabs: []
+  _playerObject: {fileID: 0}
+  _attackUnitsConfigs:
+  - {fileID: 11400000, guid: 68a356e1fa2100b4f8010b9760806200, type: 2}
+  - {fileID: 11400000, guid: 6fe940382b6a5ff4a8221a68e7df76ac, type: 2}
+  - {fileID: 11400000, guid: d479bed5dba02f0419c90afb10219c09, type: 2}
+  - {fileID: 11400000, guid: 614ddd77febbed645a6cff099ddf8919, type: 2}
+  - {fileID: 11400000, guid: bc5023288a1940946900b8f60a8bacbd, type: 2}
+  - {fileID: 11400000, guid: 34cb70228caa9294b99b13c90699887a, type: 2}
+  - {fileID: 11400000, guid: 3564028285635f34dafe2902b9770c64, type: 2}
+  - {fileID: 11400000, guid: 69c209775af88544c926e136dc3b9743, type: 2}
+  - {fileID: 11400000, guid: e86e121497b2d154185b1ac78852831e, type: 2}
+  - {fileID: 11400000, guid: fe53892ba436c0b4d8dc3fac96a8f4f6, type: 2}
+  - {fileID: 11400000, guid: e8a3fe4ab2be68f4583752285ad955ce, type: 2}
+  - {fileID: 11400000, guid: 686bfa288b4e21d43b160d6bd8b5dac7, type: 2}
+  - {fileID: 11400000, guid: 3898312c4c1b01342862141eb62fea25, type: 2}
+  _workerUnitConfig: {fileID: 11400000, guid: 8119061c44d889448931f224e23765bc, type: 2}
 --- !u!1652712579 &4590967672510354194
 MultiplayerRolesData:
   m_ObjectHideFlags: 2

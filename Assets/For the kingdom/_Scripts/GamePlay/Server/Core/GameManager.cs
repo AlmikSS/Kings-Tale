@@ -75,7 +75,6 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
 
         var player = _gameData.GetPlayer(request.PlayerId);
-        player.GetUnit(request.UnitId).GetComponent<UnitConfigSO>();
     }
     
     public bool IsPlayerExist(ulong id)

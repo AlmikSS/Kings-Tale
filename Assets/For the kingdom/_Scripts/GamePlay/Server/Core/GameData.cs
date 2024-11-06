@@ -8,6 +8,10 @@ public class GameData : NetworkBehaviour
     [SerializeField] private List<NetworkObject> _unitsPrefabs = new();
     [SerializeField] private List<NetworkObject> _buildingsPrefabs = new();
     [SerializeField] private GameObject _playerObject;
+
+    [Header("Configs/Units")]
+    [SerializeField] private List<UnitAttackConfigSO> _attackUnitsConfigs = new();
+    [SerializeField] private UnitWorkerConfigSO _workerUnitConfig;
     
     private readonly Dictionary<ulong, PlayerData> _players = new();
     private List<ulong> _units = new();
