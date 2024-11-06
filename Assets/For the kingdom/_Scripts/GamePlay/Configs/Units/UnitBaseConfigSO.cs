@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class UnitBaseConfigSO : ScriptableObject
 {
+    [SerializeField] private string _unitName;
+    
     [Header("Health")]
     [SerializeField] private uint _maxHealth;
     [SerializeField] private uint _regeneration;
@@ -15,6 +17,8 @@ public class UnitBaseConfigSO : ScriptableObject
     [SerializeField] private float _speed;
     [SerializeField] private float _angularSpeed;
     [SerializeField] private float _stopDistance;
+
+    public string UnitName => _unitName;
 
     public uint MaxHealth => _maxHealth;
     public uint Regeneration => _regeneration;

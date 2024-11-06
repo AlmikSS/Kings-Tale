@@ -5,37 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitAttackConfigSO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitAttackConfigSO.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitBaseConfigSO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitBaseConfigSO.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitWorkerConfigSO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitWorkerConfigSO.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/GameData.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/GameData.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/PlayersData.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Prefabs/GamePlay/Core/Server/PlayersData.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs/Units.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs/Units/Archer.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs/Units/Archer.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs/Units/Knight.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Resources/Configs/Units/Knight.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/BaseConfigSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/BaseConfigSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/BuildingConfigSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/BuildingConfigSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/PriceConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/PriceConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/UnitConfigSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Core/UnitConfigSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Interfaces.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Interfaces/IGameConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Interfaces/IGameConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/AlchemistUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/AlchemistUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/ArcherUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/ArcherUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/BallistaUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/BallistaUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/CatapultUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/CatapultUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/CavalryUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/CavalryUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/ElectricMageUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/ElectricMageUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/HealerUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/HealerUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/IceMageUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/IceMageUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/KingUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/KingUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/KnightUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/KnightUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/LegionaryUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/LegionaryUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/PaladinUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/PaladinUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/PyromancerUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/PyromancerUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/WorkerUnitConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/Configs/Units/WorkerUnitConfig.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitBaseConfigSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/GamePlay/Configs/Units/UnitBaseConfigSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Tester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/For the kingdom/_Scripts/Tester.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +150,7 @@
       <workItem from="1730129885074" duration="548000" />
       <workItem from="1730130675398" duration="2000000" />
       <workItem from="1730800909601" duration="7940000" />
-      <workItem from="1730884739093" duration="2755000" />
+      <workItem from="1730884739093" duration="5044000" />
     </task>
     <servers />
   </component>

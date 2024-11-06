@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ec46168874ce59caad21ef038f3f1, type: 3}
   m_Name: WorkerUnitConfig
   m_EditorClassIdentifier: 
+  _unitName: Worker
+  _maxHealth: 0
+  _regeneration: 0
+  _regenSpeed: 0
+  _magicResist: 0
+  _physicalResist: 0
+  _speed: 0
+  _angularSpeed: 0
+  _stopDistance: 0
+  _attackSpeed: 0

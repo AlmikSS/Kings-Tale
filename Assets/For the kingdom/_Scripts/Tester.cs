@@ -18,10 +18,4 @@ public class Tester : NetworkBehaviour
             InputManager.Instance.HandleAddResourcesRequestRpc(new ServerAddResourcesRequestStruct(res, NetworkObject.OwnerClientId));
         }
     }
-
-    [Rpc(SendTo.Owner)]
-    public void TestRpc()
-    {
-        Debug.Log("Handle TestRpc");
-    }
 }

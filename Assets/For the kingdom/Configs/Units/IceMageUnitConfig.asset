@@ -12,3 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ed98ceff0e421d8f8367125e8071d5, type: 3}
   m_Name: IceMageUnitConfig
   m_EditorClassIdentifier: 
+  _unitName: IceMage
+  _maxHealth: 0
+  _regeneration: 0
+  _regenSpeed: 0
+  _magicResist: 0
+  _physicalResist: 0
+  _speed: 0
+  _angularSpeed: 0
+  _stopDistance: 0
+  _damage: 0
+  _attackSpeed: 0
+  _isLongRange: 0
