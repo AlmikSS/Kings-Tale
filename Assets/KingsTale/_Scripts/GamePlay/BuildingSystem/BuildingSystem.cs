@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class BuildingSystem : NetworkBehaviour
 {
+    [SerializeField] private GameObject _buildingShopCanvas;
+    [SerializeField] private GameObject _gamePlayCanvas;
     [SerializeField] private GameObject _unitControlSystem;
     [SerializeField] private Camera _myCam;
     [SerializeField] private List<Building> _buildings = new();
@@ -36,14 +38,17 @@ public class BuildingSystem : NetworkBehaviour
     [Rpc(SendTo.Owner)]
     public void StartPlacingBuildingRpc(ushort id)
     {
+        _buildingShopCanvas.SetActive(false);
+        _gamePlayCanvas.SetActive(true);
+        
         Ray ray = _myCam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         var buildPrefab = GetBuilding(id);
         
         Physics.Raycast(ray, out hit, Mathf.Infinity, ground);
-        _currBuildPrefab = Instantiate(buildPrefab, hit.point, Quaternion.identity).GetComponent<GameObject>();
-        _buildPrefabScript = _currBuildPrefab.GetComponent<Building>();
+        _buildPrefabScript = Instantiate(buildPrefab, hit.point, Quaternion.identity);
+        _currBuildPrefab = _buildPrefabScript.gameObject;
         _unitControlSystem.SetActive(false);
     }
 

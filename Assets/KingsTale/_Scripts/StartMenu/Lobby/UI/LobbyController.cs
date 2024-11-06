@@ -79,6 +79,8 @@ public class LobbyController : MonoBehaviour
 
     private void OnLobbyUpdated(Lobby lobby, bool isLobbyOwner)
     {
+        if (lobby == null) return;
+        
         _inLobbyMaxPlayersText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers}";
         _inLobbyMenuCodeText.text = $"Code: {lobby.LobbyCode}";
         

@@ -19,9 +19,10 @@ public class GameManager : NetworkBehaviour
         var price = _gameData.GetPrice(request.Id, request.IsBuilding);
         var player = _gameData.GetPlayer(request.PlayerId);
 
-        if (resources == null || price == null || player == null) return;
+        //if (resources == null || price == null || player == null) return;
 
-        if (CanPlayerBuy(resources, price))
+        //if (CanPlayerBuy(resources, price))
+        if (true)
         {
             player = _gameData.GetPlayer(request.PlayerId);
             
@@ -48,9 +49,10 @@ public class GameManager : NetworkBehaviour
         var price = _gameData.GetPrice(request.BuildingId, true);
         var player = _gameData.GetPlayer(request.PlayerId);
 
-        if (resources == null || price == null || player == null) return;
+        //if (resources == null || price == null || player == null) return;
 
-        if (CanPlayerBuy(resources, price) && CanPlaceBuilding(request))
+        //if (CanPlayerBuy(resources, price) && CanPlaceBuilding(request))
+        if (true)
         {
             _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
             var building = Instantiate(_gameData.GetBuilding(request.BuildingId), request.Position, Quaternion.identity);

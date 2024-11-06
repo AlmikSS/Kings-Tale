@@ -7,7 +7,7 @@ public class CameraControl : NetworkBehaviour
     [SerializeField] private float _speedRot = 1f;
     [SerializeField] private float speed = 1f;
     private Maininput _maininput;
-    private Camera _myCam;
+    [SerializeField] private Camera _myCam;
     private Vector2 _mousePos;
     private bool _mouseDown = false;
     
@@ -16,11 +16,6 @@ public class CameraControl : NetworkBehaviour
     private void Awake()
     {
         _maininput = new Maininput();
-    }
-
-    private void Start()
-    {
-        _myCam = Camera.main;
     }
 
     private void Update()

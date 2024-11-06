@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : NetworkBehaviour
 {
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _buildHealth;

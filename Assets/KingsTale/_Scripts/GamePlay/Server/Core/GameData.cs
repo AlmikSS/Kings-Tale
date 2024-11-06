@@ -26,9 +26,11 @@ public class GameData : NetworkBehaviour
     {
         if (!IsServer) return;
         
-        PlayerData playerData = new(new ResourcesStruct(), new PlayerManager());
         var newObj = Instantiate(_playerObject);
         newObj.SpawnAsPlayerObject(clientId);
+        var playerManager = newObj.GetComponent<PlayerManager>();
+        
+        var playerData = new PlayerData(new ResourcesStruct(), playerManager);
         _players.Add(clientId, playerData);
         Debug.Log("Registering" + clientId);
     }
@@ -113,7 +115,13 @@ public class GameData : NetworkBehaviour
 
     public NetworkObject GetBuilding(ushort id)
     {
-        return _buildingsPrefabs[id];
+        foreach (var building in _buildingsPrefabs)
+        {
+            if (building.GetComponent<Building>().Id == id)
+            return building;
+        }
+
+        return null;
     }
 
     public NetworkObject GetUnit(ushort id)

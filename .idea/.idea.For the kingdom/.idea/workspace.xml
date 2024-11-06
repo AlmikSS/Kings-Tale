@@ -6,43 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/Build.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/Build.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/Build.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Client/Build.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildHologram.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/BuildHologram.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/CameraControl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/CameraControl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/MakeBuild.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/MakeBuild.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitClick.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitClick.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitEnlight.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitEnlight.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitSelections.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/UnitSelections.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/game.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/game.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/main input.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/main input.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/main input.inputactions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Client/main input.inputactions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Buildings/BuildHolo.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Buildings/BuildHolo.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Core/Server/GameData.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Core/Server/GameData.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingShop.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingShop/BuildingShop.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingShop/BuildingShop.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingShop/ClientBuyResponseStruct.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingShop/ClientBuyResponseStruct.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/BuildingBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/BuildingBase.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Client/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Client/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Scenes/StartMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Scenes/StartMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingSystem/BuildingSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingSystem/BuildingSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/Building.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Camera/CameraControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Camera/CameraControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/MainInput.inputactions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/MainInput.inputactions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/MultiplayerManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/MultiplayerManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +144,7 @@
       <workItem from="1730130675398" duration="2000000" />
       <workItem from="1730800909601" duration="7940000" />
       <workItem from="1730884739093" duration="5044000" />
-      <workItem from="1730916101508" duration="4287000" />
+      <workItem from="1730916101508" duration="7546000" />
     </task>
     <servers />
   </component>
