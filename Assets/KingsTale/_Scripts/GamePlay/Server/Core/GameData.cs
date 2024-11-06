@@ -118,9 +118,9 @@ public class GameData : NetworkBehaviour
         foreach (var building in _buildingsPrefabs)
         {
             if (building.GetComponent<Building>().Id == id)
-            return building;
+                return building;
         }
-
+        
         return null;
     }
 

@@ -54,10 +54,11 @@ public class GameManager : NetworkBehaviour
         //if (CanPlayerBuy(resources, price) && CanPlaceBuilding(request))
         if (true)
         {
-            _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
+            Debug.Log(0);
+            //_gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
             var building = Instantiate(_gameData.GetBuilding(request.BuildingId), request.Position, Quaternion.identity);
             building.SpawnWithOwnership(request.PlayerId);
-            _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
+           // _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
             player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc();
         }
     }

@@ -6,18 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="40afcddc-3322-4756-a856-49c5e87d7056" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.For the kingdom/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Buildings/BuildHolo.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Buildings/BuildHolo.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Core/Server/GameData.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Core/Server/GameData.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Prefabs/GamePlay/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/Scenes/StartMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/Scenes/StartMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingSystem/BuildingSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/BuildingSystem/BuildingSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Buildings/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Camera/CameraControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Camera/CameraControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/GamePlay/Server/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/StartMenu/Lobby/UI/LobbyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/UI/MainMenuBtns.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/KingsTale/_Scripts/UI/MainMenuBtns.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VirtualProjectsConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VirtualProjectsConfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +141,7 @@
       <workItem from="1730800909601" duration="7940000" />
       <workItem from="1730884739093" duration="5044000" />
       <workItem from="1730916101508" duration="7546000" />
+      <workItem from="1730933452373" duration="3326000" />
     </task>
     <servers />
   </component>
