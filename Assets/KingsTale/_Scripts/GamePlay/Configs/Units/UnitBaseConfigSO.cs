@@ -18,6 +18,9 @@ public class UnitBaseConfigSO : ScriptableObject
     [SerializeField] private float _angularSpeed;
     [SerializeField] private float _stopDistance;
 
+    [Header("Price")]
+    [SerializeField] private ResourcesStruct _price;
+    
     public string UnitName => _unitName;
 
     public uint MaxHealth => _maxHealth;
@@ -31,7 +34,9 @@ public class UnitBaseConfigSO : ScriptableObject
     public float AngularSpeed => _angularSpeed;
     public float StopDistance => _stopDistance;
 
-    public void SetProperties(uint maxHealth, uint regeneration, float regenSpeed, uint magicResist, uint physicalResist, float speed, float angularSpeed, float stopDistance)
+    public ResourcesStruct Price => _price;
+
+    public void SetProperties(uint maxHealth, uint regeneration, float regenSpeed, uint magicResist, uint physicalResist, float speed, float angularSpeed, float stopDistance, ResourcesStruct price)
     {
         _maxHealth = maxHealth;
         _regeneration = regeneration;
@@ -43,5 +48,7 @@ public class UnitBaseConfigSO : ScriptableObject
         _speed = speed;
         _angularSpeed = angularSpeed;
         _stopDistance = stopDistance;
+
+        _price = price;
     }
 }

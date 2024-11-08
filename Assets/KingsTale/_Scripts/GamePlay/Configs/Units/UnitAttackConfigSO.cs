@@ -12,9 +12,9 @@ public class UnitAttackConfigSO : UnitBaseConfigSO
     public float AttackSpeed => _attackSpeed;
     public bool IsLongRange => _isLongRange;
 
-    public void SetProperties(uint maxHealth, uint regeneration, float regenSpeed, uint magicResist, uint physicalResist, float speed, float angularSpeed, float stopDistance, uint damage, float attackSpeed, bool isLongRange)
+    public void SetProperties(uint maxHealth, uint regeneration, float regenSpeed, uint magicResist, uint physicalResist, float speed, float angularSpeed, float stopDistance, uint damage, float attackSpeed, bool isLongRange, ResourcesStruct price)
     {
-        base.SetProperties(maxHealth, regeneration, regenSpeed, magicResist, physicalResist, speed, angularSpeed, stopDistance);
+        base.SetProperties(maxHealth, regeneration, regenSpeed, magicResist, physicalResist, speed, angularSpeed, stopDistance, price);
         _damage = damage;
         _attackSpeed = attackSpeed;
         _isLongRange = isLongRange;

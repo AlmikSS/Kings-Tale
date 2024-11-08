@@ -19,31 +19,43 @@ public class PlayerData
 
     public void UpdatePlayer()
     {
-        
+        var updatedState = new ClientUpdateStateStruct();
+        updatedState.Resources = _resources;
+        updatedState.Units = _units.ToArray();
+        updatedState.Buildings = _buildings.ToArray();
+        _playerManager.UpdateStateRpc(updatedState);
     }
     
     public void AddUnit(ulong id)
     {
         if (!_units.Contains(id))
             _units.Add(id);
+
+        UpdatePlayer();
     }
 
     public void RemoveUnit(ulong id)
     {
         if (_units.Contains(id))
             _units.Remove(id);
+
+        UpdatePlayer();
     }
     
     public void AddBuilding(ulong id)
     {
         if (!_buildings.Contains(id))
             _buildings.Add(id);
+        
+        UpdatePlayer();
     }
     
     public void RemoveBuilding(ulong id)
     {
         if (_buildings.Contains(id))
             _buildings.Remove(id);
+        
+        UpdatePlayer();
     }
     
     public NetworkObject GetUnit(ulong id)
@@ -76,5 +88,7 @@ public class PlayerData
             _resources.Food -= resources.Food;
             _resources.Gold -= resources.Gold;
         }
+        
+        UpdatePlayer();
     }
 }

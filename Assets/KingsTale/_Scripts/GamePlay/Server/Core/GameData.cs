@@ -43,12 +43,12 @@ public class GameData : NetworkBehaviour
         return null;
     }
 
-    public ResourcesStruct? GetPlayerResources(ulong id)
+    public ResourcesStruct GetPlayerResources(ulong id)
     {
         if (_players.TryGetValue(id, out var player))
             return player.Resources;
         
-        return null;
+        return default;
     }
 
     public void AddResourcesToPlayer(ulong playerId, ResourcesStruct resourcesToAdd)
@@ -108,9 +108,9 @@ public class GameData : NetworkBehaviour
         
     }
 
-    public ResourcesStruct? GetPrice(uint id, bool isBuilding)
+    public ResourcesStruct GetPrice(uint id, bool isBuilding)
     {
-        return default;
+        return new ResourcesStruct(10, 10, 10);
     }
 
     public NetworkObject GetBuilding(ushort id)
