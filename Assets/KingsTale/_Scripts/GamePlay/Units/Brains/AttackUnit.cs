@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.Netcode;
 
 public abstract class AttackUnit : UnitBrain
 {
@@ -140,4 +141,9 @@ public abstract class AttackUnit : UnitBrain
     }
     protected virtual void OnDestroy(){}
     
+    protected override void SetBuilding(ulong buildingID)
+    {
+        var building = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingID].GetComponent<GameObject>();
+        SetAttackObject(building);
+    }
 }
