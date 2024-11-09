@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class UnitEnlight : MonoBehaviour
 {
-    private Maininput _mainInput;
+    private MainInput _mainInput;
     [SerializeField] private Camera _myCam;
     private bool _click = false;
 
@@ -16,7 +16,7 @@ public class UnitEnlight : MonoBehaviour
 
     void Awake()
     {
-        _mainInput = new Maininput();
+        _mainInput = new MainInput();
     }
     void Start()
     {
