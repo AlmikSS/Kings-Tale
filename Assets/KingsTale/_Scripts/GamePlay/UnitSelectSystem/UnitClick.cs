@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class UnitClick : MonoBehaviour
 {
-    private Maininput _input;
+    private MainInput _input;
     [SerializeField] private Camera _myCam;
 
     public LayerMask clickable;
@@ -17,7 +17,7 @@ public class UnitClick : MonoBehaviour
 
     private void Awake()
     {
-        _input = new Maininput();
+        _input = new MainInput();
     }
 
     private void OnEnable()

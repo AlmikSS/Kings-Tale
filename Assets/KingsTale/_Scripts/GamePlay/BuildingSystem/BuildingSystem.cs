@@ -11,14 +11,14 @@ public class BuildingSystem : NetworkBehaviour
     [SerializeField] private Camera _myCam;
     [SerializeField] private List<Building> _buildings = new();
     
-    private Maininput _maininput;
+    private MainInput _maininput;
     private GameObject _currBuildPrefab;
     private Building _buildPrefabScript;
     public LayerMask ground;
 
     private void Awake()
     {
-        _maininput = new Maininput();
+        _maininput = new MainInput();
     }
 
     private void OnEnable()
