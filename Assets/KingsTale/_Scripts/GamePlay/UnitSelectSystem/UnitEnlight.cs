@@ -20,7 +20,6 @@ public class UnitEnlight : MonoBehaviour
     }
     void Start()
     {
-        _myCam = Camera.main;
         _startPos= Vector2.zero;
         _endPos= Vector2.zero;
         DrawVisual();

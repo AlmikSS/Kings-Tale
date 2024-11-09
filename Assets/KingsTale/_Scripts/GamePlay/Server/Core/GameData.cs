@@ -29,7 +29,7 @@ public class GameData : NetworkBehaviour
         var newObj = Instantiate(_playerObject);
         newObj.SpawnAsPlayerObject(clientId);
         var playerManager = newObj.GetComponent<PlayerManager>();
-        
+        playerManager.GetComponent<BuildingSystem>().SetBuildingList(_buildingsPrefabs);
         var playerData = new PlayerData(new ResourcesStruct(), playerManager);
         _players.Add(clientId, playerData);
         Debug.Log("Registering" + clientId);
@@ -113,7 +113,7 @@ public class GameData : NetworkBehaviour
         return new ResourcesStruct(10, 10, 10);
     }
 
-    public NetworkObject GetBuilding(ushort id)
+    public NetworkObject GetBuildingPrefab(ushort id)
     {
         foreach (var building in _buildingsPrefabs)
         {
@@ -124,8 +124,19 @@ public class GameData : NetworkBehaviour
         return null;
     }
 
-    public NetworkObject GetUnit(ushort id)
+    public NetworkObject GetUnitPrefab(ushort id)
     {
+        // foreach (var unit in _unitsPrefabs)
+        // {
+        //     if (unit.GetComponent<Ga>().Id == id)
+        //         return unit;
+        // }
+        
         return _unitsPrefabs[id];
+    }
+
+    public bool IsUnitExist(ulong id)
+    {
+        return _units.Contains(id);
     }
 }

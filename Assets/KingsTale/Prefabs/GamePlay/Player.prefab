@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3715937801
+  GlobalObjectIdHash: 587966719
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1454,8 +1454,7 @@ MonoBehaviour:
   _gamePlayCanvas: {fileID: 6235334151057041544}
   _unitControlSystem: {fileID: 1327897022887631506}
   _myCam: {fileID: 6442842911458586078}
-  _buildings:
-  - {fileID: 1789178343684233317, guid: 809ca41c517125840b199ef99fb62467, type: 3}
+  _buildings: []
   ground:
     serializedVersion: 2
     m_Bits: 64

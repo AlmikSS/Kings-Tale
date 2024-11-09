@@ -99,4 +99,13 @@ public class BuildingSystem : NetworkBehaviour
         Destroy(_currBuildPrefab);
         _currBuildPrefab = null;
     }
+
+    public void SetBuildingList(List<NetworkObject> buildings)
+    {
+        foreach (var building in buildings)
+        {
+            var b = building.GetComponent<Building>();
+            _buildings.Add(b);
+        }
+    }
 }

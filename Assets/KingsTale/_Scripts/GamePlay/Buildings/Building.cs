@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Collections;
-using NUnit.Framework;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IDamagable
+public class Building : NetworkBehaviour, IDamagable
 {
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _buildHealth;
@@ -32,13 +32,13 @@ public class Building : MonoBehaviour, IDamagable
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == _obstacleMask)
+        if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
             CanBuild = false;
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == _obstacleMask)
+        if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
             CanBuild = true;
     }
     
