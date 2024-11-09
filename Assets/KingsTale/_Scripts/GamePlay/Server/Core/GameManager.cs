@@ -73,6 +73,9 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
 
         var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetDestinationRpc(request.Point);
     }
 
     [Rpc(SendTo.Server)]
@@ -81,6 +84,18 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle set unit building request. Client: {request.PlayerId}, Unit: {request.UnitId}, Building: {request.BuildingId}.");
 
         var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetBuilding(request.BuildingId);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleTakeDamageRequestRpc(ServerTakeDamageRequestStruct request)
+    {
+        Debug.Log($"Handle take damage request. Client: {request.PlayerId}, Object: {request.Id}, Damage: {request.Damage}.");
+
+        var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
+        damageable.TakeDamage((int)request.Damage, DamageType.Magical);
     }
     
     public bool IsPlayerExist(ulong id)

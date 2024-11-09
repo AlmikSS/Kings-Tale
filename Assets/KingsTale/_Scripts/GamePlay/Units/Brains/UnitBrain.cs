@@ -210,4 +210,18 @@ public abstract class UnitBrain : MonoBehaviour, IDamagable
         StartCoroutine(UpdateAnimations());
         //PlayerMng.PlayerUnits.Units.Add(this);
     }
+    
+    [Rpc(SendTo.Owner)]
+    public void SetDestinationRpc(Vector3 pos)
+    {
+	    // метод
+    }
+
+    [Rpc(SendTo.Owner)]
+    public void SetBuilding(ulong buildingID)
+    {
+	    var building = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingID].GetComponent<Building>();
+	    // метод
+    }
+
 }

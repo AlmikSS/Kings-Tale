@@ -54,6 +54,12 @@ public class InputManager : NetworkBehaviour
    {
       HandleSetUnitBuildingRequestAsync(request);
    }
+
+   [Rpc(SendTo.Server)]
+   public void HandleTakeDamageRequestRpc(ServerTakeDamageRequestStruct request)
+   {
+      HandleTakeDamageRequestAsync(request);
+   }
    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
@@ -82,7 +88,7 @@ public class InputManager : NetworkBehaviour
          _gameManager.HandleAddResourcesRequestRpc(request);
    }
    
-   public async void HandleSetUnitDestinationRequestAsync(ServerSetUnitDestinationRequestStruct request)
+   private async void HandleSetUnitDestinationRequestAsync(ServerSetUnitDestinationRequestStruct request)
    {
       if (!IsServer) return;
       
@@ -91,7 +97,7 @@ public class InputManager : NetworkBehaviour
          _gameManager.HandleSetUnitDestinationRequestRpc(request);
    }
 
-   public async void HandleSetUnitBuildingRequestAsync(ServerSetUnitBuildingRequestStruct request)
+   private async void HandleSetUnitBuildingRequestAsync(ServerSetUnitBuildingRequestStruct request)
    {
       if (!IsServer) return;
       
@@ -99,7 +105,16 @@ public class InputManager : NetworkBehaviour
       if (validateResponse.IsValidate)
          _gameManager.HandleSetUnitBuildingRequestRpc(request);
    }
-    
+
+   private async void HandleTakeDamageRequestAsync(ServerTakeDamageRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleTakeDamageRequestRpc(request);
+   }
+   
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
@@ -152,7 +167,17 @@ public class InputManager : NetworkBehaviour
       
       return Task.FromResult(response);
    }
-    
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerTakeDamageRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsDamageableObject(request.Id, response);
+      
+      return Task.FromResult(response);
+   }
+   
    private ValidateResponseStruct IsPlayerExistValidation(ulong playerId, ValidateResponseStruct response)
    {
       if (!_gameManager.IsPlayerExist(playerId))
@@ -194,6 +219,17 @@ public class InputManager : NetworkBehaviour
          response.Message += "Unit does not exist. ";
       }
 
+      return response;
+   }
+
+   private ValidateResponseStruct IsDamageableObject(ulong objectId, ValidateResponseStruct response)
+   {
+      if (!NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectId].TryGetComponent(out IDamagable damagable))
+      {
+         response.IsValidate = false;
+         response.Message += "Object is not damageable. ";
+      }
+      
       return response;
    }
 }
