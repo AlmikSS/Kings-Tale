@@ -3,16 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - GenericObject
+  - Target
+  - Boundary
+  - Floor
+  - Unit
+  - UnitCollider
+  - Building
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Unit
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Build
   - 
   - 
   - 

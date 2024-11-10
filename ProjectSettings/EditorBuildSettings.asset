@@ -6,10 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/For the kingdom/Scenes/StartMenu.unity
+    path: Assets/KingsTale/Scenes/MainMenu.unity
+    guid: 9edbc68fddd28194ba82c0b690f0ca1b
+  - enabled: 1
+    path: Assets/KingsTale/Scenes/StartMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/For the kingdom/Scenes/GamePlay.unity
+    path: Assets/KingsTale/Scenes/GamePlay.unity
     guid: e339c9e66699d7f40b16daa188a78ab6
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 58b5b2419c50f6447b23de5016666fb8,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 6a0421fb7ca097f4e9beb688c8c71499,
+      type: 2}
   m_UseUCBPForAssetBundles: 0
