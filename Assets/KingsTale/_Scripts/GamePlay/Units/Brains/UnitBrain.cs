@@ -214,14 +214,9 @@ public abstract class UnitBrain : MonoBehaviour, IDamagable
     [Rpc(SendTo.Owner)]
     public void SetDestinationRpc(Vector3 pos)
     {
-	    // метод
+	    GoToPoint(pos);
     }
 
     [Rpc(SendTo.Owner)]
-    public void SetBuilding(ulong buildingID)
-    {
-	    var building = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingID].GetComponent<Building>();
-	    // метод
-    }
-
+    public abstract void SetBuilding(ulong buildingID);
 }

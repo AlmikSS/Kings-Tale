@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 82669330d834fe84ba8c8b4f0cf9395d
+guid: f1f23f1b41fe2644fac56903b680a98c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +16,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -34,10 +32,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: worker_run
-      takeName: "\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430Action"
-      internalID: -6641176737478421468
+      takeName: "\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430.001|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430Actio"
+      internalID: -1239920373846443463
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -28,8 +28,11 @@ public class MainMenuBtns : MonoBehaviour
     [Header("Game")]
     [SerializeField] private TMP_Dropdown _invertMouse;
     [SerializeField] private TMP_Dropdown _fullscreenDrop;
-    
-    private bool _activePP;
+
+    [Header("UI")] 
+    [SerializeField] private GameObject _mainUI;
+
+    private bool _activePP, _menuHiden;
     private int _customFPS = 2;
     private PlayerInput _controller;
     
@@ -243,11 +246,27 @@ public class MainMenuBtns : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void OpenUrl(string url)
-    {
-        Application.OpenURL(url);
-    }
+    public void OpenUrl(string url) => Application.OpenURL(url);
 
+    public void HideUI(Image img)
+    {
+        if (_menuHiden)
+        {
+            _mainUI.SetActive(true);
+            var color = img.color;
+            color.a = 1f;
+            img.color = color;
+            _menuHiden = false;
+        }
+        else
+        {
+            _mainUI.SetActive(false);
+            var color = img.color;
+            color.a = 0.2f;
+            img.color = color;
+            _menuHiden = true;
+        }
+    }
     public void ChangeGenSnd(float value)
     {
         var _sound = Mathf.Log10(value / 100f) * 20f;

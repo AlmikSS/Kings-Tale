@@ -114,20 +114,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 59975358808661383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed76c4bf1a38d14580dd86f0c97e841, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc152a4e88528e43a5b5779d1f67bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TextDmg: {fileID: 3197600875152779314, guid: ef7606b46e3956a4da66b116637365a4, type: 3}
   TextHeal: {fileID: 2999439912237905769, guid: 85b7feb2d547606418b568441f86afa9,
     type: 3}
-  PhysicDefence: {fileID: 5061812647593522162, guid: 7bbb0e16e8d45dc438adbffae6d5729a,
+  PhysicDefence: {fileID: 3092378215506325673, guid: ea5a9ba00ecad48488f0ae7da3e79d6f,
     type: 3}
-  MagicDefence: {fileID: 3092378215506325673, guid: ea5a9ba00ecad48488f0ae7da3e79d6f,
+  MagicDefence: {fileID: 5061812647593522162, guid: 7bbb0e16e8d45dc438adbffae6d5729a,
     type: 3}
   DmgGroup: {fileID: 8543469132314259143}
   HealGroup: {fileID: 8007793673649540459}
   fill: {fileID: 6625310134427312089}
-  redFill: {fileID: 6711327692915295523}
+  redFill: {fileID: 6625310134427312089}
   anim: {fileID: 8321033620507259139}
 --- !u!1 &2656382890379474043
 GameObject:
@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 2780978203808633559}
   - component: {fileID: 6988519203053132024}
   - component: {fileID: 6711327692915295523}
-  - component: {fileID: 6874779770875924863}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -188,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.03529412}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -205,23 +204,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.35
---- !u!114 &6874779770875924863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2656382890379474043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0671953a9c649e5438e4d961d1983915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gradientMode: 1
-  _gradientDir: 0
-  _overwriteAllColor: 0
-  _vertex1: {r: 0.9254902, g: 0.023529412, b: 0.023529412, a: 0.39215687}
-  _vertex2: {r: 0.5568628, g: 0, b: 0, a: 0.39215687}
 --- !u!1 &5521316380588421335
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +215,6 @@ GameObject:
   - component: {fileID: 2976266677625086519}
   - component: {fileID: 8461171295914884537}
   - component: {fileID: 6625310134427312089}
-  - component: {fileID: 819996128373624268}
   m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
@@ -281,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.309704, g: 0.6981132, b: 0.1284265, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -298,23 +279,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.35
---- !u!114 &819996128373624268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5521316380588421335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0671953a9c649e5438e4d961d1983915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gradientMode: 1
-  _gradientDir: 0
-  _overwriteAllColor: 0
-  _vertex1: {r: 0.62352943, g: 1, b: 0.078431375, a: 1}
-  _vertex2: {r: 0.047058824, g: 0.67058825, b: 0, a: 1}
 --- !u!1 &7822438463640071414
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +395,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &8321033620507259139
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -445,6 +409,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
