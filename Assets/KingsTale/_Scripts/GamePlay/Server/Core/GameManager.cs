@@ -86,7 +86,7 @@ public class GameManager : NetworkBehaviour
         var player = _gameData.GetPlayer(request.PlayerId);
         var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
         
-        unit.SetBuilding(request.BuildingId);
+        unit.SetBuildingRpc(request.BuildingId);
     }
 
     [Rpc(SendTo.Server)]

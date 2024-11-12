@@ -1,9 +1,10 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UnitEnlight : MonoBehaviour
 {
-    private MainInput _mainInput;
+    private PlayerInput _mainInput;
     [SerializeField] private Camera _myCam;
     private bool _click = false;
 
@@ -16,7 +17,9 @@ public class UnitEnlight : MonoBehaviour
 
     void Awake()
     {
-        _mainInput = new MainInput();
+        _mainInput = FindFirstObjectByType<PlayerInput>();
+        _mainInput.actions["RightClick"].performed += StartVisual;
+        _mainInput.actions["RightClick"].canceled += EndVisual;
     }
     void Start()
     {
@@ -25,19 +28,19 @@ public class UnitEnlight : MonoBehaviour
         DrawVisual();
     }
 
-    private void OnEnable()
-    {
-        _mainInput.Enable();
-        _mainInput.Player.RightClick.performed += StartVisual;
-        _mainInput.Player.RightClick.canceled += EndVisual;
-    }
-
-    private void OnDisable()
-    {
-        _mainInput.Disable();
-        _mainInput.Player.RightClick.performed -= StartVisual;
-        _mainInput.Player.RightClick.canceled -= EndVisual;
-    }
+    // private void OnEnable()
+    // {
+    //     _mainInput.Enable();
+    //     _mainInput.Player.RightClick.performed += StartVisual;
+    //     _mainInput.Player.RightClick.canceled += EndVisual;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     _mainInput.Disable();
+    //     _mainInput.Player.RightClick.performed -= StartVisual;
+    //     _mainInput.Player.RightClick.canceled -= EndVisual;
+    // }
 
     private void Update()
     {
@@ -105,12 +108,10 @@ public class UnitEnlight : MonoBehaviour
 
     private void SelectUnits()
     {
-        foreach (var unit in _unitSelections.unitList)
+        foreach (var unit in _unitSelections.unitList.Where(unit => _selectionBox.Contains(_myCam.WorldToScreenPoint(unit.transform.position))))
         {
-            if(_selectionBox.Contains(_myCam.WorldToScreenPoint(unit.transform.position)))
-            {
-                _unitSelections.DragSelect(unit);
-            }
+            if (unit.TryGetComponent(out UnitBrain unitBrain))
+                _unitSelections.DragSelect(unitBrain);
         }
     }
 }

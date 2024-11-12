@@ -152,7 +152,7 @@ public class InputManager : NetworkBehaviour
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       
-      response = IsUnitPrefabExistValidation(request.UnitId, response);
+      response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
       
       return Task.FromResult(response);

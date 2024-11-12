@@ -1,13 +1,16 @@
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(UnitClick), typeof(UnitEnlight), typeof(UnitSelections))]
 public class PlayerManager : NetworkBehaviour
 {
     [SerializeField] private GameObject _ui;
-    [SerializeField] private GameObject _camera;
+    [SerializeField] private Camera _camera;
     [SerializeField] private TMP_Text _resourcesText;
+    [SerializeField] private LayerMask _groundLayerMask;
     
     public ResourcesStruct Resources { get; private set; }
     
@@ -15,12 +18,14 @@ public class PlayerManager : NetworkBehaviour
     private UnitEnlight _unitEnlight;
     private UnitSelections _unitSelections;
 
+    private PlayerInput _input;
+    
     public override void OnNetworkSpawn()
     {
         if (!IsLocalPlayer)
         {
             _ui.SetActive(false);
-            _camera.SetActive(false);
+            _camera.gameObject.SetActive(false);
             GetComponent<BuildingSystem>().enabled = false;
             GetComponent<UnitClick>().enabled = false;
             GetComponent<UnitEnlight>().enabled = false;
@@ -32,6 +37,10 @@ public class PlayerManager : NetworkBehaviour
         _unitClick = GetComponent<UnitClick>();
         _unitEnlight = GetComponent<UnitEnlight>();
         _unitSelections = GetComponent<UnitSelections>();
+
+        _input = FindFirstObjectByType<PlayerInput>();
+        _input.actions["LeftClick"].performed += OnMouseLeftClick;
+        _input.actions["RightClick"].performed += OnMouseRightClick;
     }
 
     private void Update()
@@ -43,6 +52,19 @@ public class PlayerManager : NetworkBehaviour
             var request = new ServerAddResourcesRequestStruct(new ResourcesStruct((uint)Random.Range(10, 20), (uint)Random.Range(10, 20), (uint)Random.Range(10, 20)), OwnerClientId);
             InputManager.Instance.HandleAddResourcesRequestRpc(request);
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            var request = new ServerBuyRequestStruct
+            {
+                IsBuilding = false,
+                PlayerId = OwnerClientId,
+                Id = 0,
+                Position = new Vector3()
+            };
+        
+            InputManager.Instance.HandleBuyRequestRpc(request);
+        }
     }
     
     [Rpc(SendTo.Owner)]
@@ -53,12 +75,45 @@ public class PlayerManager : NetworkBehaviour
         Resources = updateState.Resources;
         
         _unitSelections.unitList.Clear();
+        
         foreach (var unitId in updateState.Units)
         {
             var unit = NetworkManager.SpawnManager.SpawnedObjects[unitId];
-            _unitSelections.unitList.Add(unit.gameObject);
+            _unitSelections.unitList.Add(unit.GetComponent<UnitBrain>());
         }
 
         _resourcesText.text = $"Wood: {Resources.Wood}, Food: {Resources.Food}, Gold: {Resources.Gold}";
+    }
+    
+    private void OnMouseLeftClick(InputAction.CallbackContext obj)
+    {
+        if (!IsLocalPlayer) return;
+        
+        if (_unitSelections.unitSelected.Count > 0)
+        {
+            foreach (var unit in _unitSelections.unitSelected)
+            {
+                var pointerPos = _input.actions["PointerPos"].ReadValue<Vector2>();
+                var ray = _camera.ScreenPointToRay(pointerPos);
+                RaycastHit hit;
+                Physics.Raycast(ray, out hit, _groundLayerMask);
+                
+                var request = new ServerSetUnitDestinationRequestStruct
+                {
+                    PlayerId = OwnerClientId,
+                    UnitId = unit.GetComponent<NetworkObject>().NetworkObjectId,
+                    Point = hit.point
+                };
+
+                InputManager.Instance.HandleSetUnitDestinationRequestRpc(request);
+            }
+        }
+    }
+
+    private void OnMouseRightClick(InputAction.CallbackContext obj)
+    {
+        if (!IsLocalPlayer) return;
+
+        _unitSelections.Deselect();
     }
 }

@@ -38,7 +38,7 @@ public class UnitClick : MonoBehaviour
         Ray ray = _myCam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
         {
-            _unitSelections.SelectUnit(hit.collider.gameObject);
+            _unitSelections.SelectUnit(hit.collider.gameObject.GetComponent<UnitBrain>());
         }
         else if(_unitSelections.unitSelected.Count != 0 && Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
         {

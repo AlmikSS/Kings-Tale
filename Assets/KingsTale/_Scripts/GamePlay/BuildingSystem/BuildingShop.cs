@@ -6,12 +6,13 @@ public class BuildingShop : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
         
-        var request = new ServerBuyRequestStruct();
-        
-        request.PlayerId = NetworkObject.OwnerClientId;
-        request.Id = (ushort)buildingId;
-        request.IsBuilding = true;
-        
+        var request = new ServerBuyRequestStruct
+        {
+            PlayerId = NetworkObject.OwnerClientId,
+            Id = (ushort)buildingId,
+            IsBuilding = true
+        };
+
         InputManager.Instance.HandleBuyRequestRpc(request);
     }
 }
