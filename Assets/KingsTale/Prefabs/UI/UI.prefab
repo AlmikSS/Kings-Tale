@@ -9962,7 +9962,6 @@ GameObject:
   - component: {fileID: 7166490802394456889}
   - component: {fileID: 6854867391998594186}
   - component: {fileID: 5342324148380157780}
-  - component: {fileID: 5172684717425380727}
   - component: {fileID: 8805444357590895240}
   m_Layer: 5
   m_Name: DrawArmyModeOn
@@ -10133,35 +10132,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5172684717425380727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2170158989032283305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
-          m_MethodName: set_InView1
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &8805444357590895240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10584,8 +10554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7345702949908465192}
   - component: {fileID: 640708127988048450}
-  - component: {fileID: 5859351313664679071}
-  - component: {fileID: 6813830780471905464}
+  - component: {fileID: 4926497060990241856}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -10625,7 +10594,7 @@ MonoBehaviour:
   m_Actions: {fileID: -944628639613478452, guid: fbbf009eba6dedb48a2a6fd0f06b604e,
     type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 6813830780471905464}
+  m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10641,7 +10610,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5859351313664679071
+--- !u!114 &4926497060990241856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10650,44 +10619,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2215642210969699055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0723be24dc6a9124d9e4fb417a75dbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!114 &6813830780471905464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2215642210969699055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: fbbf009eba6dedb48a2a6fd0f06b604e,
-    type: 3}
-  m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_TrackedDevicePositionAction: {fileID: 0}
-  m_TrackedDeviceOrientationAction: {fileID: 0}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
-  m_ScrollDeltaPerTick: 6
+  _map: {fileID: 0}
+  _shop: {fileID: 0}
+  _hud: {fileID: 0}
+  _groups: {fileID: 0}
+  _mainCam: {fileID: 0}
+  _mapCam: {fileID: 0}
+  _res: {fileID: 0}
+  _info: {fileID: 0}
+  _infoBtns: {fileID: 0}
+  _shopScroll: {fileID: 0}
+  _imagesToTransparent: []
+  _cards: {fileID: 0}
 --- !u!1 &2277265798522357467
 GameObject:
   m_ObjectHideFlags: 0
@@ -29868,6 +29814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5332715661462495574}
   - component: {fileID: 3003831001042550361}
+  - component: {fileID: 3617465982024243414}
   m_Layer: 5
   m_Name: BuildingShop
   m_TagString: Untagged
@@ -29907,6 +29854,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3617465982024243414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431739481184737716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a694bb2e177d245861cb123ea2bd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &6534477234024807869
 GameObject:
   m_ObjectHideFlags: 0
@@ -37289,7 +37249,6 @@ GameObject:
   - component: {fileID: 2786170316752068133}
   - component: {fileID: 8125918735869289405}
   - component: {fileID: 8667307685376332017}
-  - component: {fileID: 8737979000934919877}
   - component: {fileID: 5243543091328300907}
   m_Layer: 5
   m_Name: DrawArmyModeOff
@@ -37460,35 +37419,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &8737979000934919877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7987339515554349606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
-          m_MethodName: set_InView1
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &5243543091328300907
 MonoBehaviour:
   m_ObjectHideFlags: 0

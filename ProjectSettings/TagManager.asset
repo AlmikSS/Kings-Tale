@@ -13,6 +13,10 @@ TagManager:
   - Building
   - EnemyUnit
   - Ground
+  - Simple
+  - Header
+  - FogOfWar
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -23,7 +27,7 @@ TagManager:
   - Ground
   - Build
   - FogOfWar
-  - 
+  - MainCam
   - 
   - 
   - 

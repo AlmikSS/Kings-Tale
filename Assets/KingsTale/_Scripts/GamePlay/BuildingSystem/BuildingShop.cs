@@ -1,17 +1,19 @@
 using Unity.Netcode;
+using UnityEngine;
 
-public class BuildingShop : NetworkBehaviour
+public class BuildingShop : MonoBehaviour
 {
+    [SerializeField] private GameplayButtons _gameplayButtons;
+    
     public void BuyBuilding(int buildingId)
     {
-        if (!IsLocalPlayer) return;
-        
-        var request = new ServerBuyRequestStruct();
-        
-        request.PlayerId = NetworkObject.OwnerClientId;
-        request.Id = (ushort)buildingId;
-        request.IsBuilding = true;
-        
+        var request = new ServerBuyRequestStruct
+        {
+            PlayerId = _gameplayButtons.PlayerId,
+            Id = (ushort)buildingId,
+            IsBuilding = true
+        };
+
         InputManager.Instance.HandleBuyRequestRpc(request);
     }
 }

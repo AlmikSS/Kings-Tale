@@ -32,6 +32,8 @@ public class PlayerManager : NetworkBehaviour
         _unitClick = GetComponent<UnitClick>();
         _unitEnlight = GetComponent<UnitEnlight>();
         _unitSelections = GetComponent<UnitSelections>();
+
+        GameObject.FindWithTag("UI").GetComponent<GameplayButtons>().PlayerId = NetworkObject.OwnerClientId;
     }
 
     private void Update()

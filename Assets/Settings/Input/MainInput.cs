@@ -85,7 +85,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""name"": ""Long Press"",
                     ""type"": ""Button"",
                     ""id"": ""06e940c3-cb3b-4a69-892c-4837a3174664"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -95,7 +95,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""90f9fb71-ff47-4a91-bd87-ac0f8d823137"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
