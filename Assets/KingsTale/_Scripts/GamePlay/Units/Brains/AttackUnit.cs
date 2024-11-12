@@ -141,7 +141,7 @@ public abstract class AttackUnit : UnitBrain
     }
     protected virtual void OnDestroy(){}
     
-    protected override void SetBuilding(ulong buildingID)
+    public override void SetBuilding(ulong buildingID)
     {
         var building = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingID].GetComponent<GameObject>();
         SetAttackObject(building);

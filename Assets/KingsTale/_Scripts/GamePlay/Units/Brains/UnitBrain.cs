@@ -218,5 +218,5 @@ public abstract class UnitBrain : MonoBehaviour, IDamagable
     }
 
     [Rpc(SendTo.Owner)]
-    protected abstract void SetBuilding(ulong buildingID);
+    public abstract void SetBuilding(ulong buildingID);
 }

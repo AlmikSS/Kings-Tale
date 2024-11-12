@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyUnit : AttackUnit
 {
-	[SerializeField] private PlayerManager _pm;
+	private PlayerManager _pm;
 	[SerializeField] private float _animTime = 0.16f;
 	private float _attackRange = 0.3f;
 	
