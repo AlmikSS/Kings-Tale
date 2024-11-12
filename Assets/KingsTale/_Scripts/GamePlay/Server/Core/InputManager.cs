@@ -48,6 +48,18 @@ public class InputManager : NetworkBehaviour
    {
       HandleSetUnitDestinationRequestAsync(request);
    }
+
+   [Rpc(SendTo.Server)]
+   public void HandleSetUnitBuildingRequestRpc(ServerSetUnitBuildingRequestStruct request)
+   {
+      HandleSetUnitBuildingRequestAsync(request);
+   }
+
+   [Rpc(SendTo.Server)]
+   public void HandleTakeDamageRequestRpc(ServerTakeDamageRequestStruct request)
+   {
+      HandleTakeDamageRequestAsync(request);
+   }
    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
@@ -76,13 +88,31 @@ public class InputManager : NetworkBehaviour
          _gameManager.HandleAddResourcesRequestRpc(request);
    }
    
-   public async void HandleSetUnitDestinationRequestAsync(ServerSetUnitDestinationRequestStruct request)
+   private async void HandleSetUnitDestinationRequestAsync(ServerSetUnitDestinationRequestStruct request)
    {
       if (!IsServer) return;
       
       var validateResponse = await ValidateRequest(request);
       if (validateResponse.IsValidate)
          _gameManager.HandleSetUnitDestinationRequestRpc(request);
+   }
+
+   private async void HandleSetUnitBuildingRequestAsync(ServerSetUnitBuildingRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleSetUnitBuildingRequestRpc(request);
+   }
+
+   private async void HandleTakeDamageRequestAsync(ServerTakeDamageRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleTakeDamageRequestRpc(request);
    }
    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
@@ -92,9 +122,9 @@ public class InputManager : NetworkBehaviour
       response = IsPlayerExistValidation(request.PlayerId, response);
 
       if (request.IsBuilding)
-         response = IsBuildingExistValidation(request.Id, response);
+         response = IsBuildingPrefabExistValidation(request.Id, response);
       else
-         response = IsUnitExistValidation(request.Id, response);
+         response = IsUnitPrefabExistValidation(request.Id, response);
 
       return Task.FromResult(response);
    }
@@ -104,7 +134,7 @@ public class InputManager : NetworkBehaviour
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       
       response = IsPlayerExistValidation(request.PlayerId, response);
-      response = IsBuildingExistValidation(request.BuildingId, response);
+      response = IsBuildingPrefabExistValidation(request.BuildingId, response);
       
       return Task.FromResult(response);
    }
@@ -112,14 +142,39 @@ public class InputManager : NetworkBehaviour
    private Task<ValidateResponseStruct> ValidateRequest(ServerAddResourcesRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
       response = IsPlayerExistValidation(request.PlayerId, response);
+      
       return Task.FromResult(response);
    }
 
    private Task<ValidateResponseStruct> ValidateRequest(ServerSetUnitDestinationRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
+      response = IsUnitPrefabExistValidation(request.UnitId, response);
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerSetUnitBuildingRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
       response = IsUnitExistValidation(request.UnitId, response);
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerTakeDamageRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
+      response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsDamageableObject(request.Id, response);
+      
       return Task.FromResult(response);
    }
    
@@ -134,25 +189,47 @@ public class InputManager : NetworkBehaviour
       return response;
    }
    
-   private ValidateResponseStruct IsBuildingExistValidation(ushort buildingId, ValidateResponseStruct response)
+   private ValidateResponseStruct IsBuildingPrefabExistValidation(ushort buildingId, ValidateResponseStruct response)
    {
-      if (!_gameManager.IsBuildingIdExist(buildingId))
+      if (!_gameManager.IsBuildingPrefabExist(buildingId))
       {
          response.IsValidate = false;
-         response.Message += "Building does not exist. ";
+         response.Message += "Building prefab does not exist. ";
       }
 
       return response;
    }
    
-   private ValidateResponseStruct IsUnitExistValidation(ushort unitId, ValidateResponseStruct response)
+   private ValidateResponseStruct IsUnitPrefabExistValidation(ushort unitId, ValidateResponseStruct response)
    {
-      if (!_gameManager.IsUnitIdExist(unitId))
+      if (!_gameManager.IsUnitPrefabExist(unitId))
+      {
+         response.IsValidate = false;
+         response.Message += "Unit prefab does not exist. ";
+      }
+
+      return response;
+   }
+
+   private ValidateResponseStruct IsUnitExistValidation(ulong unitId, ValidateResponseStruct response)
+   {
+      if (!_gameManager.IsUnitExist(unitId))
       {
          response.IsValidate = false;
          response.Message += "Unit does not exist. ";
       }
 
+      return response;
+   }
+
+   private ValidateResponseStruct IsDamageableObject(ulong objectId, ValidateResponseStruct response)
+   {
+      if (!NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectId].TryGetComponent(out IDamagable damagable))
+      {
+         response.IsValidate = false;
+         response.Message += "Object is not damageable. ";
+      }
+      
       return response;
    }
 }

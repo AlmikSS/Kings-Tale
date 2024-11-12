@@ -72,9 +72,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _unitsPrefabs: []
+  _unitsPrefabs:
+  - {fileID: -7326458508237107965, guid: 37e88f0762fc9224eb3b53b9181c474a, type: 3}
   _buildingsPrefabs:
-  - {fileID: 1439240130169521303, guid: 809ca41c517125840b199ef99fb62467, type: 3}
+  - {fileID: 1591312807404395803, guid: 16d543c731c57e14f95b7a3caf507fbf, type: 3}
   _playerObject: {fileID: 2600284017641609108, guid: 206a1a109b5cb6e418bcb516ee6ff2b9,
     type: 3}
   _attackUnitsConfigs:

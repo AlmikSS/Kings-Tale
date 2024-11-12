@@ -30,7 +30,7 @@ public class GameManager : NetworkBehaviour
             else
             {
                 _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
-                var unit = Instantiate(_gameData.GetUnit(request.Id), request.Position, Quaternion.identity);
+                var unit = Instantiate(_gameData.GetUnitPrefab(request.Id), request.Position, Quaternion.identity);
                 unit.SpawnWithOwnership(request.PlayerId);
                 _gameData.AddUnit(unit.NetworkObjectId, request.PlayerId);
             }
@@ -46,10 +46,10 @@ public class GameManager : NetworkBehaviour
         var price = _gameData.GetPrice(request.BuildingId, true);
         var player = _gameData.GetPlayer(request.PlayerId);
 
-        if (CanPlayerBuy(resources, price) && CanPlaceBuilding(request))
+        if (CanPlayerBuy(resources, price) & CanPlaceBuilding(request))
         {
             _gameData.RemoveResourcesToPlayer(request.PlayerId, price);
-            var building = Instantiate(_gameData.GetBuilding(request.BuildingId), request.Position, Quaternion.identity);
+            var building = Instantiate(_gameData.GetBuildingPrefab(request.BuildingId), request.Position, Quaternion.identity);
             building.SpawnWithOwnership(request.PlayerId);
             _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
             player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc();
@@ -73,6 +73,29 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
 
         var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetDestinationRpc(request.Point);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSetUnitBuildingRequestRpc(ServerSetUnitBuildingRequestStruct request)
+    {
+        Debug.Log($"Handle set unit building request. Client: {request.PlayerId}, Unit: {request.UnitId}, Building: {request.BuildingId}.");
+
+        var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetBuilding(request.BuildingId);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleTakeDamageRequestRpc(ServerTakeDamageRequestStruct request)
+    {
+        Debug.Log($"Handle take damage request. Client: {request.PlayerId}, Object: {request.Id}, Damage: {request.Damage}.");
+
+        var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
+        damageable.TakeDamage((int)request.Damage, DamageType.Magical);
     }
     
     public bool IsPlayerExist(ulong id)
@@ -81,16 +104,21 @@ public class GameManager : NetworkBehaviour
         return player != null;
     }
 
-    public bool IsBuildingIdExist(ushort id)
+    public bool IsBuildingPrefabExist(ushort id)
     {
-        var building = _gameData.GetBuilding(id);
+        var building = _gameData.GetBuildingPrefab(id);
         return building != null;
     }
 
-    public bool IsUnitIdExist(ushort id)
+    public bool IsUnitPrefabExist(ushort id)
     {
-        var unit = _gameData.GetUnit(id);
+        var unit = _gameData.GetUnitPrefab(id);
         return unit != null;
+    }
+
+    public bool IsUnitExist(ulong id)
+    {
+        return _gameData.IsUnitExist(id);
     }
 
     private bool CanPlayerBuy(ResourcesStruct? resources, ResourcesStruct? price)
@@ -100,7 +128,7 @@ public class GameManager : NetworkBehaviour
 
     private bool CanPlaceBuilding(ServerPlaceBuildingRequestStruct request)
     {
-        var buildingPrefab = _gameData.GetBuilding(request.BuildingId);
+        var buildingPrefab = _gameData.GetBuildingPrefab(request.BuildingId);
         var building = Instantiate(buildingPrefab, request.Position, Quaternion.identity);
         var canPlace = building.GetComponent<Building>().CanBuild;
         Destroy(building.gameObject);
