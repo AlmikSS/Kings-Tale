@@ -18,7 +18,7 @@ MonoBehaviour:
   _regenSpeed: 0
   _magicResist: 0
   _physicalResist: 0
-  _speed: 0
-  _angularSpeed: 0
-  _stopDistance: 0
+  _speed: 3
+  _angularSpeed: 100000
+  _stopDistance: 0.6
   _attackSpeed: 0

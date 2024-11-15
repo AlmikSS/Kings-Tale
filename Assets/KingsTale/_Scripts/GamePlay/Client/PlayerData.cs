@@ -17,12 +17,14 @@ public class PlayerData
         _playerManager = playerManager;
     }
 
-    public void UpdatePlayer()
+    private void UpdatePlayer()
     {
-        var updatedState = new ClientUpdateStateStruct();
-        updatedState.Resources = _resources;
-        updatedState.Units = _units.ToArray();
-        updatedState.Buildings = _buildings.ToArray();
+        var updatedState = new ClientUpdateStateStruct
+        {
+            Resources = _resources,
+            Units = _units.ToArray(),
+            Buildings = _buildings.ToArray()
+        };
         _playerManager.UpdateStateRpc(updatedState);
     }
     

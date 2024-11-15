@@ -5,9 +5,9 @@ public struct ServerSetUnitDestinationRequestStruct : INetworkSerializable
 {
     public Vector3 Point;
     public ulong PlayerId;
-    public ushort UnitId;
+    public ulong UnitId;
 
-    public ServerSetUnitDestinationRequestStruct(Vector3 point, ulong playerId, ushort unitId)
+    public ServerSetUnitDestinationRequestStruct(Vector3 point, ulong playerId, ulong unitId)
     {
         Point = point;
         PlayerId = playerId;

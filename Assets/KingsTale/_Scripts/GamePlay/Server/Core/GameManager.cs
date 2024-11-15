@@ -121,9 +121,9 @@ public class GameManager : NetworkBehaviour
         return _gameData.IsUnitExist(id);
     }
 
-    private bool CanPlayerBuy(ResourcesStruct? resources, ResourcesStruct? price)
+    private bool CanPlayerBuy(ResourcesStruct resources, ResourcesStruct? price)
     {
-        return resources?.Wood >= price?.Wood && resources?.Gold >= price?.Gold && resources?.Food >= price?.Food;
+        return resources.Wood >= price?.Wood && resources.Gold >= price?.Gold && resources.Food >= price?.Food;
     }
 
     private bool CanPlaceBuilding(ServerPlaceBuildingRequestStruct request)

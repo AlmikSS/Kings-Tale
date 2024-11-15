@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class UnitSelections : MonoBehaviour
 {
-    public List<GameObject> unitList = new();
-    public List<GameObject> unitSelected = new();
+    public List<UnitBrain> unitList = new();
+    public List<UnitBrain> unitSelected = new();
 
-    public void SelectUnit(GameObject unit)
+    public void SelectUnit(UnitBrain unit)
     {
         Deselect();
         if (unitList.Contains(unit))
@@ -15,16 +15,22 @@ public class UnitSelections : MonoBehaviour
         }
     }
 
-    public void DragSelect(GameObject unit)
+    public void DragSelect(UnitBrain unit)
     {
         if (!unitSelected.Contains(unit))
         {
             unitSelected.Add(unit);
+            unit.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
     public void Deselect()
     {
+        foreach (var unit in unitSelected)
+        {
+            unit.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        
         unitSelected.Clear();
     }
 }
