@@ -8,6 +8,17 @@ TagManager:
   - Target
   - Boundary
   - Floor
+  - Unit
+  - UnitCollider
+  - Building
+  - EnemyUnit
+  - Ground
+  - Simple
+  - Header
+  - FogOfWar
+  - UI
+  - Cloud
+  - Resource
   layers:
   - Default
   - TransparentFX
@@ -17,8 +28,8 @@ TagManager:
   - UI
   - Ground
   - Build
-  - 
-  - 
+  - FogOfWar
+  - MainCam
   - 
   - 
   - 
