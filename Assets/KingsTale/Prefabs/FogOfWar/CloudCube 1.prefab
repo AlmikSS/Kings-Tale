@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 385215788391753348}
   - component: {fileID: 3779440425486016925}
   - component: {fileID: 3115486290984431587}
-  - component: {fileID: 2626417050560449351}
+  - component: {fileID: 4592721575257552235}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -51,10 +51,13 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31515169d0b175145aebfbf875e0b554, type: 2}
+  - {fileID: 2100000, guid: efe5d24656ca8cb49b041acbae033d90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +87,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6125661749871589342}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2626417050560449351
+--- !u!114 &4592721575257552235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,26 +96,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6125661749871589342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee741afc4564f5f99593e321d817497, type: 3}
+  m_Script: {fileID: 11500000, guid: 7efb779eab16a3c4a83bf33be550ebdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cache:
-    transform: {fileID: 385215788391753348}
-    materials:
-    - {fileID: 2100000, guid: 31515169d0b175145aebfbf875e0b554, type: 2}
-    renderer: {fileID: 3779440425486016925}
-    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    isSkinnedMesh: 0
-    meshRenderer: {fileID: 3779440425486016925}
-    meshFilter: {fileID: 3115486290984431587}
-    skinnedMeshRenderer: {fileID: 0}
-    isCached: 1
-    isCorrectionRequired: 1
-  key: 
-  isStatic: 1
-  disableRenderer: 1
-  removeMaterials: 0
-  combinerSource: 3
 --- !u!1 &6133757251803250901
 GameObject:
   m_ObjectHideFlags: 0

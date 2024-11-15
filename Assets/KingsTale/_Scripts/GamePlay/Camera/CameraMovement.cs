@@ -10,6 +10,7 @@ public class CameraMovement : NetworkBehaviour
 	[Range(0, 20)][SerializeField] private float _camSpeedForTouch;
 	[Range(0, 2f)][SerializeField] private float _smoothTime;
 	[Range(0, 2f)][SerializeField] private float _smoothTimeForTouch;
+	[SerializeField] private PlayerInput _controller;
 	[SerializeField] private LayerMask _nonMovebleMask;
 	[SerializeField] private GameObject _mapCam;
 	[SerializeField] private Slider _zoomSlider;
@@ -17,7 +18,6 @@ public class CameraMovement : NetworkBehaviour
 	private Vector2 _clickedPos;
 	private Vector3 _direction;
 	private Camera _cam;
-	private PlayerInput _controller;
 	private bool _mouseMove;
 	private Vector3 _velocity = Vector3.zero;
 	

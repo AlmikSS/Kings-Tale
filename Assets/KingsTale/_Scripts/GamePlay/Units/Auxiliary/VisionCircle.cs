@@ -6,39 +6,14 @@ using UnityEngine;
 public class VisionCircle : MonoBehaviour
 {
     private AttackUnit _unitBrain => transform.parent.GetComponent<AttackUnit>();
-    private MoveGroupManager _groupManager;// => _unitBrain.PlayerMng.GroupManager;
     public Building BuildingToAttack;
     private void OnTriggerEnter(Collider other)
     {
+        ////////////////ADD SERVER UNIT CHECK
         if (!other.gameObject.transform.parent ||
-            !other.gameObject.transform.parent.gameObject.TryGetComponent(out EnemyUnit unit) ||
+            !other.gameObject.transform.parent.gameObject.TryGetComponent(out UnitBrain unit) ||
             _unitBrain._objectToAttack) return;
-        
-        if(unit.transform.parent.TryGetComponent(out EnemyGroups group)){
-            var brains = _groupManager.CheckAgent(_unitBrain);
-            if (_unitBrain.AttackConfig.IsLongRange)
-            {
-                _unitBrain.Complete();
-                if(_unitBrain._objectToAttack)
-                    return;
-            }
-            else if (brains != null)
-            {
-                foreach (var _brain in brains.Select(brain => brain.GetComponent<AttackUnit>()))
-                {
-                    _brain.StackAttackObjects = group;
-                    _brain.SearchForEnemy();
-                }
-            }
-            _unitBrain.StackAttackObjects = group;
-            _unitBrain.SearchForEnemy();	
-                
-        }
-        else{
-            _unitBrain.StackAttackObjects = null;
-            _unitBrain.StartAttack(unit.gameObject);
-                
-        }
+        _unitBrain.StartAttack(unit.gameObject);
     }
 
     private void OnTriggerStay(Collider other)

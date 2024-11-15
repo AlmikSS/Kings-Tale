@@ -31,16 +31,12 @@ public class KingUnit : AttackUnit
         {
 			if(_needToStop)
 				Complete();
-			if(StackAttackObjects && StackAttackObjects.Group.Count != 0)
-				SearchForEnemy();
 			StopAttack();
         }
         else if (_objectToAttack.TryGetComponent(out Building building))
             building.TakeDamage(_damage * factor);
-		else if (_objectToAttack.TryGetComponent(out EnemyUnit unit) ){
+		else if (_objectToAttack.TryGetComponent(out UnitBrain unit) ){
             unit.TakeDamage(_damage * factor);
-			if(!unit._objectToAttack && !unit._dead)
-				unit.StartAttack(gameObject);
 		}
     }
 
@@ -62,13 +58,12 @@ public class KingUnit : AttackUnit
 			{
 				Complete();
 			}
-			if(StackAttackObjects && StackAttackObjects.Group.Count != 0)
-				SearchForEnemy();
 			StopAttack();
             yield break;
         }
         if (Mathf.Abs(_agent.velocity.magnitude) <= 0.05 && Physics.Raycast(transform.position, transform.forward, out var hit, _attackRange))
         {
+	        ////////////////ADD SERVER UNIT CHECK
 	        var hitCollider = hit.collider;
             if (!hit.collider.isTrigger && (hit.collider.gameObject.transform.parent && hit.collider.gameObject.transform.parent.gameObject == _objectToAttack) || hit.collider.gameObject == _objectToAttack)
             {

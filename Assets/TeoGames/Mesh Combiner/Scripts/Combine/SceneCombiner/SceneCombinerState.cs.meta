@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ac07f379d5508bf42a2ee3916ed204a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256689
+  packageName: Dynamic Mesh Combiner Lite
+  packageVersion: 1.17-lite
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/SceneCombiner/SceneCombinerState.cs
+  uploadId: 634892

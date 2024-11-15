@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fb4790f410d24cd184ef20c9dcd1c890
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256689
+  packageName: Dynamic Mesh Combiner Lite
+  packageVersion: 1.17-lite
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/CombinableCache.cs
+  uploadId: 634892

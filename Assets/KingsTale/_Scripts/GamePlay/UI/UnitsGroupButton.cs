@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UnitsGroupButton : MonoBehaviour
 {
     public List<UnitBrain> Group = new List<UnitBrain>();
-    [SerializeField] private PlayerManager _player;
+    //[SerializeField] private PlayerManager _player;
     [SerializeField] private TMP_Text _name, _name2, _unitsCount, _unitsCount2,_infantryCount,_artilleryCount,_magesCount,_cavalryCount,_supportCount;
     [SerializeField] private GameObject _info;
 
@@ -15,7 +15,7 @@ public class UnitsGroupButton : MonoBehaviour
 
     private void Awake()
     {
-        _input = _player.GetComponent<PlayerInput>();
+        //_input = _player.GetComponent<PlayerInput>();
     }
     public void SelectGroup()
     {

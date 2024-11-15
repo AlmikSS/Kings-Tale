@@ -17,6 +17,8 @@ TagManager:
   - Header
   - FogOfWar
   - UI
+  - Cloud
+  - MainCam
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Ground
   - Build
   - FogOfWar
-  - MainCam
+  - 
   - 
   - 
   - 

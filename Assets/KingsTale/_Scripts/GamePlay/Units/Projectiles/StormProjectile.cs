@@ -27,8 +27,8 @@ public class StormProjectile : Projectile
             Brain.SetAttackObject(other.gameObject);
             _effect.TargetBulding = building;
             Brain.ApplyDamage(1, type, fx);
-        }
-        else if (other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out EnemyUnit unit)){
+        }////////////////ADD SERVER UNIT CHECK
+        else if (other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out UnitBrain unit)){
             StartCoroutine(CanDamage());
             Brain.SetAttackObject(other.transform.parent.gameObject);
             _effect.Target = unit;

@@ -23,10 +23,8 @@ public class ArcherUnit : AttackUnit
 
 		    if (_objectToAttack.TryGetComponent(out Building building))
 			    building.TakeDamage(_damage * factor, type, fx);
-		    if (!_objectToAttack.TryGetComponent(out EnemyUnit unit)) return;
+		    if (!_objectToAttack.TryGetComponent(out UnitBrain unit)) return;
 		    unit.TakeDamage(_damage * factor, type, fx);
-		    if(!unit._objectToAttack && !unit._dead)
-			    unit.StartAttack(gameObject);
 	    }
 		else if (!_objectToAttack)
         {
@@ -75,12 +73,7 @@ public class ArcherUnit : AttackUnit
 	    if(_attackCoroutine != null)
 		    StopCoroutine(_attackCoroutine);
         yield return new WaitForSeconds(_culDown);
-		
-        if (!_objectToAttack && StackAttackObjects && StackAttackObjects.Group.Count != 0)
-        {
-	        SearchForEnemy(false);
-        }
-        
+        _visionCircle.SetActive(false);
 	}
 
 	

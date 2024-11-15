@@ -10,7 +10,6 @@ public abstract class AttackUnit : UnitBrain
     protected float _culDown;
     protected int _damage;
 	protected GameObject _visionCircle;
-    [HideInInspector] public EnemyGroups StackAttackObjects;
     [HideInInspector] public GameObject _objectToAttack;
     protected float _stopUnitDictance;
     private Coroutine _checkDestiny;
@@ -74,19 +73,6 @@ public abstract class AttackUnit : UnitBrain
     
     protected abstract IEnumerator Attack();
     
-    public void SearchForEnemy(bool isAttack = true)
-    {
-        List<float> distances = new List<float>();
-        foreach(var enemy in StackAttackObjects.Group)
-        {
-            distances.Add(Vector3.Distance(transform.position, enemy.transform.position));
-        }
-		if(isAttack)
-        	StartAttack(StackAttackObjects.Group[distances.IndexOf(distances.Min())]);
-		else
-			GoToPoint(StackAttackObjects.Group[distances.IndexOf(distances.Min())].transform.position);
-    }
-    
     public virtual void StopAttack()
     {
         _objectToAttack = null;
@@ -110,9 +96,7 @@ public abstract class AttackUnit : UnitBrain
     public override void Die()
     {
         _objectToAttack = null;
-        StackAttackObjects = null;
         _animator.SetBool("Attack", false);
-        if(this is not EnemyUnit)
             //PlayerMng.PlayerUnits.Deselct(this);
         //PlayerMng.PlayerUnits.Units.Remove(this);
         //PlayerMng.PlayerUnits.WarUnits.Remove(this);

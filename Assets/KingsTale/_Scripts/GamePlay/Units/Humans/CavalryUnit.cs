@@ -31,21 +31,15 @@ public class CavarlyUnit : AttackUnit
 			}
 			if (_objectToAttack.TryGetComponent(out Building building))
 				building.TakeDamage(_damage * factor, type, fx);
-			if (!_objectToAttack.TryGetComponent(out EnemyUnit unit)) return;
+			if (!_objectToAttack.TryGetComponent(out UnitBrain unit)) return;
 			unit.TakeDamage(_damage * factor, type, fx);
-			if(!unit._objectToAttack && !unit._dead)
-				unit.StartAttack(gameObject);
 		}
 		else
 		{
 			if (_needToStop)
-			{
 				Complete();
-			}
 			_needToStop = false;
 			_animator.SetBool("Attack", false);
-			if (StackAttackObjects && StackAttackObjects.Group.Count != 0)
-				SearchForEnemy();
 		}
 	}
 	
@@ -54,12 +48,10 @@ public class CavarlyUnit : AttackUnit
 		base.Update();
 		
 		if (!_attack || !Physics.Raycast(transform.position, transform.forward, out var hit, 1.3f)) return;
-	    
-	    if (hit.collider.gameObject.tag == "EnemyUnit")
+		////////////////ADD SERVER UNIT CHECK
+	    if (true)
 	    {
 		    _objectToAttack = hit.collider.transform.parent.gameObject;
-		    if(_objectToAttack.transform.parent.TryGetComponent(out EnemyGroups group))
-			    StackAttackObjects = group;
 
 		    int factor = 1;
 		    if (Mathf.Abs(_agent.velocity.magnitude) >= _config.Speed)
@@ -95,9 +87,7 @@ public class CavarlyUnit : AttackUnit
 	{
 		base.Complete();
 		_attack = false;
-		if (StackAttackObjects && StackAttackObjects.Group.Count != 0)
-			SearchForEnemy();
-		else if (_objectToAttack)
+		if (_objectToAttack)
 			StartAttack(_objectToAttack);
 		else
 			_visionCircle.SetActive(true);

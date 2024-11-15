@@ -11,7 +11,8 @@ public class EnemyFinder : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var parent = other.transform.parent;
-        if (!_damage && parent && parent.gameObject.TryGetComponent(out EnemyUnit _) && !_findedObj.Contains(parent.gameObject) && _count > 0)
+        ////////////////ADD SERVER UNIT CHECK
+        if (!_damage && parent && parent.gameObject.TryGetComponent(out UnitBrain _) && !_findedObj.Contains(parent.gameObject) && _count > 0)
         {
             _projectile.TargetObject = parent;
             _projectile.Launch();

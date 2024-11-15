@@ -30,8 +30,8 @@ public class LightningProjectile : Projectile
             Brain.ApplyDamage(1, DamageType.Magical, Effect.Electro);
 
             Destroy(gameObject);
-        }
-        else if (Brain && other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out EnemyUnit unit))
+        }////////////////ADD SERVER UNIT CHECK
+        else if (Brain && other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out UnitBrain unit))
         {
             var lastObj = Brain._objectToAttack;
             Brain.SetAttackObject(other.transform.parent.gameObject);

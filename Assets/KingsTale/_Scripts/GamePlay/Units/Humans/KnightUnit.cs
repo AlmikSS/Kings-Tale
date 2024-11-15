@@ -16,17 +16,14 @@ public class KnightUnit : AttackUnit
 		    }
 		    if (_objectToAttack.TryGetComponent(out Building building))
 			    building.TakeDamage(_damage * factor, type, fx);
-		    if (!_objectToAttack.TryGetComponent(out EnemyUnit unit)) return;
+		    if (!_objectToAttack.TryGetComponent(out UnitBrain unit)) return;
 		    unit.TakeDamage(_damage * factor, type, fx);
-		    if(!unit._objectToAttack && !unit._dead)
-			    unit.StartAttack(gameObject);
+
 	    }
 	    else if (!_objectToAttack)
 	    {
 		    if(_needToStop) 
 			    Complete();
-		    if(StackAttackObjects && StackAttackObjects.Group.Count != 0)
-			    SearchForEnemy();
 		    StopAttack();
 	    }
     }
@@ -48,14 +45,12 @@ public class KnightUnit : AttackUnit
 			{
 				Complete();
 			}
-			if(StackAttackObjects && StackAttackObjects.Group.Count != 0)
-				SearchForEnemy();
 			StopAttack();
             yield break;
         }
         if (Mathf.Abs(_agent.velocity.magnitude) <= 0.05 && Physics.Raycast(transform.position, transform.forward, out hit, _attackRange))
         {
-            
+	        ////////////////ADD SERVER UNIT CHECK
             if (!hit.collider.isTrigger && (hit.collider.gameObject.transform.parent && hit.collider.gameObject.transform.parent.gameObject == _objectToAttack) || hit.collider.gameObject == _objectToAttack)
             {
                 

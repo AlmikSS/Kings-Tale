@@ -65,8 +65,8 @@ public class ArrowProjectile : Projectile
             Brain.ApplyDamage(1, type, fx);
             
             Destroy(gameObject);
-        }
-        else if (other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out EnemyUnit unit)){
+        }////////////////ADD SERVER UNIT CHECK
+        else if (other.transform.parent && other.transform.parent.gameObject.TryGetComponent(out UnitBrain unit)){
             Brain.SetAttackObject(other.transform.parent.gameObject);
             _effect.Target = unit;
             if (_effect.Name == Effect.Alchemist)
