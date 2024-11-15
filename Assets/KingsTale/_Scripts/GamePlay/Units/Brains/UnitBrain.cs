@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 [SelectionBase]
 [RequireComponent(typeof(NavMeshAgent))]
-public abstract class UnitBrain : MonoBehaviour, IDamagable
+public abstract class UnitBrain : NetworkBehaviour, IDamagable
 {
     [Header("Config")]
     [SerializeField] protected UnitBaseConfigSO _config;
@@ -218,5 +218,5 @@ public abstract class UnitBrain : MonoBehaviour, IDamagable
     }
 
     [Rpc(SendTo.Owner)]
-    public abstract void SetBuilding(ulong buildingID);
+    public virtual void SetBuildingRpc(ulong buildingID) { }
 }
