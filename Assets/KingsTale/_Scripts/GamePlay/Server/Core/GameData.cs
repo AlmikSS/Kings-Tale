@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ public class GameData : NetworkBehaviour
     [Header("Configs/Units")]
     [SerializeField] private List<UnitAttackConfigSO> _attackUnitsConfigs = new();
     [SerializeField] private UnitWorkerConfigSO _workerUnitConfig;
+
+    [Header("Configs/Buildings")]
+    [SerializeField] private List<BuildingBaseConfigSO> _buildingConfigs = new();
     
     private readonly Dictionary<ulong, PlayerData> _players = new();
     private List<ulong> _units = new();
@@ -119,11 +123,17 @@ public class GameData : NetworkBehaviour
         {
             if (id == 0)
                 return _workerUnitConfig.Price;
-            
-            foreach (var unit in _attackUnitsConfigs)
+
+            foreach (var unit in _attackUnitsConfigs.Where(unit => unit.UnitId == id))
             {
-                if (unit.UnitId == id)
-                    return unit.Price;
+                return unit.Price;
+            }
+        }
+        else
+        {
+            foreach (var building in _buildingConfigs.Where(building => building.Id == id))
+            {
+                return building.Price;
             }
         }
 

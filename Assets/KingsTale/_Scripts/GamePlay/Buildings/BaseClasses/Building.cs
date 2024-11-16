@@ -7,20 +7,27 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody), typeof(NavMeshObstacle))]
 public abstract class Building : NetworkBehaviour, IDamagable
 {
+    [HideInInspector] public List<Effect> Effects = new();
+
+    [SerializeField] protected BuildingBaseConfigSO _config;
     [SerializeField] private LayerMask _obstacleMask;
-    [SerializeField] private float _buildHealth;
     [SerializeField] private ushort _id;
     [SerializeField] private HealthSlider _healthSlider;
 
     public bool CanBuild { get; private set; } = true;
-    
     public ushort Id => _id;
-    
-    [HideInInspector] public List<Effect> Effects = new();
-    
+ 
     private int _magicResist;
     private int _physicalResist;
+    private int _currentHealth;
 
+    public override void OnNetworkSpawn()
+    {
+        _currentHealth = (int)_config.MaxHealth;
+        _magicResist = (int)_config.MagicResist;
+        _physicalResist = (int)_config.PhysicalResist;
+    }
+    
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
@@ -58,13 +65,13 @@ public abstract class Building : NetworkBehaviour, IDamagable
         if (damage > 0)
         {
 
-            _buildHealth -= dmg;
+            _currentHealth -= dmg;
             _healthSlider.TakeDamage(dmg, type, fx);
         }
-        else if(_buildHealth > 0)
+        else if(_currentHealth > 0)
             _healthSlider.Defence(type);
 
-        if (_buildHealth <= 0)
+        if (_currentHealth <= 0)
             Die();
     }
     
