@@ -2,7 +2,6 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(UnitClick), typeof(UnitEnlight), typeof(UnitSelections))]
 public class PlayerManager : NetworkBehaviour
@@ -10,9 +9,10 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private GameObject _ui;
     [SerializeField] private Camera _camera;
     [SerializeField] private TMP_Text _resourcesText;
-    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private LayerMask _interactLayerMask;
     
     public ResourcesStruct Resources { get; private set; }
+    public MainBuilding MainBuilding { get; private set; }
     
     private UnitClick _unitClick;
     private UnitEnlight _unitEnlight;
@@ -84,6 +84,15 @@ public class PlayerManager : NetworkBehaviour
 
         _resourcesText.text = $"Wood: {Resources.Wood}, Food: {Resources.Food}, Gold: {Resources.Gold}";
     }
+
+    [Rpc(SendTo.Owner)]
+    public void SetMainBuildingRpc(NetworkObjectReference mainBuilding)
+    {
+        if (mainBuilding.TryGet(out NetworkObject networkObject))
+        {
+            MainBuilding = networkObject.GetComponent<MainBuilding>();
+        }
+    }
     
     private void OnMouseLeftClick(InputAction.CallbackContext obj)
     {
@@ -91,21 +100,40 @@ public class PlayerManager : NetworkBehaviour
         
         if (_unitSelections.unitSelected.Count > 0)
         {
-            foreach (var unit in _unitSelections.unitSelected)
+            var pointerPos = _input.actions["PointerPos"].ReadValue<Vector2>();
+            var ray = _camera.ScreenPointToRay(pointerPos);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, _interactLayerMask);
+            
+            if (hit.collider.gameObject.CompareTag("Ground"))
             {
-                var pointerPos = _input.actions["PointerPos"].ReadValue<Vector2>();
-                var ray = _camera.ScreenPointToRay(pointerPos);
-                RaycastHit hit;
-                Physics.Raycast(ray, out hit, _groundLayerMask);
-                
-                var request = new ServerSetUnitDestinationRequestStruct
+                foreach (var unit in _unitSelections.unitSelected)
                 {
-                    PlayerId = OwnerClientId,
-                    UnitId = unit.GetComponent<NetworkObject>().NetworkObjectId,
-                    Point = hit.point
-                };
+                    var request = new ServerSetUnitDestinationRequestStruct
+                    {
+                        PlayerId = OwnerClientId,
+                        UnitId = unit.GetComponent<NetworkObject>().NetworkObjectId,
+                        Point = hit.point
+                    };
 
-                InputManager.Instance.HandleSetUnitDestinationRequestRpc(request);
+                    InputManager.Instance.HandleSetUnitDestinationRequestRpc(request);
+                }
+            }
+            else if (hit.collider.gameObject.CompareTag("Building"))
+            {
+                foreach (var unit in _unitSelections.unitSelected)
+                {
+                    var request = new ServerSetUnitBuildingRequestStruct
+                    {
+                        PlayerId = OwnerClientId,
+                        UnitId = unit.NetworkObjectId,
+                        BuildingId = hit.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId
+                    };
+                    
+                    InputManager.Instance.HandleSetUnitBuildingRequestRpc(request);
+                }
+                
+                _unitSelections.Deselect();
             }
         }
     }

@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Building : NetworkBehaviour, IDamagable
+[RequireComponent(typeof(Rigidbody), typeof(NavMeshObstacle))]
+public abstract class Building : NetworkBehaviour, IDamagable
 {
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _buildHealth;
-    [SerializeField] private BuildType _buildType;
     [SerializeField] private ushort _id;
     [SerializeField] private HealthSlider _healthSlider;
 
@@ -19,16 +20,6 @@ public class Building : NetworkBehaviour, IDamagable
     
     private int _magicResist;
     private int _physicalResist;
-    
-    public float GetBuildHealth()
-    {
-        return _buildHealth;
-    }
-
-    public BuildType GetBuildType()
-    {
-        return _buildType;
-    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -81,10 +72,5 @@ public class Building : NetworkBehaviour, IDamagable
     {
         Destroy(gameObject);
     }
-}
-
-public enum BuildType
-{
-    ATTACK, PASSIVE
 }
 

@@ -60,7 +60,13 @@ public class InputManager : NetworkBehaviour
    {
       HandleTakeDamageRequestAsync(request);
    }
-   
+
+   [Rpc(SendTo.Server)]
+   public void HandleDieRequestRpc(ServerDieRequestStruct request)
+   {
+      HandleDieRequestAsync(request);
+   }
+    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       if (!IsServer) return;
@@ -114,7 +120,16 @@ public class InputManager : NetworkBehaviour
       if (validateResponse.IsValidate)
          _gameManager.HandleTakeDamageRequestRpc(request);
    }
-   
+
+   private async void HandleDieRequestAsync(ServerDieRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleDieRequestRpc(request);
+   }
+    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
@@ -154,6 +169,7 @@ public class InputManager : NetworkBehaviour
       
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsPlayerObject(request.PlayerId, request.UnitId, response);
       
       return Task.FromResult(response);
    }
@@ -164,6 +180,7 @@ public class InputManager : NetworkBehaviour
       
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsPlayerObject(request.PlayerId, request.UnitId, response);
       
       return Task.FromResult(response);
    }
@@ -173,6 +190,15 @@ public class InputManager : NetworkBehaviour
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       
       response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsDamageableObject(request.Id, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerDieRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
       response = IsDamageableObject(request.Id, response);
       
       return Task.FromResult(response);
@@ -230,6 +256,19 @@ public class InputManager : NetworkBehaviour
          response.Message += "Object is not damageable. ";
       }
       
+      return response;
+   }
+
+   private ValidateResponseStruct IsPlayerObject(ulong playerId, ulong id, ValidateResponseStruct response)
+   {
+      var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[id];
+
+      if (playerId != obj.OwnerClientId)
+      {
+         response.IsValidate = false;
+         response.Message += "Object is not belong player";
+      }
+
       return response;
    }
 }

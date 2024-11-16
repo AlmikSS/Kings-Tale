@@ -10,6 +10,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 {
     [Header("Config")]
     [SerializeField] protected UnitBaseConfigSO _config;
+    [SerializeField] private ushort _id;
 
     [Header("GameObjects")]
     [SerializeField] protected HealthSlider _healthSlider;
@@ -38,6 +39,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 
     private Coroutine _regenCoroutine;
     //Properties
+    public ushort Id => _id;
     public PlayerManager PlayerMng => _player;
     public UnitBaseConfigSO Config => _config;
     public int FoodPrice => _foodPrice;
@@ -211,15 +213,15 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     }
     
     [Rpc(SendTo.Owner)]
-    public void SetDestinationRpc(Vector3 pos)
+    public virtual void SetDestinationRpc(Vector3 pos)
     {
-	    //GoToPoint(pos);
-	    GetComponent<NavMeshAgent>().SetDestination(pos);
+	    GoToPoint(pos);
     }
 
     [Rpc(SendTo.Owner)]
-    public void SetBuildingRpc(ulong buildingID)
+    public virtual void SetBuildingRpc(ulong buildingID)
     {
-	    
+	    var point = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingID].transform.position;
+	    GoToPoint(point);
     }
 }

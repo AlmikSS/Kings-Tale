@@ -8,6 +8,7 @@ public class GameData : NetworkBehaviour
     [SerializeField] private List<NetworkObject> _unitsPrefabs = new();
     [SerializeField] private List<NetworkObject> _buildingsPrefabs = new();
     [SerializeField] private NetworkObject _playerObject;
+    [SerializeField] private NetworkObject _mainBuildingPrefab;
 
     [Header("Configs/Units")]
     [SerializeField] private List<UnitAttackConfigSO> _attackUnitsConfigs = new();
@@ -25,11 +26,15 @@ public class GameData : NetworkBehaviour
     public void RegisterClient(ulong clientId)
     {
         if (!IsServer) return;
-        
-        var newObj = Instantiate(_playerObject);
+
+        var pos = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        var newObj = Instantiate(_playerObject, pos, _playerObject.transform.rotation);
+        var mainBuilding = Instantiate(_mainBuildingPrefab, pos, _mainBuildingPrefab.transform.rotation);
         newObj.SpawnAsPlayerObject(clientId);
+        mainBuilding.SpawnWithOwnership(clientId);
         var playerManager = newObj.GetComponent<PlayerManager>();
         playerManager.GetComponent<BuildingSystem>().SetBuildingList(_buildingsPrefabs);
+        playerManager.SetMainBuildingRpc(mainBuilding);
         var playerData = new PlayerData(new ResourcesStruct(), playerManager);
         _players.Add(clientId, playerData);
         Debug.Log("Registering" + clientId);
@@ -108,9 +113,21 @@ public class GameData : NetworkBehaviour
         
     }
 
-    public ResourcesStruct GetPrice(uint id, bool isBuilding)
+    public ResourcesStruct GetPrice(ushort id, bool isBuilding)
     {
-        return new ResourcesStruct(10, 10, 10);
+        if (!isBuilding)
+        {
+            if (id == 0)
+                return _workerUnitConfig.Price;
+            
+            foreach (var unit in _attackUnitsConfigs)
+            {
+                if (unit.UnitId == id)
+                    return unit.Price;
+            }
+        }
+
+        return default;
     }
 
     public NetworkObject GetBuildingPrefab(ushort id)
@@ -126,11 +143,11 @@ public class GameData : NetworkBehaviour
 
     public NetworkObject GetUnitPrefab(ushort id)
     {
-        // foreach (var unit in _unitsPrefabs)
-        // {
-        //     if (unit.GetComponent<Ga>().Id == id)
-        //         return unit;
-        // }
+        foreach (var unit in _unitsPrefabs)
+        {
+            if (unit.GetComponent<UnitBrain>().Id == id)
+                return unit;
+        }
         
         return _unitsPrefabs[id];
     }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3852539686
+  GlobalObjectIdHash: 3372135507
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -76,7 +76,12 @@ MonoBehaviour:
   - {fileID: -7326458508237107965, guid: 37e88f0762fc9224eb3b53b9181c474a, type: 3}
   _buildingsPrefabs:
   - {fileID: 1591312807404395803, guid: 16d543c731c57e14f95b7a3caf507fbf, type: 3}
+  - {fileID: 8267504762903409181, guid: bbdde281dde23af40a4302dd16b88ca7, type: 3}
+  - {fileID: 174444555036807295, guid: 7ab51f4c68592e847b485139d958adcc, type: 3}
+  - {fileID: 5751009775374975083, guid: a0d2a0d1872a5c047a39187a751f6f9e, type: 3}
   _playerObject: {fileID: 2600284017641609108, guid: 206a1a109b5cb6e418bcb516ee6ff2b9,
+    type: 3}
+  _mainBuildingPrefab: {fileID: 1591312807404395803, guid: 16d543c731c57e14f95b7a3caf507fbf,
     type: 3}
   _attackUnitsConfigs:
   - {fileID: 11400000, guid: 68a356e1fa2100b4f8010b9760806200, type: 2}

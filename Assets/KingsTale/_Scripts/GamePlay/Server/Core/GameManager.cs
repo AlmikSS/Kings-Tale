@@ -61,9 +61,6 @@ public class GameManager : NetworkBehaviour
     {
         Debug.Log($"Handle add resources request. Client: {request.PlayerId}, Wood: {request.ResourcesToAdd.Wood}, Gold: {request.ResourcesToAdd.Gold}, Food: {request.ResourcesToAdd.Food}.");
         var player = _gameData.GetPlayer(request.PlayerId);
-
-        if (player == null) return;
-        
         _gameData.AddResourcesToPlayer(request.PlayerId, request.ResourcesToAdd);
     }
 
@@ -96,6 +93,23 @@ public class GameManager : NetworkBehaviour
 
         var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
         damageable.TakeDamage((int)request.Damage, DamageType.Magical);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleDieRequestRpc(ServerDieRequestStruct request)
+    {
+        Debug.Log($"Handle die request. Object: {request.Id}");
+
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        obj.GetComponent<IDamagable>().Die();
+        
+        if (request.IsBuilding)
+            _gameData.RemoveBuilding(request.Id, obj.OwnerClientId);
+        else
+            _gameData.RemoveUnit(request.Id, obj.OwnerClientId);
+        
+        obj.Despawn();
+        Destroy(obj.gameObject);
     }
     
     public bool IsPlayerExist(ulong id)
