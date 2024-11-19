@@ -8,6 +8,8 @@ public class BarrackBuilding : Building
     {
         if (!IsLocalPlayer) { return; }
 
+        if (!_isBuilt.Value) { return; }
+        
         var request = new ServerBuyRequestStruct
         {
             IsBuilding = false,

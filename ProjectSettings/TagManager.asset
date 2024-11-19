@@ -19,6 +19,7 @@ TagManager:
   - UI
   - Cloud
   - MainCam
+  - GoldenMine
   layers:
   - Default
   - TransparentFX

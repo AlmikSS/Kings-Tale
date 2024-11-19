@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnitBaseConfigSO : ScriptableObject
 {
-    [SerializeField] private string _unitName;
+    [SerializeField] private ushort _unitId;
     
     [Header("Health")]
     [SerializeField] private uint _maxHealth;
@@ -21,7 +21,7 @@ public class UnitBaseConfigSO : ScriptableObject
     [Header("Price")]
     [SerializeField] private ResourcesStruct _price;
     
-    public string UnitName => _unitName;
+    public ushort UnitId => _unitId;
 
     public uint MaxHealth => _maxHealth;
     public uint Regeneration => _regeneration;

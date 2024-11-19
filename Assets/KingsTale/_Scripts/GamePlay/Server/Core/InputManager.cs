@@ -60,6 +60,18 @@ public class InputManager : NetworkBehaviour
    {
       HandleTakeDamageRequestAsync(request);
    }
+
+   [Rpc(SendTo.Server)]
+   public void HandleDieRequestRpc(ServerDieRequestStruct request)
+   {
+      HandleDieRequestAsync(request);
+   }
+
+   [Rpc(SendTo.Server)]
+   public void HandleAddUnitsPlaceRpc(ServerAddUnitsPlaceRequestStruct request)
+   {
+      HandleAddUnitsPlaceAsync(request);
+   }
    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
@@ -114,6 +126,24 @@ public class InputManager : NetworkBehaviour
       if (validateResponse.IsValidate)
          _gameManager.HandleTakeDamageRequestRpc(request);
    }
+
+   private async void HandleDieRequestAsync(ServerDieRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleDieRequestRpc(request);
+   }
+
+   private async void HandleAddUnitsPlaceAsync(ServerAddUnitsPlaceRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleAddUnitsPlaceRpc(request);
+   }
    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
@@ -124,7 +154,10 @@ public class InputManager : NetworkBehaviour
       if (request.IsBuilding)
          response = IsBuildingPrefabExistValidation(request.Id, response);
       else
+      {
          response = IsUnitPrefabExistValidation(request.Id, response);
+         response = HavePlaces(request.PlayerId, response);
+      }
 
       return Task.FromResult(response);
    }
@@ -154,6 +187,7 @@ public class InputManager : NetworkBehaviour
       
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsPlayerObject(request.PlayerId, request.UnitId, response);
       
       return Task.FromResult(response);
    }
@@ -164,6 +198,9 @@ public class InputManager : NetworkBehaviour
       
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
+      response = IsPlayerObject(request.PlayerId, request.UnitId, response);
+      // if (!request.IsOwned)
+      //    response = IsPlayerObject(request.PlayerId, request.BuildingId, response);
       
       return Task.FromResult(response);
    }
@@ -174,6 +211,24 @@ public class InputManager : NetworkBehaviour
       
       response = IsPlayerExistValidation(request.PlayerId, response);
       response = IsDamageableObject(request.Id, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerDieRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+      
+      response = IsDamageableObject(request.Id, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerAddUnitsPlaceRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+
+      response = IsPlayerExistValidation(request.PlayerId, response);
       
       return Task.FromResult(response);
    }
@@ -228,6 +283,30 @@ public class InputManager : NetworkBehaviour
       {
          response.IsValidate = false;
          response.Message += "Object is not damageable. ";
+      }
+      
+      return response;
+   }
+
+   private ValidateResponseStruct IsPlayerObject(ulong playerId, ulong id, ValidateResponseStruct response)
+   {
+      var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[id];
+
+      if (playerId != obj.OwnerClientId)
+      {
+         response.IsValidate = false;
+         response.Message += "Object is not belong player";
+      }
+
+      return response;
+   }
+
+   private ValidateResponseStruct HavePlaces(ulong playerId, ValidateResponseStruct response)
+   {
+      if (!_gameManager.HavePlayerPlaces(playerId))
+      {
+         response.IsValidate = false;
+         response.Message += "Player have not place";
       }
       
       return response;

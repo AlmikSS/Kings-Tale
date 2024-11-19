@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1824902834994814077}
   - component: {fileID: 571906549782498553}
-  - component: {fileID: 216296077573796827}
   - component: {fileID: 7852413752699378750}
+  - component: {fileID: 216296077573796827}
   m_Layer: 8
   m_Name: Ballista
   m_TagString: Unit
@@ -95,28 +95,6 @@ NavMeshAgent:
   m_BaseOffset: 0.86
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &216296077573796827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3914628415215467538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9bb138a9e68fb74693be60c60be2683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: d479bed5dba02f0419c90afb10219c09, type: 2}
-  _healthSlider: {fileID: 8035953881366452261}
-  StackOfPositions: []
-  Effects: 
-  StackAttackObjects: {fileID: 0}
-  _objectToAttack: {fileID: 0}
-  _projectile: {fileID: 2494745944360039986, guid: f22aa02827989534ea490cb75998bede,
-    type: 3}
-  _spawnPos: {fileID: 4331686575994146814}
-  _animTime: 0.05
 --- !u!114 &7852413752699378750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1827513986
+  GlobalObjectIdHash: 2169493201
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -142,6 +120,30 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &216296077573796827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3914628415215467538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bb138a9e68fb74693be60c60be2683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _config: {fileID: 11400000, guid: d479bed5dba02f0419c90afb10219c09, type: 2}
+  _id: 0
+  _healthSlider: {fileID: 8035953881366452261}
+  StackOfPositions: []
+  Effects: 
+  StackAttackObjects: {fileID: 0}
+  _objectToAttack: {fileID: 0}
+  _projectile: {fileID: 2494745944360039986, guid: f22aa02827989534ea490cb75998bede,
+    type: 3}
+  _spawnPos: {fileID: 4331686575994146814}
+  _animTime: 0.05
 --- !u!1 &4491785759993223296
 GameObject:
   m_ObjectHideFlags: 0

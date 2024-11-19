@@ -15,4 +15,5 @@ public class GamePlayConstants
     public const string ACT_POINTER_POS = "PointerPos";
     public const string ACT_NUMPAD = "Numpad";
     public const string ACT_BUILD_ARMY = "BuildArmy";
+    public const uint HOUSE_PLACES_COUNT = 15;
 }

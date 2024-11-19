@@ -138,8 +138,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1824902834994814077}
   - component: {fileID: 571906549782498553}
-  - component: {fileID: 8419274538336422559}
   - component: {fileID: 7852413752699378750}
+  - component: {fileID: 8419274538336422559}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Unit
@@ -193,27 +193,6 @@ NavMeshAgent:
   m_BaseOffset: 0.88
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8419274538336422559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3914628415215467538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95a8286a11e3ba54493bcbcf93a41800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 6fe940382b6a5ff4a8221a68e7df76ac, type: 2}
-  _healthSlider: {fileID: 7947987674401313036}
-  StackOfPositions: []
-  Effects: 
-  StackAttackObjects: {fileID: 0}
-  _objectToAttack: {fileID: 0}
-  _arrowPrefab: {fileID: 2494745944360039986, guid: 0f67f2f3f20ef4c408a889b35321bdfb,
-    type: 3}
-  _spawnPos: {fileID: 4331686575994146814}
 --- !u!114 &7852413752699378750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 485492376
+  GlobalObjectIdHash: 3579812066
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -239,6 +218,29 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &8419274538336422559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3914628415215467538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a8286a11e3ba54493bcbcf93a41800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _config: {fileID: 11400000, guid: 6fe940382b6a5ff4a8221a68e7df76ac, type: 2}
+  _id: 0
+  _healthSlider: {fileID: 7947987674401313036}
+  StackOfPositions: []
+  Effects: 
+  StackAttackObjects: {fileID: 0}
+  _objectToAttack: {fileID: 0}
+  _arrowPrefab: {fileID: 2494745944360039986, guid: 0f67f2f3f20ef4c408a889b35321bdfb,
+    type: 3}
+  _spawnPos: {fileID: 4331686575994146814}
 --- !u!1 &4491785759993223296
 GameObject:
   m_ObjectHideFlags: 0

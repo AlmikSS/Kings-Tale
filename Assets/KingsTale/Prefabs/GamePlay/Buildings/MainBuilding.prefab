@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 663567008876643349}
   - component: {fileID: 1063217047190431665}
   - component: {fileID: 11075510524209366}
+  - component: {fileID: 9144991068355838358}
+  - component: {fileID: -2547201782531555371}
   m_Layer: 7
   m_Name: MainBuilding
   m_TagString: Building
@@ -52,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 2820742243
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 1453610320
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -77,16 +79,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  Effects: 
+  _config: {fileID: 11400000, guid: d6fd1837501a84b4fa27aa8c99794c8f, type: 2}
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 128
-  _buildHealth: 0
-  _buildType: 1
   _id: 0
   _healthSlider: {fileID: 0}
-  Effects: 
   _spawnpointTransform: {fileID: 8722746092073261348}
   _workerUnitId: 0
+  _culDown: 30
+  _resourcesToAdd:
+    Wood: 15
+    Gold: 15
+    Food: 15
 --- !u!208 &663567008876643349
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -94,14 +100,14 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636078884303852419}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.275, y: 0.5, z: 0.075}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.27, y: 0, z: 0.18}
   m_TimeToStationary: 0.5
 --- !u!65 &1063217047190431665
 BoxCollider:
@@ -122,8 +128,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5341485, y: 0.7595838, z: 1.1351359}
-  m_Center: {x: 0.26707423, y: 0.3753442, z: 0.178836}
+  m_Size: {x: 1.5341485, y: 2.1501155, z: 1.1351359}
+  m_Center: {x: 0.26707423, y: 1.07061, z: 0.17883599}
 --- !u!54 &11075510524209366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +157,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9144991068355838358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636078884303852419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da52bf8bbc1de48cfb221a6ff30f7972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 1
+  AuthorityMode: 0
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &-2547201782531555371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636078884303852419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
 --- !u!1 &1938291294164839914
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8051865013126705435
 RectTransform:
   m_ObjectHideFlags: 0

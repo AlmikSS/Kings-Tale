@@ -21,12 +21,8 @@ public class GameManager : NetworkBehaviour
 
         if (CanPlayerBuy(resources, price))
         {
-            player = _gameData.GetPlayer(request.PlayerId);
-            
             if (request.IsBuilding)
-            {
                 player.PlayerManager.GetComponent<BuildingSystem>().StartPlacingBuildingRpc(request.Id);
-            }
             else
             {
                 _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
@@ -51,8 +47,9 @@ public class GameManager : NetworkBehaviour
             _gameData.RemoveResourcesToPlayer(request.PlayerId, price);
             var building = Instantiate(_gameData.GetBuildingPrefab(request.BuildingId), request.Position, Quaternion.identity);
             building.SpawnWithOwnership(request.PlayerId);
+            building.GetComponent<Building>().PlaceBuildingRpc();
             _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
-            player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc();
+            player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc(building.NetworkObjectId);
         }
     }
 
@@ -61,9 +58,6 @@ public class GameManager : NetworkBehaviour
     {
         Debug.Log($"Handle add resources request. Client: {request.PlayerId}, Wood: {request.ResourcesToAdd.Wood}, Gold: {request.ResourcesToAdd.Gold}, Food: {request.ResourcesToAdd.Food}.");
         var player = _gameData.GetPlayer(request.PlayerId);
-
-        if (player == null) return;
-        
         _gameData.AddResourcesToPlayer(request.PlayerId, request.ResourcesToAdd);
     }
 
@@ -97,6 +91,31 @@ public class GameManager : NetworkBehaviour
         var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
         damageable.TakeDamage((int)request.Damage, DamageType.Magical);
     }
+
+    [Rpc(SendTo.Server)]
+    public void HandleDieRequestRpc(ServerDieRequestStruct request)
+    {
+        Debug.Log($"Handle die request. Object: {request.Id}");
+
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        obj.GetComponent<IDamagable>().Die();
+        
+        if (request.IsBuilding)
+            _gameData.RemoveBuilding(request.Id, obj.OwnerClientId);
+        else
+            _gameData.RemoveUnit(request.Id, obj.OwnerClientId);
+        
+        obj.Despawn();
+        Destroy(obj.gameObject);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleAddUnitsPlaceRpc(ServerAddUnitsPlaceRequestStruct request)
+    {
+        Debug.Log($"Handle add units places request. Player: {request.PlayerId}");
+        
+        _gameData.AddUnitsPlaces(request.PlayerId);
+    }
     
     public bool IsPlayerExist(ulong id)
     {
@@ -121,6 +140,11 @@ public class GameManager : NetworkBehaviour
         return _gameData.IsUnitExist(id);
     }
 
+    public bool HavePlayerPlaces(ulong id)
+    {
+        return _gameData.HavePlace(id);
+    }
+    
     private bool CanPlayerBuy(ResourcesStruct resources, ResourcesStruct? price)
     {
         return resources.Wood >= price?.Wood && resources.Gold >= price?.Gold && resources.Food >= price?.Food;
