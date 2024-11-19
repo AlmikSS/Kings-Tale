@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 
-//[CreateAssetMenu(menuName = "Worker/Work", fileName = "NewWorkerWork")]
+[Serializable]
 public class WorkClass
 {
     public List<WorkerActionStruct> Actions = new();
@@ -20,6 +20,7 @@ public struct WorkerActionStruct
 {
     public WorkerAction Action;
     public NetworkObject Target;
-    public float WaitTime;
     public ResourcesStruct ResourceToAdd;
+    public bool WithAction;
+    public float WaitTime;
 }

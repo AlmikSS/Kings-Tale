@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - Simple
   - Header
+  - GoldenMine
   layers:
   - Default
   - TransparentFX

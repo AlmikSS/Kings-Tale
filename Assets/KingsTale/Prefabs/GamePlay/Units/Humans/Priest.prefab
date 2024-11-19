@@ -23256,8 +23256,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8591494381886538686}
   - component: {fileID: 4040333233237309836}
-  - component: {fileID: 6543039948689582844}
   - component: {fileID: -6748323710975569280}
+  - component: {fileID: 6543039948689582844}
   m_Layer: 8
   m_Name: Priest
   m_TagString: Unit
@@ -23310,25 +23310,6 @@ NavMeshAgent:
   m_BaseOffset: 0.89
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6543039948689582844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5990120347194604561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a4bc3ee782bfa4290dee71ad7f0594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 3564028285635f34dafe2902b9770c64, type: 2}
-  _healthSlider: {fileID: 1658545533951539901}
-  StackOfPositions: []
-  Effects: 
-  StackAttackObjects: {fileID: 0}
-  _objectToAttack: {fileID: 0}
-  _auraDistance: 10
 --- !u!114 &-6748323710975569280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23341,7 +23322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3086899393
+  GlobalObjectIdHash: 4142784900
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -23354,6 +23335,27 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6543039948689582844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990120347194604561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a4bc3ee782bfa4290dee71ad7f0594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _config: {fileID: 11400000, guid: 3564028285635f34dafe2902b9770c64, type: 2}
+  _id: 0
+  _healthSlider: {fileID: 1658545533951539901}
+  StackOfPositions: []
+  Effects: 
+  StackAttackObjects: {fileID: 0}
+  _objectToAttack: {fileID: 0}
+  _auraDistance: 10
 --- !u!1001 &1066473034015206450
 PrefabInstance:
   m_ObjectHideFlags: 0

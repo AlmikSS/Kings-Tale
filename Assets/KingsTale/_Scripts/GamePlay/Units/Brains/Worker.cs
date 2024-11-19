@@ -26,6 +26,8 @@ public class Worker : UnitBrain
 
     private IEnumerator WorkingUpdateStateRoutine()
     {
+        _currentState = WorkerState.Working;
+        
         foreach (var action in _currentWork.Actions)
         {
             yield return PerformActionRoutine(action);
@@ -33,24 +35,55 @@ public class Worker : UnitBrain
         
         if (_currentBuilding)
             StartWork();
+
+        _currentState = WorkerState.Idle;
     }
 
     private IEnumerator PerformActionRoutine(WorkerActionStruct action)
     {
         _resourcesInInv = action.ResourceToAdd;
+        _target = action.Target.GetComponent<Building>();
         
         switch (action.Action)
         {
             case WorkerAction.GoToPoint:
                 _currentState = WorkerState.GoToTarget;
-                _agent.SetDestination(action.Target.transform.position);
-                _target = action.Target.GetComponent<Building>();
+                GoToPoint(action.Target.transform.position);
                 yield return InPath();
                 break;
             case WorkerAction.Wait:
+                _currentState = WorkerState.Working;
                 yield return new WaitForSeconds(action.WaitTime);
+                if (action.WithAction)
+                {
+                    if (_target.TryGetComponent(out Building building))
+                    {
+                        if (building.IsBuilt)
+                        {
+                            if (building is MainBuilding)
+                            {
+                                var request = new ServerAddResourcesRequestStruct
+                                {
+                                    PlayerId = OwnerClientId,
+                                    ResourcesToAdd = _resourcesInInv,
+                                };
+                                InputManager.Instance.HandleAddResourcesRequestRpc(request);
+                            }
+                            else if (building is FieldBuilding fieldBuilding)
+                                fieldBuilding.Collect();
+                            else if (building is MineBuilding mineBuilding)
+                                mineBuilding.Mine();
+                        }
+                        else
+                            _target.BuildRpc();
+                    }
+                }
                 break;
             case WorkerAction.Main:
+                _currentState = WorkerState.Working;
+                yield return new WaitForSeconds(action.WaitTime);
+                if (action.Target.TryGetComponent(out Tree tree))
+                    tree.MineRpc();
                 break;
         }
     }
@@ -59,6 +92,7 @@ public class Worker : UnitBrain
     {
         while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance || _agent.velocity.sqrMagnitude > 0f)
         {
+            _currentState = WorkerState.GoToTarget;
             yield return null;
         }
     }
@@ -67,36 +101,18 @@ public class Worker : UnitBrain
     {
         if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance && _agent.velocity.sqrMagnitude == 0f)
         {
-            _currentState = WorkerState.Working;
-
             if (_currentWork == null)
                 StartWork();
-
-            if (_target != null)
-            {
-                if (_target.TryGetComponent(out Building building))
-                {
-                    if (building is MainBuilding)
-                    {
-                        var request = new ServerAddResourcesRequestStruct
-                        {
-                            PlayerId = OwnerClientId,
-                            ResourcesToAdd = _resourcesInInv,
-                        };
-                        InputManager.Instance.HandleAddResourcesRequestRpc(request);
-                    }
-                    
-                    if (building is FieldBuilding fieldBuilding)
-                        fieldBuilding.Collect();
-                }
-            }
         }
     }
 
     private void StartWork()
     {
         _currentWork = _currentBuilding.GetWork();
-        StartCoroutine(WorkingUpdateStateRoutine());
+        if (_currentWork != null)
+            StartCoroutine(WorkingUpdateStateRoutine());
+        else 
+            ResetWorker();
     }
 
     [Rpc(SendTo.Owner)]
@@ -109,17 +125,31 @@ public class Worker : UnitBrain
     [Rpc(SendTo.Owner)]
     public override void SetBuildingRpc(ulong buildingId)
     {
-        var point = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingId].transform.position;
-        GoToPoint(point);
-        
-        var building = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingId].GetComponent<WorkingBuilding>();
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingId];
+        WorkingBuilding workingBuilding = null;
 
-        if (!building.HasPlace())
+        if (obj.TryGetComponent(out Building building))
+        {
+            if (!building.IsBuilt)
+            {
+                _currentWork = building.BuildBuilding();
+                StartCoroutine(WorkingUpdateStateRoutine());
+            }
+            else if (building is WorkingBuilding a)
+                workingBuilding = a;
+        }
+        
+        if (workingBuilding == null)
+            return;
+        
+        if (!workingBuilding.HasPlace())
             return;
 
         ResetWorker();
         
-        _currentBuilding = building;
+        //GoToPoint(workingBuilding.transform.position);
+        
+        _currentBuilding = workingBuilding;
         _currentBuilding.AddUnit(NetworkObjectId);
         _currentState = WorkerState.GoToTarget;
     }
@@ -131,6 +161,7 @@ public class Worker : UnitBrain
         _target = null;
         _currentBuilding = null;
         _currentWork = null;
+        _currentState = WorkerState.Idle;
     }
 }
 

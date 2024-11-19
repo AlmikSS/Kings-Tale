@@ -11,6 +11,8 @@ public class MillBuilding : WorkingBuilding
     
     public override WorkClass GetWork()
     {
+        if (!_isBuilt.Value) { return null; }
+        
         List<WorkerActionStruct> actions = new();
         
         var mainBuilding = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(OwnerClientId).GetComponent<PlayerManager>().MainBuilding;
@@ -52,14 +54,15 @@ public class MillBuilding : WorkingBuilding
         var sndAction = new WorkerActionStruct
         {
             Action = WorkerAction.GoToPoint,
-            Target = nearField.NetworkObject
+            Target = nearField.NetworkObject,
         };
 
         var trdAction = new WorkerActionStruct
         {
             Action = WorkerAction.Wait,
             Target = nearField.NetworkObject,
-            WaitTime = _waitTime
+            WaitTime = _waitTime,
+            WithAction = true,
         };
 
         var fthAction = new WorkerActionStruct
@@ -82,12 +85,22 @@ public class MillBuilding : WorkingBuilding
             ResourceToAdd = _resourcesToAdd
         };
 
+        var svthAction = new WorkerActionStruct
+        {
+            Action = WorkerAction.Wait,
+            Target = mainBuilding.NetworkObject,
+            WaitTime = _waitTime,
+            ResourceToAdd = _resourcesToAdd,
+            WithAction = true
+        };
+        
         actions.Add(frtAction);
         actions.Add(sndAction);
         actions.Add(trdAction);
         actions.Add(fthAction);
         actions.Add(fftAction);
         actions.Add(sthAction);
+        actions.Add(svthAction);
 
         _currentWork.Actions = actions;
         

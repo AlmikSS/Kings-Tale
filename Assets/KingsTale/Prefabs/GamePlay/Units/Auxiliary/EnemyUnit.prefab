@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1824902834994814077}
   - component: {fileID: 571906549782498553}
-  - component: {fileID: 4849932185235757951}
   - component: {fileID: 5326541533570016131}
+  - component: {fileID: 4849932185235757951}
   m_Layer: 13
   m_Name: EnemyUnit
   m_TagString: EnemyUnit
@@ -141,25 +141,6 @@ NavMeshAgent:
   m_BaseOffset: 0.88
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4849932185235757951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3914628415215467538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c2eccef3772a045a6bbccbc9d86816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: fe53892ba436c0b4d8dc3fac96a8f4f6, type: 2}
-  _healthSlider: {fileID: 7394856123612955795}
-  StackOfPositions: []
-  Effects: 
-  StackAttackObjects: {fileID: 0}
-  _objectToAttack: {fileID: 0}
-  _animTime: 1
 --- !u!114 &5326541533570016131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1779452878
+  GlobalObjectIdHash: 3429307348
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -185,6 +166,27 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &4849932185235757951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3914628415215467538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c2eccef3772a045a6bbccbc9d86816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _config: {fileID: 11400000, guid: fe53892ba436c0b4d8dc3fac96a8f4f6, type: 2}
+  _id: 0
+  _healthSlider: {fileID: 7394856123612955795}
+  StackOfPositions: []
+  Effects: 
+  StackAttackObjects: {fileID: 0}
+  _objectToAttack: {fileID: 0}
+  _animTime: 1
 --- !u!1 &6301154505436098602
 GameObject:
   m_ObjectHideFlags: 0

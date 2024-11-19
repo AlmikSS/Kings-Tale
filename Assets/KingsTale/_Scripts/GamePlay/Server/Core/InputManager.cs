@@ -66,7 +66,13 @@ public class InputManager : NetworkBehaviour
    {
       HandleDieRequestAsync(request);
    }
-    
+
+   [Rpc(SendTo.Server)]
+   public void HandleAddUnitsPlaceRpc(ServerAddUnitsPlaceRequestStruct request)
+   {
+      HandleAddUnitsPlaceAsync(request);
+   }
+   
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
    {
       if (!IsServer) return;
@@ -129,7 +135,16 @@ public class InputManager : NetworkBehaviour
       if (validateResponse.IsValidate)
          _gameManager.HandleDieRequestRpc(request);
    }
-    
+
+   private async void HandleAddUnitsPlaceAsync(ServerAddUnitsPlaceRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleAddUnitsPlaceRpc(request);
+   }
+   
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
@@ -139,7 +154,10 @@ public class InputManager : NetworkBehaviour
       if (request.IsBuilding)
          response = IsBuildingPrefabExistValidation(request.Id, response);
       else
+      {
          response = IsUnitPrefabExistValidation(request.Id, response);
+         response = HavePlaces(request.PlayerId, response);
+      }
 
       return Task.FromResult(response);
    }
@@ -181,6 +199,8 @@ public class InputManager : NetworkBehaviour
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
       response = IsPlayerObject(request.PlayerId, request.UnitId, response);
+      if (!request.IsOwned)
+         response = IsPlayerObject(request.PlayerId, request.BuildingId, response);
       
       return Task.FromResult(response);
    }
@@ -200,6 +220,15 @@ public class InputManager : NetworkBehaviour
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
       
       response = IsDamageableObject(request.Id, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerAddUnitsPlaceRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+
+      response = IsPlayerExistValidation(request.PlayerId, response);
       
       return Task.FromResult(response);
    }
@@ -269,6 +298,17 @@ public class InputManager : NetworkBehaviour
          response.Message += "Object is not belong player";
       }
 
+      return response;
+   }
+
+   private ValidateResponseStruct HavePlaces(ulong playerId, ValidateResponseStruct response)
+   {
+      if (!_gameManager.HavePlayerPlaces(playerId))
+      {
+         response.IsValidate = false;
+         response.Message += "Player have not place";
+      }
+      
       return response;
    }
 }

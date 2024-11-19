@@ -23292,8 +23292,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1824902834994814077}
   - component: {fileID: 571906549782498553}
-  - component: {fileID: 6188036223230030570}
   - component: {fileID: -8994182779264325641}
+  - component: {fileID: 6188036223230030570}
   m_Layer: 8
   m_Name: Paladin
   m_TagString: Unit
@@ -23345,26 +23345,6 @@ NavMeshAgent:
   m_BaseOffset: 0.84
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6188036223230030570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3914628415215467538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c9ff88e3f05244cb977ef5255d137e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 686bfa288b4e21d43b160d6bd8b5dac7, type: 2}
-  _healthSlider: {fileID: 8585350567938131111}
-  StackOfPositions: []
-  Effects: 
-  StackAttackObjects: {fileID: 0}
-  _objectToAttack: {fileID: 0}
-  _attackRange: 1
-  _animTime: 0.16
 --- !u!114 &-8994182779264325641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23377,7 +23357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2380059522
+  GlobalObjectIdHash: 3246121168
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -23390,6 +23370,28 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6188036223230030570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3914628415215467538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c9ff88e3f05244cb977ef5255d137e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _config: {fileID: 11400000, guid: 686bfa288b4e21d43b160d6bd8b5dac7, type: 2}
+  _id: 0
+  _healthSlider: {fileID: 8585350567938131111}
+  StackOfPositions: []
+  Effects: 
+  StackAttackObjects: {fileID: 0}
+  _objectToAttack: {fileID: 0}
+  _attackRange: 1
+  _animTime: 0.16
 --- !u!1001 &2220160695007827827
 PrefabInstance:
   m_ObjectHideFlags: 0

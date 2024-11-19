@@ -7,6 +7,7 @@ public class PlayerData
     private ResourcesStruct _resources;
     private List<ulong> _units = new();
     private List<ulong> _buildings = new();
+    private uint _maxUnitsCount = 50;
     
     public ResourcesStruct Resources => _resources;
     public PlayerManager PlayerManager => _playerManager;
@@ -17,15 +18,26 @@ public class PlayerData
         _playerManager = playerManager;
     }
 
-    private void UpdatePlayer()
+    public void UpdatePlayer()
     {
         var updatedState = new ClientUpdateStateStruct
         {
             Resources = _resources,
             Units = _units.ToArray(),
-            Buildings = _buildings.ToArray()
+            Buildings = _buildings.ToArray(),
+            MaxUnitsCount = _maxUnitsCount
         };
         _playerManager.UpdateStateRpc(updatedState);
+    }
+
+    public void AddUnitsPlace()
+    {
+        _maxUnitsCount += GamePlayConstants.HOUSE_PLACES_COUNT;
+    }
+
+    public bool HavePlace()
+    {
+        return _units.Count < _maxUnitsCount;
     }
     
     public void AddUnit(ulong id)

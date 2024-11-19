@@ -15,29 +15,78 @@ public abstract class Building : NetworkBehaviour, IDamagable
     [SerializeField] private HealthSlider _healthSlider;
 
     public bool CanBuild { get; private set; } = true;
+    public bool IsBuilt => _isBuilt.Value;
     public ushort Id => _id;
  
+    protected NetworkVariable<bool> _isPlaced = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    protected NetworkVariable<bool> _isBuilt = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    protected NetworkVariable<int> _currentHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private int _magicResist;
     private int _physicalResist;
-    private int _currentHealth;
 
     public override void OnNetworkSpawn()
     {
-        _currentHealth = (int)_config.MaxHealth;
+        if (!IsOwner) { return; }
+
+        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = new Color(1, 1, 1, 0.3f);
+        
+        _currentHealth.Value = (int)_config.MaxHealth;
         _magicResist = (int)_config.MagicResist;
         _physicalResist = (int)_config.PhysicalResist;
     }
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
-            CanBuild = false;
+        {
+            if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
+                CanBuild = false;
+        }
     }
     
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(GamePlayConstants.BUILDING_TAG))
             CanBuild = true;
+    }
+
+    [Rpc(SendTo.Owner)]
+    public virtual void PlaceBuildingRpc()
+    {
+        _isPlaced.Value = true;
+    }
+
+    public WorkClass BuildBuilding()
+    {
+        WorkClass work = new();
+
+        List<WorkerActionStruct> actions = new();
+
+        var firstAction = new WorkerActionStruct
+        {
+            Action = WorkerAction.GoToPoint,
+            Target = NetworkObject
+        };
+
+        var secondAction = new WorkerActionStruct
+        {
+            Action = WorkerAction.Wait,
+            Target = NetworkObject,
+            WaitTime = _config.BuildTime,
+            WithAction = true
+        };
+        
+        actions.Add(firstAction);
+        actions.Add(secondAction);
+
+        work.Actions = actions;
+        return work;
+    }
+
+    [Rpc(SendTo.Owner)]
+    public virtual void BuildRpc()
+    {
+        _isBuilt.Value = true;
+        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
     }
     
     public IEnumerator ChangeParam(Effect name, int value, float duration, bool increase = true)
@@ -60,18 +109,20 @@ public abstract class Building : NetworkBehaviour, IDamagable
     
     public virtual void TakeDamage(int damage, DamageType type = 0, Effect fx = Effect.None)
     {
+        if (!IsLocalPlayer) { return; }
+        
         var dmg = damage - (type == DamageType.Magical ? _magicResist : _physicalResist);
 	    
         if (damage > 0)
         {
 
-            _currentHealth -= dmg;
+            _currentHealth.Value -= dmg;
             _healthSlider.TakeDamage(dmg, type, fx);
         }
-        else if(_currentHealth > 0)
+        else if(_currentHealth.Value > 0)
             _healthSlider.Defence(type);
 
-        if (_currentHealth <= 0)
+        if (_currentHealth.Value <= 0)
             Die();
     }
     

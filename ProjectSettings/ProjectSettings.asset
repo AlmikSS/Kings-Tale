@@ -53,6 +53,7 @@ PlayerSettings:
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
+  m_SpriteBatchMaxVertexCount: 65535
   m_SpriteBatchVertexThreshold: 300
   m_MTRendering: 1
   mipStripping: 0
@@ -568,6 +569,7 @@ PlayerSettings:
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
+  editorGfxJobOverride: 1
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
@@ -945,7 +947,7 @@ PlayerSettings:
   cloudProjectId: 0e9aa57b-0db1-4125-9609-c0758963e0ab
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: For the kingdom
+  projectName: KingsTale
   organizationId: unity_1victorioushawk1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

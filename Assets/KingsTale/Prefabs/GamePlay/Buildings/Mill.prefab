@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3261619923
+  GlobalObjectIdHash: 929015737
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -121,13 +121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  Effects: 
+  _config: {fileID: 11400000, guid: 8c2ee41fee426524d9e870cc0f5c143d, type: 2}
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 640
-  _buildHealth: 0
   _id: 2
   _healthSlider: {fileID: 0}
-  Effects: 
+  _currentMaterial: {fileID: 2100000, guid: 206286a4e3fbf2d4cb5143997850fd0f, type: 2}
   _maxWorkersCount: 4
   _resourcesToAdd:
     Wood: 0

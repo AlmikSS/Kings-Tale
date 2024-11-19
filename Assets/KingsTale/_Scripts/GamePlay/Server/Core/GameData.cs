@@ -21,6 +21,8 @@ public class GameData : NetworkBehaviour
     private readonly Dictionary<ulong, PlayerData> _players = new();
     private List<ulong> _units = new();
     private List<ulong> _buildings = new();
+
+    public List<NetworkObject> BuildingsPrefabs => _buildingsPrefabs;
     
     public void Initialize()
     {
@@ -34,13 +36,20 @@ public class GameData : NetworkBehaviour
         var pos = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
         var newObj = Instantiate(_playerObject, pos, _playerObject.transform.rotation);
         var mainBuilding = Instantiate(_mainBuildingPrefab, pos, _mainBuildingPrefab.transform.rotation);
+        
         newObj.SpawnAsPlayerObject(clientId);
         mainBuilding.SpawnWithOwnership(clientId);
+        mainBuilding.GetComponent<Building>().PlaceBuildingRpc();
+        mainBuilding.GetComponent<Building>().BuildRpc();
+        
         var playerManager = newObj.GetComponent<PlayerManager>();
-        playerManager.GetComponent<BuildingSystem>().SetBuildingList(_buildingsPrefabs);
+        playerManager.GetComponent<BuildingSystem>().SetBuildingListRpc(NetworkObjectId);
         playerManager.SetMainBuildingRpc(mainBuilding);
-        var playerData = new PlayerData(new ResourcesStruct(), playerManager);
+        
+        var playerData = new PlayerData(new ResourcesStruct(100, 100, 100), playerManager);
         _players.Add(clientId, playerData);
+        playerData.UpdatePlayer();
+        
         Debug.Log("Registering" + clientId);
     }
     
@@ -52,6 +61,20 @@ public class GameData : NetworkBehaviour
         return null;
     }
 
+    public void AddUnitsPlaces(ulong playerId)
+    {
+        if (_players.TryGetValue(playerId, out var player))
+            player.AddUnitsPlace();
+    }
+
+    public bool HavePlace(ulong playerId)
+    {
+        if (_players.TryGetValue(playerId, out var player))
+            return player.HavePlace();
+
+        return false;
+    }
+    
     public ResourcesStruct GetPlayerResources(ulong id)
     {
         if (_players.TryGetValue(id, out var player))

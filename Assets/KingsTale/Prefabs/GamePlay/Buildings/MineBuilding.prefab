@@ -77,13 +77,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  Effects: 
+  _config: {fileID: 11400000, guid: e1105232982cfac44a58e5c05a940e5e, type: 2}
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 640
-  _buildHealth: 1
+    m_Bits: 128
   _id: 1
   _healthSlider: {fileID: 0}
-  Effects: 
   _maxWorkersCount: 2
   _workTime: 2
   _resourcesToAdd:

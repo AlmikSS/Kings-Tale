@@ -10,7 +10,10 @@ public class BuildingSystem : NetworkBehaviour
     [SerializeField] private GameObject _unitControlSystem;
     [SerializeField] private Camera _myCam;
     [SerializeField] private List<Building> _buildings = new();
+
+    public bool IsBuilding { get; private set; }
     
+    private PlayerManager _playerManager;
     private MainInput _maininput;
     private GameObject _currBuildPrefab;
     private Building _buildPrefabScript;
@@ -21,6 +24,11 @@ public class BuildingSystem : NetworkBehaviour
         _maininput = new MainInput();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        _playerManager = GetComponent<PlayerManager>();
+    }
+    
     private void OnEnable()
     {
         _maininput.Enable();
@@ -50,6 +58,8 @@ public class BuildingSystem : NetworkBehaviour
         _buildPrefabScript = Instantiate(buildPrefab, hit.point, Quaternion.identity);
         _currBuildPrefab = _buildPrefabScript.gameObject;
         _unitControlSystem.SetActive(false);
+
+        IsBuilding = true;
     }
 
     private Building GetBuilding(ushort id)
@@ -89,23 +99,41 @@ public class BuildingSystem : NetworkBehaviour
             request.PlayerId = NetworkObject.OwnerClientId;
             request.Position = hit.point;
             InputManager.Instance.HandlePlaceBuildingRequestRpc(request);
+            
+            IsBuilding = false;
         }
     }
 
     [Rpc(SendTo.Owner)]
-    public void OnBuildingPlacedRpc()
+    public void OnBuildingPlacedRpc(ulong id)
     {
         _unitControlSystem.SetActive(true);
         Destroy(_currBuildPrefab);
         _currBuildPrefab = null;
+        if (_playerManager.UnitSelections.unitSelected.Count > 0)
+        {
+            var request = new ServerSetUnitBuildingRequestStruct
+            {
+                PlayerId = OwnerClientId,
+                BuildingId = id,
+                UnitId = _playerManager.UnitSelections.unitSelected[0].NetworkObjectId
+            };
+            
+            InputManager.Instance.HandleSetUnitBuildingRequestRpc(request);
+            
+            _playerManager.UnitSelections.Deselect();
+        }
     }
 
-    public void SetBuildingList(List<NetworkObject> buildings)
+    [Rpc(SendTo.Owner)]
+    public void SetBuildingListRpc(ulong gameDataID)
     {
-        foreach (var building in buildings)
+        var gameData = NetworkManager.Singleton.SpawnManager.SpawnedObjects[gameDataID].GetComponent<GameData>();
+        
+        foreach (var prefab in gameData.BuildingsPrefabs)
         {
-            var b = building.GetComponent<Building>();
-            _buildings.Add(b);
+            if (prefab.TryGetComponent(out Building building))
+                _buildings.Add(building);
         }
     }
 }

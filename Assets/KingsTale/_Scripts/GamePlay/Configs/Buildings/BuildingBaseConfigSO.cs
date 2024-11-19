@@ -13,7 +13,9 @@ public abstract class BuildingBaseConfigSO : ScriptableObject
     
     [Header("Price")]
     [SerializeField] private ResourcesStruct _price;
-    
+
+    [SerializeField] private float _buildTime;
+
     public ushort Id => _id;
 
     public uint MaxHealth => _maxHealth;
@@ -23,7 +25,8 @@ public abstract class BuildingBaseConfigSO : ScriptableObject
     
     public ResourcesStruct Price => _price;
     
-    public void SetProperties(uint maxHealth, uint magicResist, uint physicalResist, ResourcesStruct price)
+    public float BuildTime => _buildTime;
+    public void SetProperties(uint maxHealth, uint magicResist, uint physicalResist, ResourcesStruct price, float buildTime)
     {
         _maxHealth = maxHealth;
         
@@ -31,5 +34,7 @@ public abstract class BuildingBaseConfigSO : ScriptableObject
         _physicalResist = physicalResist;
 
         _price = price;
+
+        _buildTime = buildTime;
     }
 }
