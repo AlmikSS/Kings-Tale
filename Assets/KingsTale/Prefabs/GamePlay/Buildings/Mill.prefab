@@ -128,7 +128,6 @@ MonoBehaviour:
     m_Bits: 640
   _id: 2
   _healthSlider: {fileID: 0}
-  _currentMaterial: {fileID: 2100000, guid: 206286a4e3fbf2d4cb5143997850fd0f, type: 2}
   _maxWorkersCount: 4
   _resourcesToAdd:
     Wood: 0
@@ -158,8 +157,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8940953, y: 2.058583, z: 1.0642991}
-  m_Center: {x: -0.003782332, y: 0.98363316, z: 0.24395907}
+  m_Size: {x: 0.8940953, y: 2.4939656, z: 1.0642991}
+  m_Center: {x: -0.003782332, y: 1.2013245, z: 0.24395907}
 --- !u!114 &-6890681978600218621
 MonoBehaviour:
   m_ObjectHideFlags: 0

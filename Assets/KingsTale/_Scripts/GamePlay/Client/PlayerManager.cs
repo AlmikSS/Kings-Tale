@@ -58,9 +58,6 @@ public class PlayerManager : NetworkBehaviour
                 OwnerClientId);
             InputManager.Instance.HandleAddResourcesRequestRpc(request);
         }
-        
-        if (Input.GetKeyDown(KeyCode.T))
-            MainBuilding.BuyWorkerUnit();
     }
 
     [Rpc(SendTo.Owner)]
@@ -94,13 +91,18 @@ public class PlayerManager : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
+        var pointerPos = _input.actions["PointerPos"].ReadValue<Vector2>();
+        var ray = _camera.ScreenPointToRay(pointerPos);
+        Physics.Raycast(ray, out var hit, _interactLayerMask);
+
+        if (hit.collider.gameObject.TryGetComponent(out MainBuilding mainBuilding))
+        {
+            if (mainBuilding.IsBuilt)
+                mainBuilding.BuyWorkerUnit();
+        }
+        
         if (_unitSelections.unitSelected.Count > 0)
         {
-            var pointerPos = _input.actions["PointerPos"].ReadValue<Vector2>();
-            var ray = _camera.ScreenPointToRay(pointerPos);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, _interactLayerMask);
-
             if (hit.collider.gameObject.CompareTag("Ground") && !_buildingSystem.IsBuilding)
                 SetDestination(hit.point);
             else if (hit.collider.gameObject.TryGetComponent(out Building building))
@@ -123,15 +125,13 @@ public class PlayerManager : NetworkBehaviour
                         {
                             i++;
                             SetUnitBuilding(_unitSelections.unitSelected[i].NetworkObjectId, tree.NetworkObjectId, false);
-                            if (i >= _unitSelections.unitSelected.Count)
-                                break;
                         }
+                        if (i > _unitSelections.unitSelected.Count)
+                            break;
                     }
                     
                     _unitSelections.Deselect();
                 }
-                else if (building.TryGetComponent(out MainBuilding mainBuilding))
-                    mainBuilding.BuyWorkerUnit();
                 else
                 {
                     foreach (var unit in _unitSelections.unitSelected)

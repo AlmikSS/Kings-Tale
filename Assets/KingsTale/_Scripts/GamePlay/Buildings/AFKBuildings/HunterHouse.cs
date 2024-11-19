@@ -26,9 +26,19 @@ public class HunterHouse : Building
     [Rpc(SendTo.Owner)]
     public override void PlaceBuildingRpc()
     {
-        if (!IsLocalPlayer) { return; }
+        if (!IsOwner) { return; }
         
         _isPlaced.Value = true;
+    }
+    
+    [Rpc(SendTo.Owner)]
+    public override void BuildRpc()
+    {
+        if (!IsOwner) { return; }
+
+        _isBuilt.Value = true;
+        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
+
         StartCoroutine(LiveCycleRoutine());
     }
 }

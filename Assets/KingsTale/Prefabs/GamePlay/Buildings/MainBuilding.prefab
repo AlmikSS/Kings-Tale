@@ -83,7 +83,7 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: d6fd1837501a84b4fa27aa8c99794c8f, type: 2}
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 128
   _id: 0
   _healthSlider: {fileID: 0}
   _spawnpointTransform: {fileID: 8722746092073261348}
@@ -128,8 +128,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5341485, y: 0.7595838, z: 1.1351359}
-  m_Center: {x: 0.26707423, y: 0.3753442, z: 0.178836}
+  m_Size: {x: 1.5341485, y: 2.1501155, z: 1.1351359}
+  m_Center: {x: 0.26707423, y: 1.07061, z: 0.17883599}
 --- !u!54 &11075510524209366
 Rigidbody:
   m_ObjectHideFlags: 0

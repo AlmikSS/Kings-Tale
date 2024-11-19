@@ -199,8 +199,8 @@ public class InputManager : NetworkBehaviour
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
       response = IsPlayerObject(request.PlayerId, request.UnitId, response);
-      if (!request.IsOwned)
-         response = IsPlayerObject(request.PlayerId, request.BuildingId, response);
+      // if (!request.IsOwned)
+      //    response = IsPlayerObject(request.PlayerId, request.BuildingId, response);
       
       return Task.FromResult(response);
    }

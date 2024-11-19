@@ -29,7 +29,7 @@ public class Quarry : Building
     [Rpc(SendTo.Owner)]
     public override void PlaceBuildingRpc()
     {
-        if (!IsLocalPlayer) { return; }
+        if (!IsOwner) { return; }
         
         _isPlaced.Value = true;
         var cols = Physics.OverlapSphere(transform.position, 0.3f);
@@ -40,9 +40,19 @@ public class Quarry : Building
             {
                 transform.position = mine.transform.position;
                 _currentGoldenMine = mine;
-                StartCoroutine(LiveCycleRoutine());
                 break;
             }
         }
+    }
+
+    [Rpc(SendTo.Owner)]
+    public override void BuildRpc()
+    {
+        if (!IsOwner) { return; }
+
+        _isBuilt.Value = true;
+        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
+
+        StartCoroutine(LiveCycleRoutine());
     }
 }

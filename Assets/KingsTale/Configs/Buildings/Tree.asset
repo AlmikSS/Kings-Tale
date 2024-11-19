@@ -18,6 +18,6 @@ MonoBehaviour:
   _physicalResist: 0
   _price:
     Wood: 10
-    Gold: 0
-    Food: 0
+    Gold: 10
+    Food: 10
   _buildTime: 3

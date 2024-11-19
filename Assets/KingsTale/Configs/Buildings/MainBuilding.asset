@@ -17,7 +17,7 @@ MonoBehaviour:
   _magicResist: 0
   _physicalResist: 0
   _price:
-    Wood: 0
-    Gold: 0
-    Food: 0
-  _buildTime: 0
+    Wood: 10
+    Gold: 10
+    Food: 10
+  _buildTime: 3

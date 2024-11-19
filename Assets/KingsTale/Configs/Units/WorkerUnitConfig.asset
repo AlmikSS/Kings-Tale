@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ec46168874ce59caad21ef038f3f1, type: 3}
   m_Name: WorkerUnitConfig
   m_EditorClassIdentifier: 
-  _unitName: Worker
+  _unitId: 0
   _maxHealth: 0
   _regeneration: 0
   _regenSpeed: 0
@@ -21,4 +21,8 @@ MonoBehaviour:
   _speed: 3
   _angularSpeed: 100000
   _stopDistance: 0.6
+  _price:
+    Wood: 10
+    Gold: 10
+    Food: 10
   _attackSpeed: 0

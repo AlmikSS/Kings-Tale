@@ -1,9 +1,7 @@
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshObstacle))]
 public class MainBuilding : Building
 {
     [SerializeField] private Transform _spawnpointTransform;
@@ -36,7 +34,7 @@ public class MainBuilding : Building
     
     public void BuyWorkerUnit()
     {
-        if (!IsOwner) return;
+        if (!IsOwner) { return; }
         
         var request = new ServerBuyRequestStruct
         {

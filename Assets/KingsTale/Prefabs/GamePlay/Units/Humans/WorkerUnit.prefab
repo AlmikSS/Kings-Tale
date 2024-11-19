@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _config: {fileID: 11400000, guid: 8119061c44d889448931f224e23765bc, type: 2}
+  _id: 0
   _healthSlider: {fileID: 5414086600638729900}
   StackOfPositions: []
   Effects: 
@@ -886,7 +887,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}
@@ -896,7 +897,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}
@@ -911,7 +912,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 833d85d1690e6f44fb720c8cb14c5357,
         type: 3}

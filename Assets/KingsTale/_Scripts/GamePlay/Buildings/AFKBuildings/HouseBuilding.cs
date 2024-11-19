@@ -6,7 +6,7 @@ public class HouseBuilding : Building
     [Rpc(SendTo.Owner)]
     public override void BuildRpc()
     {
-        if (!IsLocalPlayer) { return; }
+        if (!IsOwner) { return; }
         
         _isBuilt.Value = true;
         GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
