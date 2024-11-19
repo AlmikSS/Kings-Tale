@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(UnitClick), typeof(UnitEnlight), typeof(UnitSelections))]
 public class PlayerManager : NetworkBehaviour
 {
-    [SerializeField] private GameObject _ui;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private TMP_Text _resourcesText;
     [SerializeField] private LayerMask _interactLayerMask;
     [SerializeField] private float _seekTreeRange;
+    private GameObject _ui;
+    private Camera _camera;
+    private TMP_Text _resourcesText;
 
     public ResourcesStruct Resources { get; private set; }
     public MainBuilding MainBuilding { get; private set; }
@@ -45,6 +45,10 @@ public class PlayerManager : NetworkBehaviour
         _input = FindFirstObjectByType<PlayerInput>();
         _input.actions["LeftClick"].performed += OnMouseLeftClick;
         _input.actions["RightClick"].performed += OnMouseRightClick;
+        
+        _camera = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
+        _ui = GameObject.FindWithTag("UI");
+        _resourcesText = GameObject.FindWithTag("Resources").GetComponent<TMP_Text>();
     }
 
     private void Update()
@@ -75,7 +79,7 @@ public class PlayerManager : NetworkBehaviour
             _unitSelections.unitList.Add(unit.GetComponent<UnitBrain>());
         }
 
-        _resourcesText.text = $"Wood: {Resources.Wood}, Food: {Resources.Food}, Gold: {Resources.Gold}";
+        _resourcesText.text = $"Дерево: {Resources.Wood}, Еда: {Resources.Food}, Золото: {Resources.Gold}";
     }
 
     [Rpc(SendTo.Owner)]

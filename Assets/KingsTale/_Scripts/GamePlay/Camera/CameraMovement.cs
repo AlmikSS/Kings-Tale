@@ -53,7 +53,7 @@ public class CameraMovement : NetworkBehaviour
 		//if (!IsOwner) { return; }
 		if (_zoomSlider.IsActive())
 		{
-			ZoomScale -= _controller.actions["Zoom"].ReadValue<Vector2>().y / 60f;
+			ZoomScale -= _controller.actions["Zoom"].ReadValue<Vector2>().y;
 			ZoomScale = Mathf.Clamp(ZoomScale, 20, 90);
 			_zoomSlider.value = ZoomScale;
 			_cam.fieldOfView = ZoomScale;

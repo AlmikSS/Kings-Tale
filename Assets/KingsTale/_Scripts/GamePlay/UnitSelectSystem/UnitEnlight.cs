@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 public class UnitEnlight : MonoBehaviour
 {
     private PlayerInput _mainInput;
-    [SerializeField] private Camera _myCam;
+    private Camera _myCam;
     private bool _click = false;
 
-    [SerializeField] private RectTransform boxVisual;
+    private RectTransform boxVisual;
     [SerializeField] private UnitSelections _unitSelections;
 
     private Rect _selectionBox;
@@ -17,9 +17,11 @@ public class UnitEnlight : MonoBehaviour
 
     void Awake()
     {
+        _myCam = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
+        boxVisual = GameObject.FindWithTag("BoxVisual").GetComponent<RectTransform>();
         _mainInput = FindFirstObjectByType<PlayerInput>();
-        _mainInput.actions["RightClick"].performed += StartVisual;
-        _mainInput.actions["RightClick"].canceled += EndVisual;
+        _mainInput.actions["LeftClick"].performed += StartVisual;
+        _mainInput.actions["LeftClick"].canceled += EndVisual;
     }
     void Start()
     {

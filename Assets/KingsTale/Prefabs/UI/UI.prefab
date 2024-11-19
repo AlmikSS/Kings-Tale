@@ -8996,7 +8996,7 @@ RectTransform:
   m_Children:
   - {fileID: 700288778415258043}
   - {fileID: 5332715661462495574}
-  m_Father: {fileID: 2526772145403588277}
+  m_Father: {fileID: 7345702949908465192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10373,7 +10373,7 @@ GameObject:
   - component: {fileID: 300014332330766252}
   m_Layer: 5
   m_Name: SelectionVisual
-  m_TagString: Untagged
+  m_TagString: BoxVisual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11775,6 +11775,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6644670065043207568}
+  - {fileID: 8082145576577542354}
   - {fileID: 2526772145403588277}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16086,7 +16087,7 @@ GameObject:
   - component: {fileID: 2526772145403588277}
   m_Layer: 5
   m_Name: GamePlayUI
-  m_TagString: Untagged
+  m_TagString: GameplayCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16105,7 +16106,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8589492785954164283}
-  - {fileID: 8082145576577542354}
   - {fileID: 3814156448626344370}
   - {fileID: 2077975098958014986}
   - {fileID: 5828206759528997855}
@@ -30940,7 +30940,7 @@ GameObject:
   - component: {fileID: 3617465982024243414}
   m_Layer: 5
   m_Name: BuildingShop
-  m_TagString: Untagged
+  m_TagString: ShopCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34349,7 +34349,7 @@ GameObject:
   - component: {fileID: 4110341197482043097}
   m_Layer: 5
   m_Name: DragSelectionCanvas
-  m_TagString: Untagged
+  m_TagString: VisualCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

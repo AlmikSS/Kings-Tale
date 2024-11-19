@@ -20,6 +20,11 @@ TagManager:
   - Cloud
   - MainCam
   - GoldenMine
+  - BoxVisual
+  - VisualCanvas
+  - GameplayCanvas
+  - ShopCanvas
+  - Resources
   layers:
   - Default
   - TransparentFX

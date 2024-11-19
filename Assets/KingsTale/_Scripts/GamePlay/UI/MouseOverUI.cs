@@ -10,7 +10,7 @@ public class MouseOverUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void Awake()
     {
-        _cam = GameObject.FindWithTag("MainCamera").GetComponent<CameraMovement>();
+        _cam = GameObject.FindWithTag("MainCam").GetComponent<CameraMovement>();
     }
     
     public void OnDisable()
