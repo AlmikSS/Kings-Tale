@@ -1,5 +1,5 @@
 public interface  IDamagable
 {
-    public void TakeDamage(int damage, DamageType type = 0, Effect fx = Effect.None);
+    public void TakeDamage(int damage);
     public void Die();
 }

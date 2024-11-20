@@ -29,7 +29,7 @@ public class HealthSlider : MonoBehaviour
         redFill.fillAmount = 0;
     }
 
-    public void TakeDamage(int dmg, DamageType type, Effect fx)
+    public void TakeDamage(int dmg)
     {
         if(_showTimer != null)
             StopCoroutine(_showTimer);
@@ -49,15 +49,7 @@ public class HealthSlider : MonoBehaviour
         
         var text = obj.GetComponentInChildren<TMP_Text>();
         text.text = "-" + dmg;
-
-        text.color = fx switch
-        {
-            Effect.Pyro => new Color(0.922f, 0.345f, 0.204f),
-            Effect.Electro => new Color(0.149f, 0, 0.82f),
-            Effect.Freeze => new Color(0.122f, 0.678f, 1f),
-            Effect.Alchemist => new Color(0.008f, 0.851f, 0.149f),
-            _ => text.color
-        };
+        
         _currentHealth -= dmg;
         fill.fillAmount = (float)_currentHealth/_maxHealth;
         redFill.fillAmount = 1 - fill.fillAmount;
@@ -72,25 +64,25 @@ public class HealthSlider : MonoBehaviour
         
     }
 
-    public void Defence(DamageType type)
-    {
-        RectTransform empty = new GameObject().AddComponent<RectTransform>();
-        empty.SetParent(DmgGroup.transform);
-        empty.anchorMin = new Vector2(0,0);
-        empty.anchorMax = new Vector2(0,0);
-        empty.localScale = new Vector3(1, 1, 1);
-        
-        var text = Instantiate(type == DamageType.Physical ? PhysicDefence : MagicDefence, Vector3.zero, Quaternion.identity, empty.transform).GetComponent<TMP_Text>();
-        text.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 0, 0);
-        text.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0.5f);
-        text.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0.5f);
-        empty.anchoredPosition3D = new Vector3(Random.Range(0, 1040), Random.Range(0, 450), 0);
-        empty.localRotation = Quaternion.Euler(0, 0, 0);
-        
-        _showTimer = StartCoroutine(ShowAndHide());
-        StartCoroutine(LowerOpacity(text));
-        Destroy(empty.gameObject, 2f);
-    }
+    // public void Defence(DamageType type)
+    // {
+    //     RectTransform empty = new GameObject().AddComponent<RectTransform>();
+    //     empty.SetParent(DmgGroup.transform);
+    //     empty.anchorMin = new Vector2(0,0);
+    //     empty.anchorMax = new Vector2(0,0);
+    //     empty.localScale = new Vector3(1, 1, 1);
+    //     
+    //     var text = Instantiate(type == DamageType.Physical ? PhysicDefence : MagicDefence, Vector3.zero, Quaternion.identity, empty.transform).GetComponent<TMP_Text>();
+    //     text.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 0, 0);
+    //     text.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f,0.5f);
+    //     text.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f,0.5f);
+    //     empty.anchoredPosition3D = new Vector3(Random.Range(0, 1040), Random.Range(0, 450), 0);
+    //     empty.localRotation = Quaternion.Euler(0, 0, 0);
+    //     
+    //     _showTimer = StartCoroutine(ShowAndHide());
+    //     StartCoroutine(LowerOpacity(text));
+    //     Destroy(empty.gameObject, 2f);
+    // }
 
     public void Heal(int value)
     {

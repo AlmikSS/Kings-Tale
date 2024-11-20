@@ -87,15 +87,6 @@ public class Worker : UnitBrain
                 break;
         }
     }
-
-    private IEnumerator InPath()
-    {
-        while (_agent.pathPending || _agent.remainingDistance > _agent.stoppingDistance || _agent.velocity.sqrMagnitude > 0f)
-        {
-            _currentState = WorkerState.GoToTarget;
-            yield return null;
-        }
-    }
     
     private void GoToTargetUpdateState()
     {

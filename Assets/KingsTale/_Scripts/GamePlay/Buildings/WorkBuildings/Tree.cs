@@ -82,7 +82,7 @@ public class Tree : WorkingBuilding
         }
     }   
     
-    public override void TakeDamage(int damage, DamageType type = 0, Effect fx = Effect.None)
+    public override void TakeDamage(int damage)
     {
         
     }

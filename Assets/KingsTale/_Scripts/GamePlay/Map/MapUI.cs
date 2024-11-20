@@ -38,7 +38,7 @@ public class MapUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     
 
     private List<Vector3> _positions = new();
-    private List<List<AttackUnit>> _movingGroups = new();
+    private List<List<UnitBrain>> _movingGroups = new();
     private List<GameObject> _createdLines = new();
     private List<GameObject> _createdNotes = new();
     private GameObject _line;

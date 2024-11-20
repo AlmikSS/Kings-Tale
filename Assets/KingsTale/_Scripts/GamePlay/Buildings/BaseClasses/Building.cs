@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,8 +6,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody), typeof(NavMeshObstacle))]
 public abstract class Building : NetworkBehaviour, IDamagable
 {
-    [HideInInspector] public List<Effect> Effects = new();
-
     [SerializeField] protected BuildingBaseConfigSO _config;
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private ushort _id;
@@ -92,39 +89,14 @@ public abstract class Building : NetworkBehaviour, IDamagable
         GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
     }
     
-    public IEnumerator ChangeParam(Effect name, int value, float duration, bool increase = true)
-    {
-        float defaultValue;
-        switch (name)
-        {
-            case Effect.Alchemist:
-                Effects.Add(name);
-                defaultValue = _magicResist;
-                _magicResist = Mathf.Clamp(increase ? _magicResist + value : _magicResist - value, 0, 10000);
-			   
-                yield return new WaitForSeconds(duration);
-                Effects.Remove(name);
-                _magicResist = (int)defaultValue;
-                break;
-        }
-	    
-    }
-    
-    public virtual void TakeDamage(int damage, DamageType type = 0, Effect fx = Effect.None)
+    public virtual void TakeDamage(int damage)
     {
         if (!IsLocalPlayer) { return; }
-        
-        var dmg = damage - (type == DamageType.Magical ? _magicResist : _physicalResist);
 	    
         if (damage > 0)
         {
-
-            _currentHealth.Value -= dmg;
-            _healthSlider.TakeDamage(dmg, type, fx);
+            _currentHealth.Value -= damage;
         }
-        else if(_currentHealth.Value > 0)
-            _healthSlider.Defence(type);
-
         if (_currentHealth.Value <= 0)
             Die();
     }
