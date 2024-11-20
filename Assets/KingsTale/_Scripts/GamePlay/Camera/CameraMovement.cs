@@ -49,7 +49,6 @@ public class CameraMovement : NetworkBehaviour
 
 	public void Update()
 	{
-		var lastScale = ZoomScale;
 		//if (!IsOwner) { return; }
 		if (_zoomSlider.IsActive())
 		{

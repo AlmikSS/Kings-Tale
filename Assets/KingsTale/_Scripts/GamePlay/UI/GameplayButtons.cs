@@ -84,7 +84,7 @@ public class GameplayButtons : MonoBehaviour
             groups.SetActive(false);
             res.SetActive(false);
             infoBtns.SetActive(false);
-            // plManager.PlayerCam.GetComponent<CameraMovement>().enabled = false;
+            mainCam.GetComponent<CameraMovement>().enabled = false;
         }
         else
             CloseShop();
@@ -105,7 +105,7 @@ public class GameplayButtons : MonoBehaviour
         groups.SetActive(true);
         res.SetActive(true);
         plManager.enabled = true;
-        // plManager.PlayerCam.GetComponent<CameraMovement>().enabled = true;
+        mainCam.GetComponent<CameraMovement>().enabled = true;
     }
     public static void CloseInfo()
     {

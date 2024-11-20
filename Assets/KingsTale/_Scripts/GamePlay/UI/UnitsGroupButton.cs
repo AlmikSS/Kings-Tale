@@ -15,7 +15,7 @@ public class UnitsGroupButton : MonoBehaviour
 
     private void Awake()
     {
-        //_input = _player.GetComponent<PlayerInput>();
+        _input = FindFirstObjectByType<PlayerInput>();
     }
     public void SelectGroup()
     {
@@ -74,8 +74,8 @@ public class UnitsGroupButton : MonoBehaviour
             _info.SetActive(false);
         else
         {
-            // transform.parent.GetComponent<CardsUI>().HideInfo();
-            // _info.SetActive(true);
+            transform.parent.GetComponent<CardsUI>().HideInfo();
+            _info.SetActive(true);
         }
     }
 
