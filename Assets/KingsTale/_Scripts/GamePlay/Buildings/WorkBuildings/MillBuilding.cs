@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class MillBuilding : WorkingBuilding
 {
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
     [SerializeField] private LayerMask _buildingLayerMask;
-    [SerializeField] private float _seekRange;
-    [SerializeField] private float _waitTime;
     
     public override WorkClass GetWork()
     {
@@ -17,7 +14,7 @@ public class MillBuilding : WorkingBuilding
         
         var mainBuilding = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(OwnerClientId).GetComponent<PlayerManager>().MainBuilding;
 
-        var cols = Physics.OverlapSphere(transform.position, _seekRange, _buildingLayerMask);
+        var cols = Physics.OverlapSphere(transform.position, _workRange, _buildingLayerMask);
         List<FieldBuilding> fields = new();
 
         foreach (var col in cols)
@@ -61,7 +58,7 @@ public class MillBuilding : WorkingBuilding
         {
             Action = WorkerAction.Wait,
             Target = nearField.NetworkObject,
-            WaitTime = _waitTime,
+            WaitTime = _workTime,
             WithAction = true,
         };
 
@@ -75,7 +72,7 @@ public class MillBuilding : WorkingBuilding
         {
             Action = WorkerAction.Wait,
             Target = NetworkObject,
-            WaitTime = _waitTime
+            WaitTime = _restTime
         };
 
         var sthAction = new WorkerActionStruct
@@ -89,7 +86,7 @@ public class MillBuilding : WorkingBuilding
         {
             Action = WorkerAction.Wait,
             Target = mainBuilding.NetworkObject,
-            WaitTime = _waitTime,
+            WaitTime = _restTime,
             ResourceToAdd = _resourcesToAdd,
             WithAction = true
         };

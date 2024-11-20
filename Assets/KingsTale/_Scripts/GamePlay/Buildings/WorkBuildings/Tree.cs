@@ -1,12 +1,8 @@
 using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
 public class Tree : WorkingBuilding
 {
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
-    [SerializeField] private float _mainTime;
-    
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) { return; }
@@ -29,7 +25,7 @@ public class Tree : WorkingBuilding
         var secondAction = new WorkerActionStruct
         {
             Action = WorkerAction.Main,
-            WaitTime = _mainTime,
+            WaitTime = _workTime,
             Target = NetworkObject,
             WithAction = true
         };
@@ -47,7 +43,7 @@ public class Tree : WorkingBuilding
         {
             Action = WorkerAction.Wait,
             Target = nearest,
-            WaitTime = _mainTime,
+            WaitTime = _restTime,
             WithAction = true,
             ResourceToAdd = _resourcesToAdd
         };

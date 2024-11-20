@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   _id: 65535
-  _maxHealth: 3
+  _maxHealth: 5
   _magicResist: 0
   _physicalResist: 0
   _price:
+    Wood: 4294967295
+    Gold: 4294967295
+    Food: 4294967295
+  _buildTime: 0
+  _resourcesToAdd:
     Wood: 10
-    Gold: 10
-    Food: 10
-  _buildTime: 3
+    Gold: 0
+    Food: 0
+  _workTime: 3
+  _workRange: 0
+  _restTime: 3
+  _maxWorkersCount: 1

@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2381170545
+  GlobalObjectIdHash: 314728572
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -122,13 +122,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   Effects: 
-  _config: {fileID: 11400000, guid: 590b95ab47d048b419b9778cbfe509ae, type: 2}
+  _config: {fileID: 11400000, guid: ab225f6396097544d86be681d28e325b, type: 2}
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 128
   _id: 3
   _healthSlider: {fileID: 0}
-  _currentMaterial: {fileID: 2100000, guid: e36aaaa1e3a4b5046b5b4cd1712d0550, type: 2}
   _wheat: {fileID: 1531337520504675619}
   _resetTime: 3
 --- !u!65 &6913403004031816170

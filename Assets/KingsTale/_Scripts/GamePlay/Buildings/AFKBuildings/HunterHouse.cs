@@ -2,12 +2,9 @@ using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class HunterHouse : Building
+public class HunterHouse : AFKBuilding
 {
-    [SerializeField] private float _culDown;
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
-    
-    private IEnumerator LiveCycleRoutine()
+    protected override IEnumerator LiveCycleRoutine()
     {
         while (true)
         {
@@ -29,16 +26,5 @@ public class HunterHouse : Building
         if (!IsOwner) { return; }
         
         _isPlaced.Value = true;
-    }
-    
-    [Rpc(SendTo.Owner)]
-    public override void BuildRpc()
-    {
-        if (!IsOwner) { return; }
-
-        _isBuilt.Value = true;
-        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
-
-        StartCoroutine(LiveCycleRoutine());
     }
 }

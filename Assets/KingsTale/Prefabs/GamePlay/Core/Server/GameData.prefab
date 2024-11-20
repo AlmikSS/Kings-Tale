@@ -102,12 +102,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3898312c4c1b01342862141eb62fea25, type: 2}
   _workerUnitConfig: {fileID: 11400000, guid: 8119061c44d889448931f224e23765bc, type: 2}
   _buildingConfigs:
-  - {fileID: 11400000, guid: e1105232982cfac44a58e5c05a940e5e, type: 2}
-  - {fileID: 11400000, guid: 8c2ee41fee426524d9e870cc0f5c143d, type: 2}
-  - {fileID: 11400000, guid: 590b95ab47d048b419b9778cbfe509ae, type: 2}
-  - {fileID: 11400000, guid: dbce6cbbf57575e4daee15306f0b16a6, type: 2}
-  - {fileID: 11400000, guid: 48de936e218b81a40b7c0efebea3e3ff, type: 2}
+  - {fileID: 11400000, guid: ab225f6396097544d86be681d28e325b, type: 2}
   - {fileID: 11400000, guid: 5c653a72e1da5ef49b76620a41db68c7, type: 2}
+  - {fileID: 11400000, guid: 48de936e218b81a40b7c0efebea3e3ff, type: 2}
+  - {fileID: 11400000, guid: d6fd1837501a84b4fa27aa8c99794c8f, type: 2}
+  - {fileID: 11400000, guid: d097965a27bf1994f8b4afff842bc3d9, type: 2}
+  - {fileID: 11400000, guid: af0c258873934d14eb6c77ea524653cb, type: 2}
+  - {fileID: 11400000, guid: dbce6cbbf57575e4daee15306f0b16a6, type: 2}
 --- !u!1652712579 &4590967672510354194
 MultiplayerRolesData:
   m_ObjectHideFlags: 2

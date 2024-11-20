@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2820742243
+  GlobalObjectIdHash: 1453610320
   InScenePlacedSourceGlobalObjectIdHash: 1453610320
   DeferredDespawnTick: 0
   Ownership: 1
@@ -87,12 +87,6 @@ MonoBehaviour:
   _id: 0
   _healthSlider: {fileID: 0}
   _spawnpointTransform: {fileID: 8722746092073261348}
-  _workerUnitId: 0
-  _culDown: 30
-  _resourcesToAdd:
-    Wood: 15
-    Gold: 15
-    Food: 15
 --- !u!208 &663567008876643349
 NavMeshObstacle:
   m_ObjectHideFlags: 0

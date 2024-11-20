@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MineBuilding : WorkingBuilding
 {
-    [SerializeField] private float _workTime;
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
-
     private GoldenMine _currentGoldenMine;
     
     public override WorkClass GetWork()
@@ -45,7 +42,7 @@ public class MineBuilding : WorkingBuilding
         {
             Action = WorkerAction.Wait,
             Target = mainBuilding.NetworkObject,
-            WaitTime = _workTime,
+            WaitTime = _restTime,
             ResourceToAdd = _resourcesToAdd,
             WithAction = true
         };

@@ -78,18 +78,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   Effects: 
-  _config: {fileID: 11400000, guid: e1105232982cfac44a58e5c05a940e5e, type: 2}
+  _config: {fileID: 11400000, guid: af0c258873934d14eb6c77ea524653cb, type: 2}
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 128
   _id: 1
   _healthSlider: {fileID: 0}
-  _maxWorkersCount: 2
-  _workTime: 2
-  _resourcesToAdd:
-    Wood: 0
-    Gold: 10
-    Food: 0
 --- !u!54 &5918550889621425966
 Rigidbody:
   m_ObjectHideFlags: 0

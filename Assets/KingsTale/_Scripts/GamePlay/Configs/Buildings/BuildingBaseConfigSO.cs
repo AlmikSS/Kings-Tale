@@ -26,6 +26,7 @@ public abstract class BuildingBaseConfigSO : ScriptableObject
     public ResourcesStruct Price => _price;
     
     public float BuildTime => _buildTime;
+    
     public void SetProperties(uint maxHealth, uint magicResist, uint physicalResist, ResourcesStruct price, float buildTime)
     {
         _maxHealth = maxHealth;

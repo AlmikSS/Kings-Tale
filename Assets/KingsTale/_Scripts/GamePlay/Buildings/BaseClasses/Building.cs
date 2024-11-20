@@ -21,18 +21,21 @@ public abstract class Building : NetworkBehaviour, IDamagable
     protected NetworkVariable<bool> _isPlaced = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     protected NetworkVariable<bool> _isBuilt = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     protected NetworkVariable<int> _currentHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    private int _magicResist;
-    private int _physicalResist;
+    protected int _magicResist;
+    protected int _physicalResist;
+    protected float _buildTime;
 
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) { return; }
 
         GetComponentInChildren<MeshRenderer>().sharedMaterial.color = new Color(1, 1, 1, 0.3f);
-        
+
+        _id = _config.Id;
         _currentHealth.Value = (int)_config.MaxHealth;
         _magicResist = (int)_config.MagicResist;
         _physicalResist = (int)_config.PhysicalResist;
+        _buildTime = _config.BuildTime;
     }
     
     private void OnTriggerStay(Collider other)
@@ -71,7 +74,7 @@ public abstract class Building : NetworkBehaviour, IDamagable
         {
             Action = WorkerAction.Wait,
             Target = NetworkObject,
-            WaitTime = _config.BuildTime,
+            WaitTime = _buildTime,
             WithAction = true
         };
         

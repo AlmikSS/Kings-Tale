@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BarrackBuilding : Building
+public class BarrackBuilding : UIBuilding
 {
     [SerializeField] private Transform _spawnpointTransform;
 

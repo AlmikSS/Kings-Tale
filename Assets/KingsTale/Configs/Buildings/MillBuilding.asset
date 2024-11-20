@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14ae4956c222473f9ca29de7f1a8d2f2, type: 3}
-  m_Name: Quarry
+  m_Name: MillBuilding
   m_EditorClassIdentifier: 
-  _id: 4
-  _maxHealth: 0
+  _id: 2
+  _maxHealth: 10
   _magicResist: 0
   _physicalResist: 0
   _price:
@@ -21,3 +21,11 @@ MonoBehaviour:
     Gold: 10
     Food: 10
   _buildTime: 3
+  _resourcesToAdd:
+    Wood: 0
+    Gold: 0
+    Food: 10
+  _workTime: 5
+  _workRange: 7
+  _restTime: 2
+  _maxWorkersCount: 4

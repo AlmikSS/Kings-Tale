@@ -2,12 +2,24 @@ using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class MainBuilding : Building
+public class MainBuilding : UIBuilding
 {
     [SerializeField] private Transform _spawnpointTransform;
-    [SerializeField] private ushort _workerUnitId;
-    [SerializeField] private float _culDown;
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
+    
+    private ResourcesStruct _resourcesToAdd;
+    private ushort _workerUnitId;
+    private float _culDown;
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (!IsOwner) { return; }
+
+        _resourcesToAdd = ((MainBuildingConfigSO)_config).ResourcesToAdd;
+        _workerUnitId = ((MainBuildingConfigSO)_config).WorkerUnitId;
+        _culDown = ((MainBuildingConfigSO)_config).CulDown;
+    }
     
     private IEnumerator LiveCycleRoutine()
     {

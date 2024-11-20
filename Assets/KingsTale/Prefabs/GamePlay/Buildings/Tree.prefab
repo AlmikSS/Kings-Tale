@@ -127,12 +127,6 @@ MonoBehaviour:
     m_Bits: 128
   _id: 65535
   _healthSlider: {fileID: 0}
-  _maxWorkersCount: 1
-  _resourcesToAdd:
-    Wood: 10
-    Gold: 0
-    Food: 0
-  _mainTime: 2
 --- !u!65 &340116450149145875
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2,14 +2,11 @@ using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Quarry : Building
+public class Quarry : AFKBuilding
 {
-    [SerializeField] private float _culDown;
-    [SerializeField] private ResourcesStruct _resourcesToAdd;
-    
     private GoldenMine _currentGoldenMine;
 
-    private IEnumerator LiveCycleRoutine()
+    protected override IEnumerator LiveCycleRoutine()
     {
         while (_currentGoldenMine.Cycles > 0)
         {
@@ -43,16 +40,5 @@ public class Quarry : Building
                 break;
             }
         }
-    }
-
-    [Rpc(SendTo.Owner)]
-    public override void BuildRpc()
-    {
-        if (!IsOwner) { return; }
-
-        _isBuilt.Value = true;
-        GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
-
-        StartCoroutine(LiveCycleRoutine());
     }
 }

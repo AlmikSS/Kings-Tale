@@ -213,11 +213,6 @@ MonoBehaviour:
     m_Bits: 128
   _id: 4
   _healthSlider: {fileID: 0}
-  _culDown: 3
-  _resourcesToAdd:
-    Wood: 0
-    Gold: 15
-    Food: 0
 --- !u!65 &3127884998579325268
 BoxCollider:
   m_ObjectHideFlags: 0
