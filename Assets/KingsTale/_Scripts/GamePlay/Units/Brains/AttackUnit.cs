@@ -5,11 +5,13 @@ using UnityEngine;
 public abstract class AttackUnit : UnitBrain
 {
     [SerializeField] private LayerMask _attackableLayerMask;
+    [SerializeField] private float _stateMachineUpdateDelay;
 
-    private NetworkObject _target;
+    protected NetworkObject _target;
+    private AttackUnitState _currentState;
     private bool _isLongRange;
-    private uint _damage;
-    private float _attackSpeed;
+    protected uint _damage;
+    protected float _attackSpeed;
     private float _startAttackDistance;
     private float _visionRange;
 
@@ -25,49 +27,68 @@ public abstract class AttackUnit : UnitBrain
         _visionRange = ((UnitAttackConfigSO)_config).VisionRange;
         _isLongRange = ((UnitAttackConfigSO)_config).IsLongRange;
 
-        StartCoroutine(LiveCycleRoutine());
+        StartCoroutine(StateMachineRoutine());
     }
 
-    private IEnumerator LiveCycleRoutine()
+    private IEnumerator StateMachineRoutine()
     {
         while (true)
         {
-            if (_target != null)
+            switch (_currentState)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) < _startAttackDistance)
-                {
-                    _agent.isStopped = true;
-                    _agent.path = null;
-                    Attack();
-                    yield return new WaitForSeconds(_attackSpeed);
-                }
-                else
-                    GoToPoint(_target.transform.position);
+                case AttackUnitState.Passive:
+                    SearchForTarget();
+                    break;
+                case AttackUnitState.Aggressive:
+                    yield return HandleAggressiveBehaviourRoutine();
+                    break;
             }
+            
+            if (_stateMachineUpdateDelay > 0)
+                yield return new WaitForSeconds(_stateMachineUpdateDelay);
+            else
+                yield return null;
         }
     }
 
-    private void Attack()
-    {
-        Debug.Log("Attack!!");
-    }
-    
-    private void SeekEnemy()
+    private void SearchForTarget()
     {
         var cols = Physics.OverlapSphere(transform.position, _visionRange, _attackableLayerMask);
 
         foreach (var col in cols)
         {
-            if (col.gameObject.TryGetComponent(out UnitBrain brain))
+            if (col.gameObject.TryGetComponent(out UnitBrain unit))
             {
-                if (brain.OwnerClientId != OwnerClientId)
+                if (unit.OwnerClientId != OwnerClientId)
                 {
-                    _target = brain.NetworkObject;
+                    _target = unit.NetworkObject;
+                    _currentState = AttackUnitState.Aggressive;
                 }
             }
         }
     }
 
+    private IEnumerator HandleAggressiveBehaviourRoutine()
+    {
+        if (_target == null || !_target.IsSpawned)
+        {
+            _currentState = AttackUnitState.Passive;
+            yield break;
+        }
+        
+        var distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
+
+        if (distanceToTarget > _startAttackDistance)
+            GoToPoint(_target.transform.position);
+        else
+        {
+            _agent.ResetPath();
+            yield return AttackTargetRoutine();
+        }
+    }
+
+    protected abstract IEnumerator AttackTargetRoutine();
+    
     [Rpc(SendTo.Owner)]
     public override void SetBuildingRpc(ulong buildingID)
     {
@@ -76,6 +97,15 @@ public abstract class AttackUnit : UnitBrain
         GoToPoint(building.transform.position);
         
         if (building.OwnerClientId != OwnerClientId)
+        {
             _target = building;
+            _currentState = AttackUnitState.Aggressive;
+        }
     }
+}
+
+public enum AttackUnitState
+{
+    Passive,
+    Aggressive
 }
