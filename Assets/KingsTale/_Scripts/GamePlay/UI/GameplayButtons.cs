@@ -1,11 +1,12 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameplayButtons : MonoBehaviour
 {
-    [SerializeField] private PlayerManager _plManager;
+    public ulong PlayerId { get; set; }
+    
     [SerializeField] private GameObject _map, _shop, _hud, _groups, _mainCam, _mapCam, _res, _info, _infoBtns;
     [SerializeField] private ScrollRect _shopScroll;
     [SerializeField] private Image[] _imagesToTransparent;
@@ -26,14 +27,12 @@ public class GameplayButtons : MonoBehaviour
         mainCam = _mainCam;
         mapCam = _mapCam;
         res = _res;
-        plManager = _plManager;
-        info = _info;
         imagesToTransparent = _imagesToTransparent;
         infoBtns = _infoBtns;
     }
     private void OnEnable()
     {
-        _controller = _plManager.GetComponent<PlayerInput>();
+        _controller = GetComponent<PlayerInput>();
         _controller.actions["Shop"].started += OpenShop;
         _controller.actions["Map"].started += OpenMap;
         _controller.actions["Escape"].started += Escape;
@@ -85,7 +84,7 @@ public class GameplayButtons : MonoBehaviour
             groups.SetActive(false);
             res.SetActive(false);
             infoBtns.SetActive(false);
-            // plManager.PlayerCam.GetComponent<CameraMovement>().enabled = false;
+            mainCam.GetComponent<CameraMovement>().enabled = false;
         }
         else
             CloseShop();
@@ -106,12 +105,11 @@ public class GameplayButtons : MonoBehaviour
         groups.SetActive(true);
         res.SetActive(true);
         plManager.enabled = true;
-        // plManager.PlayerCam.GetComponent<CameraMovement>().enabled = true;
+        mainCam.GetComponent<CameraMovement>().enabled = true;
     }
     public static void CloseInfo()
     {
         // plManager.ClosedBuildingMenu();
-        info.SetActive(false);
     }
     public static void Escape()
     {
@@ -119,7 +117,7 @@ public class GameplayButtons : MonoBehaviour
             CloseShop();
         else if(map.activeSelf)
             CloseMap();
-        else if (info)
+        else
             CloseInfo();
     }
 
@@ -145,4 +143,6 @@ public class GameplayButtons : MonoBehaviour
     {
         _shopScroll.horizontalNormalizedPosition = value;
     }
+    
+    public void GoToScene(int index) => SceneManager.LoadScene(index);
 }

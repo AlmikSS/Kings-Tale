@@ -241,10 +241,8 @@ public class MainMenuBtns : MonoBehaviour
         _customFPS = _graphicsDrops[5].value;
     }
 
-    public void GoToScene(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
+    public void GoToScene(int index) => SceneManager.LoadScene(index);
+    
 
     public void OpenUrl(string url) => Application.OpenURL(url);
 

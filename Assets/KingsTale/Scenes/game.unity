@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ac58e42a0d03b45827ec9322028e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myCam: {fileID: 0}
   clickable:
     serializedVersion: 2
     m_Bits: 8
@@ -773,6 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8494282cc0f656498ab9cf6d5ee6235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myCam: {fileID: 0}
   boxVisual: {fileID: 1380619209}
   _unitSelections: {fileID: 1454714613}
 --- !u!1 &784831593
@@ -1303,6 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1521809251}
+  - component: {fileID: 1521809253}
   - component: {fileID: 1521809252}
   m_Layer: 0
   m_Name: BuildSystem
@@ -1338,10 +1341,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0daa20a78726b3409ca6e4dd9a61669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _buildingShopCanvas: {fileID: 0}
+  _gamePlayCanvas: {fileID: 0}
   _unitControlSystem: {fileID: 836545503}
+  _myCam: {fileID: 0}
+  _buildings: []
   ground:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1521809253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521809250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 927322856
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &2105568748
 GameObject:
   m_ObjectHideFlags: 0

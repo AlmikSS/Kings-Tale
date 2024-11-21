@@ -9,18 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ed98ceff0e421d8f8367125e8071d5, type: 3}
-  m_Name: KingUnitConfig
+  m_Script: {fileID: 11500000, guid: 4aa76c9dc2d43ce4f9029a02f7b70db2, type: 3}
+  m_Name: KingConfig
   m_EditorClassIdentifier: 
-  _unitName: King
+  _unitId: 0
   _maxHealth: 0
   _regeneration: 0
   _regenSpeed: 0
   _magicResist: 0
   _physicalResist: 0
-  _speed: 0
-  _angularSpeed: 0
-  _stopDistance: 0
-  _damage: 0
+  _speed: 1
+  _angularSpeed: 10000
+  _stopDistance: 0.6
+  _price:
+    Wood: 0
+    Gold: 0
+    Food: 0
+  _damage: 20
   _attackSpeed: 0
   _isLongRange: 0
+  Abilities:
+  - {fileID: 0}

@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public abstract class BuildingBaseConfigSO : ScriptableObject
 {
     [SerializeField] private ushort _id;
-    
+
+    [Header("Naming")]
+    [SerializeField] private LocalizedString _name;
+    [SerializeField] private LocalizedString _description;
+
     [Header("Health")]
     [SerializeField] private uint _maxHealth;
     
@@ -17,6 +22,9 @@ public abstract class BuildingBaseConfigSO : ScriptableObject
     [SerializeField] private float _buildTime;
 
     public ushort Id => _id;
+    public LocalizedString Name => _name;
+
+    public LocalizedString Description => _description;
 
     public uint MaxHealth => _maxHealth;
     

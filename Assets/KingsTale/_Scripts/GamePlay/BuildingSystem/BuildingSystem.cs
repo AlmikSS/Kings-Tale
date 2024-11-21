@@ -5,11 +5,9 @@ using UnityEngine.InputSystem;
 
 public class BuildingSystem : NetworkBehaviour
 {
-    [SerializeField] private GameObject _buildingShopCanvas;
-    [SerializeField] private GameObject _gamePlayCanvas;
-    [SerializeField] private GameObject _unitControlSystem;
-    [SerializeField] private Camera _myCam;
     [SerializeField] private List<Building> _buildings = new();
+    private GameObject _buildingShopCanvas, _gamePlayCanvas,_unitControlSystem;
+    private Camera _myCam;
 
     public bool IsBuilding { get; private set; }
     
@@ -21,6 +19,10 @@ public class BuildingSystem : NetworkBehaviour
 
     private void Awake()
     {
+        _myCam = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
+        _buildingShopCanvas = GameObject.FindWithTag("ShopCanvas");
+        _gamePlayCanvas = GameObject.FindWithTag("GameplayCanvas");
+        _unitControlSystem = GameObject.FindWithTag("VisualCanvas");
         _maininput = new MainInput();
     }
 

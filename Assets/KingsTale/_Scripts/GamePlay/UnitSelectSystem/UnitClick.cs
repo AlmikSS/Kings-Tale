@@ -23,13 +23,13 @@ public class UnitClick : MonoBehaviour
     private void OnEnable()
     {
         _input.Enable();
-        _input.Player.RightClick.performed += OnUnitClick;
+        _input.Player.LeftClick.performed += OnUnitClick;
     }
 
     private void OnDisable()
     {
         _input.Disable();
-        _input.Player.RightClick.performed -= OnUnitClick;
+        _input.Player.LeftClick.performed -= OnUnitClick;
     }
 
     private void OnUnitClick(InputAction.CallbackContext context)

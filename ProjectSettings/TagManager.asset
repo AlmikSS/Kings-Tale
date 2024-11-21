@@ -15,7 +15,16 @@ TagManager:
   - Ground
   - Simple
   - Header
+  - FogOfWar
+  - UI
+  - Cloud
+  - MainCam
   - GoldenMine
+  - BoxVisual
+  - VisualCanvas
+  - GameplayCanvas
+  - ShopCanvas
+  - Resources
   layers:
   - Default
   - TransparentFX
