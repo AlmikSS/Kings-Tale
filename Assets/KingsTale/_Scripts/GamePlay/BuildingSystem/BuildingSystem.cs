@@ -12,37 +12,22 @@ public class BuildingSystem : NetworkBehaviour
     public bool IsBuilding { get; private set; }
     
     private PlayerManager _playerManager;
-    private MainInput _maininput;
+    private PlayerInput _maininput;
     private GameObject _currBuildPrefab;
     private Building _buildPrefabScript;
     public LayerMask ground;
 
-    private void Awake()
-    {
-        _myCam = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
-        _buildingShopCanvas = GameObject.FindWithTag("ShopCanvas");
-        _gamePlayCanvas = GameObject.FindWithTag("GameplayCanvas");
-        _unitControlSystem = GameObject.FindWithTag("VisualCanvas");
-        _maininput = new MainInput();
-    }
-
     public override void OnNetworkSpawn()
     {
         _playerManager = GetComponent<PlayerManager>();
-    }
-    
-    private void OnEnable()
-    {
-        _maininput.Enable();
-        _maininput.Player.MoveMouse.performed += MoveHologram;
-        _maininput.Player.LeftClick.performed += PlaceBuilding;
-    }
-
-    private void OnDisable()
-    {
-        _maininput.Disable();
-        _maininput.Player.MoveMouse.performed -= MoveHologram;
-        _maininput.Player.LeftClick.performed -= PlaceBuilding;
+        
+        _myCam = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
+        _buildingShopCanvas = GameObject.FindWithTag("ShopCanvas").transform.GetChild(0).gameObject;
+        _gamePlayCanvas = GameObject.FindWithTag("GameplayCanvas");
+        _unitControlSystem = GameObject.FindWithTag("VisualCanvas");
+        _maininput = FindFirstObjectByType<PlayerInput>();
+        _maininput.actions["LeftClick"].performed += PlaceBuilding;
+        _maininput.actions["MoveMouse"].performed += MoveHologram;
     }
 
     [Rpc(SendTo.Owner)]

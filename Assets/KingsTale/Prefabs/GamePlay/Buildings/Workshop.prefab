@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 589439378
+  GlobalObjectIdHash: 1808203902
   InScenePlacedSourceGlobalObjectIdHash: 1453610320
   DeferredDespawnTick: 0
   Ownership: 1
@@ -316,12 +316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  Effects: 
   _config: {fileID: 11400000, guid: 5c653a72e1da5ef49b76620a41db68c7, type: 2}
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 128
-  _id: 7
+  _id: 8
   _healthSlider: {fileID: 4053040198163795699}
   _spawnpointTransform: {fileID: 8722746092073261348}
 --- !u!208 &663567008876643349

@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ed98ceff0e421d8f8367125e8071d5, type: 3}
   m_Name: KnightUnitConfig
   m_EditorClassIdentifier: 
-  _unitName: Knight
-  _maxHealth: 0
+  _unitId: 1
+  _maxHealth: 100
   _regeneration: 0
   _regenSpeed: 0
   _magicResist: 0
   _physicalResist: 0
-  _speed: 0
-  _angularSpeed: 0
-  _stopDistance: 0
-  _damage: 0
-  _attackSpeed: 0
+  _speed: 3
+  _angularSpeed: 100000
+  _stopDistance: 0.6
+  _price:
+    Wood: 10
+    Gold: 10
+    Food: 10
+  _damage: 10
+  _attackSpeed: 1
+  _startAttackDistance: 0.3
+  _visionRange: 5
   _isLongRange: 0

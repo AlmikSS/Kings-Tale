@@ -27,8 +27,6 @@ public class PlayerManager : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            _ui.SetActive(false);
-            _camera.gameObject.SetActive(false);
             GetComponent<BuildingSystem>().enabled = false;
             GetComponent<UnitClick>().enabled = false;
             GetComponent<UnitEnlight>().enabled = false;
@@ -48,7 +46,9 @@ public class PlayerManager : NetworkBehaviour
         
         _camera = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
         _ui = GameObject.FindWithTag("UI");
-        _resourcesText = GameObject.FindWithTag("Resources").GetComponent<TMP_Text>();
+        //_resourcesText = GameObject.FindWithTag("Resources").GetComponent<TMP_Text>();
+        
+        FindFirstObjectByType<BuildingShop>().SetPlayer(this);
     }
 
     private void Update()
@@ -61,6 +61,19 @@ public class PlayerManager : NetworkBehaviour
                 new ResourcesStruct((uint)Random.Range(10, 20), (uint)Random.Range(10, 20), (uint)Random.Range(10, 20)),
                 OwnerClientId);
             InputManager.Instance.HandleAddResourcesRequestRpc(request);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            var request = new ServerBuyRequestStruct
+            {
+                PlayerId = OwnerClientId,
+                Id = 1,
+                IsBuilding = false,
+                Position = new Vector3(0, 0, 0)
+            };
+            
+            InputManager.Instance.HandleBuyRequestRpc(request);
         }
     }
 
@@ -79,7 +92,7 @@ public class PlayerManager : NetworkBehaviour
             _unitSelections.unitList.Add(unit.GetComponent<UnitBrain>());
         }
 
-        _resourcesText.text = $"Дерево: {Resources.Wood}, Еда: {Resources.Food}, Золото: {Resources.Gold}";
+        //_resourcesText.text = $"Дерево: {Resources.Wood}, Еда: {Resources.Food}, Золото: {Resources.Gold}";
     }
 
     [Rpc(SendTo.Owner)]
