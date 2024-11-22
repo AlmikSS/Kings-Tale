@@ -25,9 +25,10 @@ public class BuildingSystem : NetworkBehaviour
         _buildingShopCanvas = GameObject.FindWithTag("ShopCanvas").transform.GetChild(0).gameObject;
         _gamePlayCanvas = GameObject.FindWithTag("GameplayCanvas");
         _unitControlSystem = GameObject.FindWithTag("VisualCanvas");
+        
         _maininput = FindFirstObjectByType<PlayerInput>();
-        _maininput.actions["LeftClick"].performed += PlaceBuilding;
-        _maininput.actions["MoveMouse"].performed += MoveHologram;
+        _maininput.actions[GamePlayConstants.ACT_LEFT_CLICK].performed += PlaceBuilding;
+        _maininput.actions[GamePlayConstants.ACT_MOVE_MOUSE].performed += MoveHologram;
     }
 
     [Rpc(SendTo.Owner)]

@@ -34,17 +34,17 @@ public class CameraMovement : NetworkBehaviour
 	{
 		_mapCam.SetActive(false);
 		_controller = FindFirstObjectByType<PlayerInput>();
-		_controller.actions["LeftClick"].started += Click;
-		_controller.actions["MiddleClick"].performed += MouseMove;
-		_controller.actions["MiddleClick"].canceled += MouseMoveOver;
+		_controller.actions[GamePlayConstants.ACT_LEFT_CLICK].started += Click;
+		_controller.actions[GamePlayConstants.ACT_MIDDLE_CLICK].performed += MouseMove;
+		_controller.actions[GamePlayConstants.ACT_MIDDLE_CLICK].canceled += MouseMoveOver;
 	}
 
 	private void OnDisable()
 	{
 		_mapCam.SetActive(true);
-		_controller.actions["LeftClick"].started -= Click;
-		_controller.actions["MiddleClick"].performed -= MouseMove;
-		_controller.actions["MiddleClick"].canceled -= MouseMoveOver;
+		_controller.actions[GamePlayConstants.ACT_LEFT_CLICK].started -= Click;
+		_controller.actions[GamePlayConstants.ACT_MIDDLE_CLICK].performed -= MouseMove;
+		_controller.actions[GamePlayConstants.ACT_MIDDLE_CLICK].canceled -= MouseMoveOver;
 	}
 
 	public void Update()

@@ -20,8 +20,8 @@ public class UnitEnlight : MonoBehaviour
         _myCam = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
         boxVisual = GameObject.FindWithTag("BoxVisual").GetComponent<RectTransform>();
         _mainInput = FindFirstObjectByType<PlayerInput>();
-        _mainInput.actions["LeftClick"].performed += StartVisual;
-        _mainInput.actions["LeftClick"].canceled += EndVisual;
+        _mainInput.actions[GamePlayConstants.ACT_LEFT_CLICK].performed += StartVisual;
+        _mainInput.actions[GamePlayConstants.ACT_LEFT_CLICK].canceled += EndVisual;
     }
     void Start()
     {
@@ -29,20 +29,6 @@ public class UnitEnlight : MonoBehaviour
         _endPos= Vector2.zero;
         DrawVisual();
     }
-
-    // private void OnEnable()
-    // {
-    //     _mainInput.Enable();
-    //     _mainInput.Player.RightClick.performed += StartVisual;
-    //     _mainInput.Player.RightClick.canceled += EndVisual;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     _mainInput.Disable();
-    //     _mainInput.Player.RightClick.performed -= StartVisual;
-    //     _mainInput.Player.RightClick.canceled -= EndVisual;
-    // }
 
     private void Update()
     {
@@ -70,8 +56,6 @@ public class UnitEnlight : MonoBehaviour
         Vector2 boxSize = new Vector2(Mathf.Abs(boxEnd.x - boxStart.x), Mathf.Abs(boxEnd.y - boxStart.y));
         
         boxVisual.sizeDelta = boxSize;
-
-
     }
 
     private void EndVisual(InputAction.CallbackContext ctx)

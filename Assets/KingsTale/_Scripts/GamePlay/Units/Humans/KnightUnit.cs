@@ -11,7 +11,8 @@ public class KnightUnit : AttackUnit
             Damage = _damage,
             Id = _target.NetworkObjectId
         };
-        
+
+        _animator.SetTrigger(GamePlayConstants.ATTACK_ANIMATOR_PAR);
         InputManager.Instance.HandleTakeDamageRequestRpc(request);
         yield return new WaitForSeconds(_attackSpeed);
     }

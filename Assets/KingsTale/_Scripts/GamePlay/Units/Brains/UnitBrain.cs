@@ -14,6 +14,9 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     [Header("GameObjects")]
     [SerializeField] protected HealthSlider _healthSlider;
 
+    public int Health => _currentHealth.Value;
+    public bool IsDied { get; private set; }
+    
     private float _speed;
     private float _stopDictance;
 
@@ -33,7 +36,11 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     
     public override void OnNetworkSpawn()
     {
-	    if (!IsOwner) { return; }
+	    if (!IsOwner)
+	    {
+		    enabled = false;
+		    return;
+	    }
 
 	    _currentHealth.Value = (int)_config.MaxHealth;
 	    _speed = _config.Speed;
@@ -53,10 +60,12 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     }
     protected virtual void Update()
     {
-        if (_healthSlider)
-        {
-	        _healthSlider.transform.rotation = Quaternion.Euler(40,50,0);
+	    if (_healthSlider)
+	    {
+		    _healthSlider.transform.rotation = Quaternion.Euler(40,-25,0);
 	    }
+        
+	    _animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _agent.velocity.magnitude);
     }
 
     protected IEnumerator InPath()
@@ -72,26 +81,39 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
         _agent.SetDestination(point);
     }
 
-    public virtual void TakeDamage(int damage)
+    [Rpc(SendTo.Owner)]
+    public virtual void TakeDamageRpc(int damage)
     {
 	    if (damage > 0)
 		    _currentHealth.Value -= damage;
 
-	    if (_currentHealth.Value <= 0)
-	    {
-		    var request = new ServerDieRequestStruct
-		    {
-				Id = NetworkObjectId,
-				IsBuilding = false
-		    };
-		    
-		    InputManager.Instance.HandleDieRequestRpc(request);
-	    }
-    }
+	    _healthSlider.TakeDamage(damage);
+
+	    if (_currentHealth.Value > 0) return;
+
+	    Die();
+    }	
 
     public virtual void Die()
+    {
+	    if (IsDied) return;
+	    
+	    IsDied = true;
+		StopAllCoroutines();
+		Invoke(nameof(DieRpc), 2f);
+		_animator.SetTrigger(GamePlayConstants.DIE_ANIMATOR_PAR);
+	}
+
+    [Rpc(SendTo.Server)]
+	private void DieRpc()
 	{
+		var request = new ServerDieRequestStruct
+		{
+			Id = NetworkObjectId,
+			IsBuilding = false
+		};
 		
+		InputManager.Instance.HandleDieRequestRpc(request);
 	}
     
     [Rpc(SendTo.Owner)]

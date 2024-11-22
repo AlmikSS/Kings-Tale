@@ -17,9 +17,9 @@ public abstract class AttackUnit : UnitBrain
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) return;
-
         base.OnNetworkSpawn();
+        
+        if (!IsOwner) return;
 
         _damage = ((UnitAttackConfigSO)_config).Damage;
         _attackSpeed = ((UnitAttackConfigSO)_config).AttackSpeed;
@@ -41,6 +41,10 @@ public abstract class AttackUnit : UnitBrain
                     break;
                 case AttackUnitState.Aggressive:
                     yield return HandleAggressiveBehaviourRoutine();
+                    break;
+                case AttackUnitState.Die:
+                    _target = null;
+                    _agent.isStopped = true;
                     break;
             }
             
@@ -102,10 +106,26 @@ public abstract class AttackUnit : UnitBrain
             _currentState = AttackUnitState.Aggressive;
         }
     }
+
+    public override void TakeDamageRpc(int damage)
+    {
+        base.TakeDamageRpc(damage);
+        
+        if (_target == null)
+            SearchForTarget();
+    }
+
+    public override void Die()
+    {
+        _currentState = AttackUnitState.Die;
+        
+        base.Die();
+    }
 }
 
 public enum AttackUnitState
 {
     Passive,
-    Aggressive
+    Aggressive,
+    Die
 }

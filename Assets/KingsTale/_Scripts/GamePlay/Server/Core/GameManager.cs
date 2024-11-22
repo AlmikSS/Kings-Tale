@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -89,7 +90,7 @@ public class GameManager : NetworkBehaviour
         Debug.Log($"Handle take damage request. Client: {request.PlayerId}, Object: {request.Id}, Damage: {request.Damage}.");
 
         var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
-        damageable.TakeDamage((int)request.Damage);
+        damageable.TakeDamageRpc((int)request.Damage);
     }
 
     [Rpc(SendTo.Server)]

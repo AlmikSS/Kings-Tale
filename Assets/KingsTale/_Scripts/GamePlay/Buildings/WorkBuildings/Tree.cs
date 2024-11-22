@@ -82,7 +82,7 @@ public class Tree : WorkingBuilding
         }
     }   
     
-    public override void TakeDamage(int damage)
+    public override void TakeDamageRpc(int damage)
     {
         
     }

@@ -3,7 +3,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(UnitClick), typeof(UnitEnlight), typeof(UnitSelections))]
+[RequireComponent(typeof(UnitEnlight), typeof(UnitSelections))]
 public class PlayerManager : NetworkBehaviour
 {
     [SerializeField] private LayerMask _interactLayerMask;
@@ -16,7 +16,6 @@ public class PlayerManager : NetworkBehaviour
     public MainBuilding MainBuilding { get; private set; }
     public UnitSelections UnitSelections => _unitSelections;
 
-    private UnitClick _unitClick;
     private UnitEnlight _unitEnlight;
     private UnitSelections _unitSelections;
     private BuildingSystem _buildingSystem;
@@ -28,21 +27,19 @@ public class PlayerManager : NetworkBehaviour
         if (!IsLocalPlayer)
         {
             GetComponent<BuildingSystem>().enabled = false;
-            GetComponent<UnitClick>().enabled = false;
             GetComponent<UnitEnlight>().enabled = false;
             GetComponent<UnitSelections>().enabled = false;
             enabled = false;
             return;
         }
 
-        _unitClick = GetComponent<UnitClick>();
         _unitEnlight = GetComponent<UnitEnlight>();
         _unitSelections = GetComponent<UnitSelections>();
         _buildingSystem = GetComponent<BuildingSystem>();
 
         _input = FindFirstObjectByType<PlayerInput>();
-        _input.actions["LeftClick"].performed += OnMouseLeftClick;
-        _input.actions["RightClick"].performed += OnMouseRightClick;
+        _input.actions[GamePlayConstants.ACT_LEFT_CLICK].performed += OnMouseLeftClick;
+        _input.actions[GamePlayConstants.ACT_RIGHT_CLICK].performed += OnMouseRightClick;
         
         _camera = GameObject.FindWithTag("MainCam").GetComponent<Camera>();
         _ui = GameObject.FindWithTag("UI");

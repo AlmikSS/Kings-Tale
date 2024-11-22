@@ -27,6 +27,6 @@ MonoBehaviour:
     Food: 10
   _damage: 10
   _attackSpeed: 1
-  _startAttackDistance: 0.3
+  _startAttackDistance: 0.6
   _visionRange: 5
   _isLongRange: 0

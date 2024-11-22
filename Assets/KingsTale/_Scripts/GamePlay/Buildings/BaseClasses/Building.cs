@@ -11,6 +11,7 @@ public abstract class Building : NetworkBehaviour, IDamagable
     [SerializeField] private ushort _id;
     [SerializeField] private HealthSlider _healthSlider;
 
+    public int Health => _currentHealth.Value;
     public bool CanBuild { get; private set; } = true;
     public bool IsBuilt => _isBuilt.Value;
     public ushort Id => _id;
@@ -33,6 +34,8 @@ public abstract class Building : NetworkBehaviour, IDamagable
         _magicResist = (int)_config.MagicResist;
         _physicalResist = (int)_config.PhysicalResist;
         _buildTime = _config.BuildTime;
+        
+        _healthSlider.SetMaxHealth(_currentHealth.Value);
     }
     
     private void OnTriggerStay(Collider other)
@@ -89,21 +92,34 @@ public abstract class Building : NetworkBehaviour, IDamagable
         GetComponentInChildren<MeshRenderer>().sharedMaterial.color = Color.white;
     }
     
-    public virtual void TakeDamage(int damage)
+    [Rpc(SendTo.Owner)]
+    public virtual void TakeDamageRpc(int damage)
     {
-        if (!IsLocalPlayer) { return; }
-	    
         if (damage > 0)
-        {
             _currentHealth.Value -= damage;
-        }
-        if (_currentHealth.Value <= 0)
-            Die();
+        
+        _healthSlider.TakeDamage(damage);
+        
+        if (_currentHealth.Value > 0) return;
+
+        Die();
     }
     
     public virtual void Die()
     {
-        Destroy(gameObject);
+        Invoke(nameof(DieRpc), 0.5f);
+    }
+    
+    [Rpc(SendTo.Server)]
+    private void DieRpc()
+    {
+        var request = new ServerDieRequestStruct
+        {
+            Id = NetworkObjectId,
+            IsBuilding = false
+        };
+		
+        InputManager.Instance.HandleDieRequestRpc(request);
     }
 }
 
