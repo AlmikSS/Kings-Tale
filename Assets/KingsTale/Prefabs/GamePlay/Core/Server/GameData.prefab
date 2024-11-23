@@ -75,6 +75,7 @@ MonoBehaviour:
   _unitsPrefabs:
   - {fileID: -7326458508237107965, guid: 37e88f0762fc9224eb3b53b9181c474a, type: 3}
   - {fileID: 8370742508194790819, guid: c50ca40fb8685724984a9c4fb843a0bb, type: 3}
+  - {fileID: 6409967015543127474, guid: 4ce50db5ddd0f2044a2005db12581fea, type: 3}
   _buildingsPrefabs:
   - {fileID: 8267504762903409181, guid: bbdde281dde23af40a4302dd16b88ca7, type: 3}
   - {fileID: 174444555036807295, guid: 7ab51f4c68592e847b485139d958adcc, type: 3}
@@ -84,6 +85,8 @@ MonoBehaviour:
   - {fileID: 4962550057914453611, guid: 180f78d06598fef4791ff4936fd12c80, type: 3}
   - {fileID: 1591312807404395803, guid: be71c19d5050d454ea148940154ffc03, type: 3}
   - {fileID: 1591312807404395803, guid: 33ec42aa3280f7b40b389a138868f62f, type: 3}
+  _projectilesPrefabs:
+  - {fileID: 1297275145816667998, guid: 9ea69338abef9b548a5115f43482cfc8, type: 3}
   _playerObject: {fileID: 2600284017641609108, guid: 206a1a109b5cb6e418bcb516ee6ff2b9,
     type: 3}
   _mainBuildingPrefab: {fileID: 1591312807404395803, guid: be71c19d5050d454ea148940154ffc03,

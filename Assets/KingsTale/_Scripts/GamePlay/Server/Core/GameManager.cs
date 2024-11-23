@@ -117,6 +117,26 @@ public class GameManager : NetworkBehaviour
         
         _gameData.AddUnitsPlaces(request.PlayerId);
     }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSpawnProjectileRequestRpc(ServerSpawnProjectileRequestStruct request)
+    {
+        var sender = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        
+        var projectilePrefab = _gameData.GetProjectilePrefab(request.ProjectileId);
+        var projectile = Instantiate(projectilePrefab, request.Position, Quaternion.identity);
+        
+        projectile.SpawnWithOwnership(sender.OwnerClientId);
+        sender.GetComponent<ArcherUnit>().OnProjectTileSpawnedRpc(new NetworkObjectReference(projectile));
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleDespawnRequestRpc(ServerDespawnRequestStruct request)
+    {
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        obj.Despawn();
+        Destroy(obj.gameObject);
+    }
     
     public bool IsPlayerExist(ulong id)
     {
@@ -141,6 +161,12 @@ public class GameManager : NetworkBehaviour
         return _gameData.IsUnitExist(id);
     }
 
+    public bool IsProjectilePrefabExist(ushort id)
+    {
+        var projectile = _gameData.GetProjectilePrefab(id);
+        return projectile != null;
+    }
+    
     public bool HavePlayerPlaces(ulong id)
     {
         return _gameData.HavePlace(id);

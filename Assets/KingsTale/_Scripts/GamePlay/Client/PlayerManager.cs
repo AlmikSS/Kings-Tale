@@ -65,7 +65,7 @@ public class PlayerManager : NetworkBehaviour
             var request = new ServerBuyRequestStruct
             {
                 PlayerId = OwnerClientId,
-                Id = 1,
+                Id = 2,
                 IsBuilding = false,
                 Position = new Vector3(0, 0, 0)
             };
@@ -173,6 +173,8 @@ public class PlayerManager : NetworkBehaviour
     {
         foreach (var unit in _unitSelections.unitSelected)
         {
+            if (unit == null) continue;
+            
             var request = new ServerSetUnitDestinationRequestStruct
             {
                 PlayerId = OwnerClientId,

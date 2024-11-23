@@ -8,6 +8,7 @@ public class GameData : NetworkBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<NetworkObject> _unitsPrefabs = new();
     [SerializeField] private List<NetworkObject> _buildingsPrefabs = new();
+    [SerializeField] private List<NetworkObject> _projectilesPrefabs = new();
     [SerializeField] private NetworkObject _playerObject;
     [SerializeField] private NetworkObject _mainBuildingPrefab;
 
@@ -185,6 +186,17 @@ public class GameData : NetworkBehaviour
         return _unitsPrefabs[id];
     }
 
+    public NetworkObject GetProjectilePrefab(ushort id)
+    {
+        foreach (var projectile in _projectilesPrefabs)
+        {
+            if (projectile.GetComponent<Projectile>().Id == id)
+                return projectile;
+        }
+        
+        return _projectilesPrefabs[id];
+    }
+    
     public bool IsUnitExist(ulong id)
     {
         return _units.Contains(id);

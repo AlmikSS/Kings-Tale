@@ -58,13 +58,14 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 
         _healthSlider.SetMaxHealth(_currentHealth.Value);
     }
+
     protected virtual void Update()
     {
 	    if (_healthSlider)
 	    {
-		    _healthSlider.transform.rotation = Quaternion.Euler(40,-25,0);
+		    _healthSlider.transform.rotation = Quaternion.Euler(40, -25, 0);
 	    }
-        
+
 	    _animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _agent.velocity.magnitude);
     }
 
@@ -78,6 +79,8 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     
     protected void GoToPoint(Vector3 point)
     {
+	    if (IsDied) return;
+	    
         _agent.SetDestination(point);
     }
 
@@ -101,7 +104,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 	    IsDied = true;
 		StopAllCoroutines();
 		Invoke(nameof(DieRpc), 2f);
-		_animator.SetTrigger(GamePlayConstants.DIE_ANIMATOR_PAR);
+		_animator.SetBool(GamePlayConstants.DIE_ANIMATOR_PAR, true);
 	}
 
     [Rpc(SendTo.Server)]

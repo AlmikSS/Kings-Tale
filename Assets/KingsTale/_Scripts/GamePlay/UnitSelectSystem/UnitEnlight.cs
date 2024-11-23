@@ -96,8 +96,8 @@ public class UnitEnlight : MonoBehaviour
     {
         foreach (var unit in _unitSelections.unitList.Where(unit => _selectionBox.Contains(_myCam.WorldToScreenPoint(unit.transform.position))))
         {
-            if (unit.TryGetComponent(out UnitBrain unitBrain))
-                _unitSelections.DragSelect(unitBrain);
+            if (!unit.IsDied)
+                _unitSelections.DragSelect(unit);
         }
     }
 }

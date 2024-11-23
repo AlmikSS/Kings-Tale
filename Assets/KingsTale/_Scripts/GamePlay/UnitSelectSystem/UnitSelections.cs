@@ -6,15 +6,6 @@ public class UnitSelections : MonoBehaviour
     public List<UnitBrain> unitList = new();
     public List<UnitBrain> unitSelected = new();
 
-    public void SelectUnit(UnitBrain unit)
-    {
-        Deselect();
-        if (unitList.Contains(unit))
-        {
-            unitSelected.Add(unit);
-        }
-    }
-
     public void DragSelect(UnitBrain unit)
     {
         if (!unitSelected.Contains(unit))

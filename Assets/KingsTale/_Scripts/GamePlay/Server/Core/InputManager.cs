@@ -68,9 +68,21 @@ public class InputManager : NetworkBehaviour
    }
 
    [Rpc(SendTo.Server)]
-   public void HandleAddUnitsPlaceRpc(ServerAddUnitsPlaceRequestStruct request)
+   public void HandleAddUnitsPlaceRequestRpc(ServerAddUnitsPlaceRequestStruct request)
    {
       HandleAddUnitsPlaceAsync(request);
+   }
+
+   [Rpc(SendTo.Server)]
+   public void HandleSpawnProjectileRequestRpc(ServerSpawnProjectileRequestStruct request)
+   {
+      HandleSpawnProjectileRequestAsync(request);
+   }
+
+   [Rpc(SendTo.Server)]
+   public void HandleDespawnRequestRpc(ServerDespawnRequestStruct request)
+   {
+      HandleDespawnRequestAsync(request);
    }
    
    private async void HandleBuyRequestAsync(ServerBuyRequestStruct request)
@@ -144,6 +156,24 @@ public class InputManager : NetworkBehaviour
       if (validateResponse.IsValidate)
          _gameManager.HandleAddUnitsPlaceRpc(request);
    }
+
+   private async void HandleSpawnProjectileRequestAsync(ServerSpawnProjectileRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleSpawnProjectileRequestRpc(request);
+   }
+
+   private async void HandleDespawnRequestAsync(ServerDespawnRequestStruct request)
+   {
+      if (!IsServer) return;
+      
+      var validateResponse = await ValidateRequest(request);
+      if (validateResponse.IsValidate)
+         _gameManager.HandleDespawnRequestRpc(request);
+   }
    
    private Task<ValidateResponseStruct> ValidateRequest(ServerBuyRequestStruct request)
    {
@@ -199,9 +229,7 @@ public class InputManager : NetworkBehaviour
       response = IsUnitExistValidation(request.UnitId, response);
       response = IsPlayerExistValidation(request.PlayerId, response);
       response = IsPlayerObject(request.PlayerId, request.UnitId, response);
-      // if (!request.IsOwned)
-      //    response = IsPlayerObject(request.PlayerId, request.BuildingId, response);
-      
+
       return Task.FromResult(response);
    }
 
@@ -229,6 +257,30 @@ public class InputManager : NetworkBehaviour
       ValidateResponseStruct response = new ValidateResponseStruct(true, "");
 
       response = IsPlayerExistValidation(request.PlayerId, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerSpawnProjectileRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+
+      response = IsProjectileExist(request.ProjectileId, response);
+      
+      return Task.FromResult(response);
+   }
+
+   private Task<ValidateResponseStruct> ValidateRequest(ServerDespawnRequestStruct request)
+   {
+      ValidateResponseStruct response = new ValidateResponseStruct(true, "");
+
+      var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+      
+      if (obj == null)
+      {
+         response.IsValidate = false;
+         response.Message += "Object does not exist";
+      }
       
       return Task.FromResult(response);
    }
@@ -307,6 +359,17 @@ public class InputManager : NetworkBehaviour
       {
          response.IsValidate = false;
          response.Message += "Player have not place";
+      }
+      
+      return response;
+   }
+
+   private ValidateResponseStruct IsProjectileExist(ushort id, ValidateResponseStruct response)
+   {
+      if (!_gameManager.IsProjectilePrefabExist(id))
+      {
+         response.IsValidate = false;
+         response.Message += "Object is not projectile";
       }
       
       return response;

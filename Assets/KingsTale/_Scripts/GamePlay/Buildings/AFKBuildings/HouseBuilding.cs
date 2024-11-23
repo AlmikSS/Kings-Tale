@@ -16,6 +16,6 @@ public class HouseBuilding : Building
             PlayerId = OwnerClientId
         };
         
-        InputManager.Instance.HandleAddUnitsPlaceRpc(request);
+        InputManager.Instance.HandleAddUnitsPlaceRequestRpc(request);
     }
 }

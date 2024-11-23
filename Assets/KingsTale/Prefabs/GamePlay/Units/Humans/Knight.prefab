@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 351530870647133734}
   - component: {fileID: -6407358364272481148}
   - component: {fileID: 7486342464138301710}
+  - component: {fileID: 2286366199015452859}
   m_Layer: 3
   m_Name: Knight
   m_TagString: Unit
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2641458147
+  GlobalObjectIdHash: 4191359591
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 0
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
@@ -274,6 +275,21 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2286366199015452859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8112514964153909179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 873156250078106525}
 --- !u!1001 &4659749657533392656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -506,10 +522,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 873156250078106525}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7b746afd9f33814995d0412c8d3e77d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7117937174385665699}
   m_SourcePrefab: {fileID: 100100000, guid: a7b746afd9f33814995d0412c8d3e77d, type: 3}
 --- !u!4 &8278813856461830486 stripped
 Transform:
@@ -545,32 +557,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7117937174385665699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8768387504476611564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList:
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 2081823275
-    DestinationState: 1080829965
-    TransitionDuration: 0
-    TriggerNameHash: 1080829965
-    TransitionIndex: 1
-  - IsCrossFadeExit: 0
-    Layer: 0
-    OriginatingState: 2081823275
-    DestinationState: 646380074
-    TransitionDuration: 0.25
-    TriggerNameHash: 20298039
-    TransitionIndex: 2
-  m_Animator: {fileID: 873156250078106525}
