@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 58517ea57cbb461eb57f9927c404dbce
+timeCreated: 1702477836
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256689
+  packageName: Dynamic Mesh Combiner Lite
+  packageVersion: 1.17-lite
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/ChunkContainer/IChunkContainer.cs
+  uploadId: 634892

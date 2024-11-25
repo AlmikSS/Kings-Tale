@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/KingsTale/Configs/Buildings/FieldBuilding.asset.meta
+guid: ab225f6396097544d86be681d28e325b
+NativeFormatImporter:
+========
+guid: 16d543c731c57e14f95b7a3caf507fbf
+PrefabImporter:
+>>>>>>>> Nevsky_Dev:Assets/KingsTale/Prefabs/GamePlay/Buildings/Barrack.prefab.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

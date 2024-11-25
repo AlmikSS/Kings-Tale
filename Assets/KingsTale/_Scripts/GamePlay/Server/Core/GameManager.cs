@@ -1,0 +1,188 @@
+using System.Threading.Tasks;
+using Unity.Netcode;
+using UnityEngine;
+
+public class GameManager : NetworkBehaviour
+{
+    private GameData _gameData;
+    
+    public void Initialize(GameData gameData)
+    {
+        _gameData = gameData;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleBuyRequestRpc(ServerBuyRequestStruct request)
+    {
+        Debug.Log($"Handle buy request. Client: {request.PlayerId}, Id: {request.Id}, IsBuilding: {request.IsBuilding}.");
+
+        var resources = _gameData.GetPlayerResources(request.PlayerId);
+        var price = _gameData.GetPrice(request.Id, request.IsBuilding);
+        var player = _gameData.GetPlayer(request.PlayerId);
+
+        if (CanPlayerBuy(resources, price))
+        {
+            if (request.IsBuilding)
+                player.PlayerManager.GetComponent<BuildingSystem>().StartPlacingBuildingRpc(request.Id);
+            else
+            {
+                _gameData.RemoveResourcesToPlayer(request.PlayerId, (ResourcesStruct)price);
+                var unit = Instantiate(_gameData.GetUnitPrefab(request.Id), request.Position, Quaternion.identity);
+                unit.SpawnWithOwnership(request.PlayerId);
+                _gameData.AddUnit(unit.NetworkObjectId, request.PlayerId);
+            }
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandlePlaceBuildingRequestRpc(ServerPlaceBuildingRequestStruct request)
+    {
+        Debug.Log($"Handle place building request. Client: {request.PlayerId}, Building: {request.BuildingId}, Position: {request.Position}.");
+        
+        var resources = _gameData.GetPlayerResources(request.PlayerId);
+        var price = _gameData.GetPrice(request.BuildingId, true);
+        var player = _gameData.GetPlayer(request.PlayerId);
+
+        if (CanPlayerBuy(resources, price) & CanPlaceBuilding(request))
+        {
+            _gameData.RemoveResourcesToPlayer(request.PlayerId, price);
+            var building = Instantiate(_gameData.GetBuildingPrefab(request.BuildingId), request.Position, Quaternion.identity);
+            building.SpawnWithOwnership(request.PlayerId);
+            building.GetComponent<Building>().PlaceBuildingRpc();
+            _gameData.AddBuilding(building.NetworkObjectId, request.PlayerId);
+            player.PlayerManager.GetComponent<BuildingSystem>().OnBuildingPlacedRpc(building.NetworkObjectId);
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleAddResourcesRequestRpc(ServerAddResourcesRequestStruct request)
+    {
+        Debug.Log($"Handle add resources request. Client: {request.PlayerId}, Wood: {request.ResourcesToAdd.Wood}, Gold: {request.ResourcesToAdd.Gold}, Food: {request.ResourcesToAdd.Food}.");
+        var player = _gameData.GetPlayer(request.PlayerId);
+        _gameData.AddResourcesToPlayer(request.PlayerId, request.ResourcesToAdd);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSetUnitDestinationRequestRpc(ServerSetUnitDestinationRequestStruct request)
+    {
+        Debug.Log($"Handle set unit destination request. Client: {request.PlayerId}, Unit: {request.UnitId}, Point: {request.Point}.");
+
+        var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetDestinationRpc(request.Point);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSetUnitBuildingRequestRpc(ServerSetUnitBuildingRequestStruct request)
+    {
+        Debug.Log($"Handle set unit building request. Client: {request.PlayerId}, Unit: {request.UnitId}, Building: {request.BuildingId}.");
+
+        var player = _gameData.GetPlayer(request.PlayerId);
+        var unit = player.GetUnit(request.UnitId).GetComponent<UnitBrain>();
+        
+        unit.SetBuildingRpc(request.BuildingId);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleTakeDamageRequestRpc(ServerTakeDamageRequestStruct request)
+    {
+        Debug.Log($"Handle take damage request. Client: {request.PlayerId}, Object: {request.Id}, Damage: {request.Damage}.");
+
+        var damageable = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id].GetComponent<IDamagable>();
+        damageable.TakeDamageRpc((int)request.Damage);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleDieRequestRpc(ServerDieRequestStruct request)
+    {
+        Debug.Log($"Handle die request. Object: {request.Id}");
+
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        obj.GetComponent<IDamagable>().Die();
+        
+        if (request.IsBuilding)
+            _gameData.RemoveBuilding(request.Id, obj.OwnerClientId);
+        else
+            _gameData.RemoveUnit(request.Id, obj.OwnerClientId);
+        
+        obj.Despawn();
+        Destroy(obj.gameObject);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleAddUnitsPlaceRpc(ServerAddUnitsPlaceRequestStruct request)
+    {
+        Debug.Log($"Handle add units places request. Player: {request.PlayerId}");
+        
+        _gameData.AddUnitsPlaces(request.PlayerId);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleSpawnProjectileRequestRpc(ServerSpawnProjectileRequestStruct request)
+    {
+        var sender = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        
+        var projectilePrefab = _gameData.GetProjectilePrefab(request.ProjectileId);
+        var projectile = Instantiate(projectilePrefab, request.Position, Quaternion.identity);
+        
+        projectile.SpawnWithOwnership(sender.OwnerClientId);
+        sender.GetComponent<ArcherUnit>().OnProjectTileSpawnedRpc(new NetworkObjectReference(projectile));
+    }
+
+    [Rpc(SendTo.Server)]
+    public void HandleDespawnRequestRpc(ServerDespawnRequestStruct request)
+    {
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[request.Id];
+        obj.Despawn();
+        Destroy(obj.gameObject);
+    }
+    
+    public bool IsPlayerExist(ulong id)
+    {
+        var player = _gameData.GetPlayer(id);
+        return player != null;
+    }
+
+    public bool IsBuildingPrefabExist(ushort id)
+    {
+        var building = _gameData.GetBuildingPrefab(id);
+        return building != null;
+    }
+
+    public bool IsUnitPrefabExist(ushort id)
+    {
+        var unit = _gameData.GetUnitPrefab(id);
+        return unit != null;
+    }
+
+    public bool IsUnitExist(ulong id)
+    {
+        return _gameData.IsUnitExist(id);
+    }
+
+    public bool IsProjectilePrefabExist(ushort id)
+    {
+        var projectile = _gameData.GetProjectilePrefab(id);
+        return projectile != null;
+    }
+    
+    public bool HavePlayerPlaces(ulong id)
+    {
+        return _gameData.HavePlace(id);
+    }
+    
+    private bool CanPlayerBuy(ResourcesStruct resources, ResourcesStruct? price)
+    {
+        return resources.Wood >= price?.Wood && resources.Gold >= price?.Gold && resources.Food >= price?.Food;
+    }
+
+    private bool CanPlaceBuilding(ServerPlaceBuildingRequestStruct request)
+    {
+        var buildingPrefab = _gameData.GetBuildingPrefab(request.BuildingId);
+        var building = Instantiate(buildingPrefab, request.Position, Quaternion.identity);
+        var canPlace = building.GetComponent<Building>().CanBuild;
+        Destroy(building.gameObject);
+        return canPlace;
+    }
+}

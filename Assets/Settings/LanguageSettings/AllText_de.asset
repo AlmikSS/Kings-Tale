@@ -1,0 +1,537 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: AllText_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: e90f577b02a93444cb504c01cf3691ff, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11225952108544
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226136657920
+    m_Localized: Mehrspieler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226149240832
+    m_Localized: Einzelspieler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226149240833
+    m_Localized: "Sie k\xF6nnen mit Ihren Freunden oder zuf\xE4lligen Leuten Ihres
+      Ranges spielen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226153435136
+    m_Localized: "Sie k\xF6nnen alleine mit Bots spielen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226153435137
+    m_Localized: Reise starten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226153435138
+    m_Localized: Einfacher Bot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226153435139
+    m_Localized: Denkender Bot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226153435140
+    m_Localized: Ernsthafter Bot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823744
+    m_Localized: "Diese Art von Bots ist f\xFCr Anf\xE4nger und diejenigen gedacht,
+      die ein entspanntes Spiel w\xFCnschen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823745
+    m_Localized: "Diese Art von Bots ist f\xFCr gute Spieler gedacht, die ihre F\xE4higkeiten
+      verbessern oder einfach nur den Schwierigkeitsgrad erh\xF6hen m\xF6chten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823746
+    m_Localized: "Diese Art von Bots ist f\xFCr zielstrebige Spieler gedacht, die
+      keine Angst davor haben, ihre F\xE4higkeiten zu testen und zu beweisen, dass
+      sie die Besten sind"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823747
+    m_Localized: "Bots z\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823748
+    m_Localized: Gesamtzahl der Bots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823749
+    m_Localized: 'Karteneinstellungen '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823750
+    m_Localized: "Gr\xF6\xDFe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823751
+    m_Localized: Maximale Spielerzahl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823752
+    m_Localized: 'Einstellungen '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823753
+    m_Localized: Spiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823754
+    m_Localized: 'Sprache '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823755
+    m_Localized: Spitzname
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823756
+    m_Localized: Geben Sie Ihren Spitznamen ein...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823757
+    m_Localized: Melden Sie sich bei Google Play an
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823758
+    m_Localized: 'Audio '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823759
+    m_Localized: Allgemeines Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823760
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823761
+    m_Localized: Soundeffekte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823762
+    m_Localized: "\xDCber uns"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823763
+    m_Localized: Spiel vom Studio Victorious Hawk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226161823764
+    m_Localized: Grafik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018048
+    m_Localized: Voreingestellt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018049
+    m_Localized: 'Rendern '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018050
+    m_Localized: Schatten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018051
+    m_Localized: "Texturqualit\xE4t "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018052
+    m_Localized: 'Nachbearbeitung '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018053
+    m_Localized: HDR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018054
+    m_Localized: Sehr niedrig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018055
+    m_Localized: Niedrig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018056
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018057
+    m_Localized: Hoch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018058
+    m_Localized: Ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018059
+    m_Localized: "Erm\xF6glicht"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018060
+    m_Localized: Aus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018061
+    m_Localized: Klein
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018062
+    m_Localized: "Gro\xDF"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018063
+    m_Localized: Per Code beitreten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018064
+    m_Localized: "Mit einem Beitrittscode k\xF6nnen Sie sich mit einer Lobby verbinden,
+      die Ihr Freund erstellt hat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018065
+    m_Localized: Lobby erstellen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018066
+    m_Localized: "Sie k\xF6nnen Ihre eigene Lobby f\xFCr Freunde erstellen und den
+      Code mit ihnen teilen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018067
+    m_Localized: "Zuf\xE4lliger Beitritt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018068
+    m_Localized: "Die zuf\xE4llige Einordnung erfolgt nach einem Rangsystem. K\xF6nnen
+      keine Spieler mit einem passenden Rang gefunden werden, wird der empfohlene
+      Rang herabgesetzt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018069
+    m_Localized: Code des Freundes eingeben...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018071
+    m_Localized: Essen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018072
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018073
+    m_Localized: Holz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018074
+    m_Localized: Armee aufbauen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226166018075
+    m_Localized: Zeichnen Sie den Armeepfad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212352
+    m_Localized: Zeichnen Sie kostenlose Notizen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212353
+    m_Localized: "Notizen l\xF6schen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212354
+    m_Localized: Gruppe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212355
+    m_Localized: Kaufen Sie Einheiten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212356
+    m_Localized: Kaufen Sie Angriffseinheiten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212358
+    m_Localized: "K\xF6nig"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212359
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212360
+    m_Localized: Ritter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212361
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212364
+    m_Localized: "Bogensch\xFCtze"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212365
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212366
+    m_Localized: Kavallerie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212367
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212368
+    m_Localized: Zauberer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212369
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212370
+    m_Localized: Katapult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212371
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212372
+    m_Localized: Balliste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212374
+    m_Localized: Haus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212375
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212376
+    m_Localized: Lagerhaus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212377
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212378
+    m_Localized: Kaserne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212379
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212380
+    m_Localized: 'Zaubererturm '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212381
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212382
+    m_Localized: Werkstatt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226170212383
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406656
+    m_Localized: "M\xFChle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406657
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406658
+    m_Localized: Feld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406659
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406660
+    m_Localized: Meins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406661
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406662
+    m_Localized: "S\xE4gewerk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11226174406663
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320705
+    m_Localized: 'Anzahl der Einheiten:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320707
+    m_Localized: "Legion\xE4r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320708
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320709
+    m_Localized: Pyromant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320710
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320711
+    m_Localized: Elektro-Zauberer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320712
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306501320713
+    m_Localized: Heiler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306505515008
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306505515009
+    m_Localized: Paladin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306505515010
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306505515011
+    m_Localized: Alchimist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 644306505515012
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 939564317491200
+    m_Localized: 'Preis:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817041264640
+    m_Localized: Kampagne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817200648192
+    m_Localized: "In der Kampagne k\xF6nnen Sie die Grundlagen des Spiels erlernen
+      und die Hauptgeschichte der verschiedenen Rassen durchgehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817200648193
+    m_Localized: Bald...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817200648195
+    m_Localized: 'Alle Einheiten:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817200648196
+    m_Localized: 'Arbeiter:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2367817200648197
+    m_Localized: 'Angreifende Einheiten:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2387601891999744
+    m_Localized: Freier Modus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2387602038800384
+    m_Localized: "Dieser Modus eignet sich f\xFCr Sandbox- oder Online-Spiele"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7584227614998528
+    m_Localized: Benutzerdefinierte Voreinstellung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17350162362089472
+    m_Localized: Framerate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17350162542444544
+    m_Localized: Grenzenlos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44796362208002048
+    m_Localized: 'Infanterie:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44796362212196352
+    m_Localized: 'Artillerie:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44796362212196353
+    m_Localized: 'Magier:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44796362212196354
+    m_Localized: 'Steun:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44804363488804865
+    m_Localized: 'Kavallerie:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47849952501776384
+    m_Localized: "Aufl\xF6sung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47849952719880192
+    m_Localized: Vollbild
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47849952719880193
+    m_Localized: Maus umkehren
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
