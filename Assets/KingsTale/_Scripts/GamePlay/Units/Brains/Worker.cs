@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 
 public class Worker : UnitBrain
@@ -27,12 +28,12 @@ public class Worker : UnitBrain
     private IEnumerator WorkingUpdateStateRoutine()
     {
         _currentState = WorkerState.Working;
-        
+
         foreach (var action in _currentWork.Actions)
         {
             yield return PerformActionRoutine(action);
         }
-        
+
         if (_currentBuilding)
             StartWork();
 
@@ -43,7 +44,7 @@ public class Worker : UnitBrain
     {
         _resourcesInInv = action.ResourceToAdd;
         _target = action.Target.GetComponent<Building>();
-        
+
         switch (action.Action)
         {
             case WorkerAction.GoToPoint:
@@ -53,6 +54,11 @@ public class Worker : UnitBrain
                 break;
             case WorkerAction.Wait:
                 _currentState = WorkerState.Working;
+                if (action.WithAction)
+                {
+                    // Включаем анимацию работы
+                    SetWorkAnimationServerRpc(true);
+                }
                 yield return new WaitForSeconds(action.WaitTime);
                 if (action.WithAction)
                 {
@@ -77,17 +83,23 @@ public class Worker : UnitBrain
                         else
                             _target.BuildRpc();
                     }
+                    // Выключаем анимацию работы
+                    SetWorkAnimationServerRpc(false);
                 }
                 break;
             case WorkerAction.Main:
                 _currentState = WorkerState.Working;
+                // Включаем анимацию добычи
+                SetMineAnimationServerRpc(true);
                 yield return new WaitForSeconds(action.WaitTime);
                 if (action.Target.TryGetComponent(out Tree tree))
                     tree.MineRpc();
+                // Выключаем анимацию добычи
+                SetMineAnimationServerRpc(false);
                 break;
         }
     }
-    
+
     private void GoToTargetUpdateState()
     {
         if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance && _agent.velocity.sqrMagnitude == 0f)
@@ -102,7 +114,7 @@ public class Worker : UnitBrain
         _currentWork = _currentBuilding.GetWork();
         if (_currentWork != null)
             StartCoroutine(WorkingUpdateStateRoutine());
-        else 
+        else
             ResetWorker();
     }
 
@@ -112,7 +124,7 @@ public class Worker : UnitBrain
         GoToPoint(point);
         ResetWorker();
     }
-    
+
     [Rpc(SendTo.Owner)]
     public override void SetBuildingRpc(ulong buildingId)
     {
@@ -129,17 +141,15 @@ public class Worker : UnitBrain
             else if (building is WorkingBuilding a)
                 workingBuilding = a;
         }
-        
+
         if (workingBuilding == null)
             return;
-        
+
         if (!workingBuilding.HasPlace())
             return;
 
         ResetWorker();
-        
-        //GoToPoint(workingBuilding.transform.position);
-        
+
         _currentBuilding = workingBuilding;
         _currentBuilding.AddUnit(NetworkObjectId);
         _currentState = WorkerState.GoToTarget;
@@ -154,8 +164,35 @@ public class Worker : UnitBrain
         _currentWork = null;
         _currentState = WorkerState.Idle;
     }
+
+    // RPC для управления анимацией Work
+    [ServerRpc(RequireOwnership = false)]
+    private void SetWorkAnimationServerRpc(bool isWorking)
+    {
+        SetWorkAnimationClientRpc(isWorking);
+    }
+
+    [ClientRpc]
+    private void SetWorkAnimationClientRpc(bool isWorking)
+    {
+        _networkAnimator.Animator.SetBool(GamePlayConstants.WORK_ANIMATOR_PAR, isWorking);
+    }
+
+    // RPC для управления анимацией Mine
+    [ServerRpc(RequireOwnership = false)]
+    private void SetMineAnimationServerRpc(bool isMining)
+    {
+        SetMineAnimationClientRpc(isMining);
+    }
+
+    [ClientRpc]
+    private void SetMineAnimationClientRpc(bool isMining)
+    {
+        _networkAnimator.Animator.SetBool(GamePlayConstants.MINE_ANIMATOR_PAR, isMining);
+    }
 }
 
+// Определение WorkerState
 public enum WorkerState
 {
     Idle,

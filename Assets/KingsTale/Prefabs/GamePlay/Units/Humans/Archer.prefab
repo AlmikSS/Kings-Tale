@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7730410294578492735}
   - component: {fileID: 7380834267572853371}
   - component: {fileID: 7809149491684838127}
+  - component: {fileID: 4006644891371251077}
   m_Layer: 3
   m_Name: Archer
   m_TagString: Unit
@@ -215,8 +216,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _stateMachineUpdateDelay: 0.1
-  _projectilePrefab: {fileID: 3367373587748133771, guid: 9ea69338abef9b548a5115f43482cfc8,
-    type: 3}
+  _projectileId: 0
 --- !u!114 &7380834267572853371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +276,21 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &4006644891371251077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828860794882636133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 864872812206288064}
 --- !u!1001 &2032731363397505678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,8 +537,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5272fe5f1d4301442a37a37170eb4167,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 864872812206288064}
   m_SourcePrefab: {fileID: 100100000, guid: 5272fe5f1d4301442a37a37170eb4167, type: 3}
+--- !u!1 &1221847373095350239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5272fe5f1d4301442a37a37170eb4167,
+    type: 3}
+  m_PrefabInstance: {fileID: 2032731363397505678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &864872812206288064
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221847373095350239}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc74c698c6ea35b4bab74a74c947cc96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1999333367302583653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5272fe5f1d4301442a37a37170eb4167,

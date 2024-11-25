@@ -25,7 +25,10 @@ public class GamePlayConstants
     public const string VELOCITY_ANIMATOR_PAR = "Velocity";
     public const string DIE_ANIMATOR_PAR = "Die";
     public const string ATTACK_ANIMATOR_PAR = "Attack";
-    
+    public const string WORK_ANIMATOR_PAR = "Work";
+    public const string MINE_ANIMATOR_PAR = "Mine";
+    public const string RUN_ANIMATOR_PAR = "Run";
+
     [Header("Options")]
     public const uint HOUSE_PLACES_COUNT = 15;
 }

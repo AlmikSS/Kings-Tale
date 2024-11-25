@@ -72,6 +72,19 @@ public class PlayerManager : NetworkBehaviour
             
             InputManager.Instance.HandleBuyRequestRpc(request);
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            var request = new ServerBuyRequestStruct
+            {
+                PlayerId = OwnerClientId,
+                Id = 1,
+                IsBuilding = false,
+                Position = new Vector3(0, 0, 0)
+            };
+
+            InputManager.Instance.HandleBuyRequestRpc(request);
+        }
     }
 
     [Rpc(SendTo.Owner)]
