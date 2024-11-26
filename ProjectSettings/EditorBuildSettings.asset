@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/KingsTale/Scenes/UnitsUITest.unity
     guid: e2ebb275669320d4da902450e2fae056
+  - enabled: 1
+    path: Assets/KingsTale/Scenes/GoldMainMenu.unity
+    guid: 2d9b4d489ae22ef41b53cdc7449d8875
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 58b5b2419c50f6447b23de5016666fb8,
       type: 2}
