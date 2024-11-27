@@ -25,7 +25,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     public bool IsDied { get; private set; }
     public ushort Id => _id;
 
-    private NetworkVariable<float> _networkVelocity = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> _networkVelocity;
     private float _speed;
     private float _stopDistance;
     private int _magicResist;
@@ -45,8 +45,8 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 
     protected virtual void Awake()
     {
-        _currentHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Owner);
+        _currentHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        _networkVelocity = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     }
 
     public override void OnNetworkSpawn()
@@ -64,7 +64,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     protected virtual void Update()
     {
         UpdateHealthSliderRotation();
-        UpdateVelocityRpc(_networkVelocity.Value);
+        SetRunAnim();
         if (_healthSlider)
         {
             _healthSlider.transform.rotation = Quaternion.Euler(40, -25, 0);
@@ -81,8 +81,7 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
             Debug.LogError("_networkAnimator or Animator is null on " + gameObject.name);
             return;
         }
-
-
+        
         if (IsOwner)
         {
             _networkVelocity.Value = _agent.velocity.magnitude;
@@ -90,11 +89,14 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 
         _networkAnimator.Animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _networkVelocity.Value);
 
-        // Determine if the unit is moving
         bool isMoving = _agent.velocity.magnitude > 0.1f;
 
-        // Set the IsRunning parameter
         _networkAnimator.Animator.SetBool(GamePlayConstants.RUN_ANIMATOR_PAR, isMoving);
+    }
+
+    private void SetRunAnim()
+    {
+        _networkAnimator.Animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _networkVelocity.Value);
     }
 
 
@@ -140,7 +142,6 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
         IsDied = true;
         CleanupOnDeath();
         Invoke(nameof(DieRpc), DIE_DELAY);
-        //_animator?.SetBool(GamePlayConstants.DIE_ANIMATOR_PAR, true);
         
         if (_networkAnimator != null && _networkAnimator.Animator != null)
         {
@@ -214,6 +215,22 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
         {
             _animator = modelTransform.GetComponent<Animator>();
         }
+        
+        _networkAnimator = GetComponent<NetworkAnimator>();
+        if (_networkAnimator == null)
+        {
+            _networkAnimator = GetComponentInChildren<NetworkAnimator>();
+            if (_networkAnimator == null)
+            {
+                Debug.LogError("NetworkAnimator component missing on unit " + NetworkObjectId + "!");
+                return;
+            }
+        }
+
+        if (_networkAnimator.Animator == null)
+        {
+            _networkAnimator.Animator = _animator;
+        }
 
         _agent.speed = _speed;
         _agent.stoppingDistance = _stopDistance * STOP_DISTANCE_MULTIPLIER;
@@ -241,16 +258,10 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
         StopAllCoroutines();
     }
 
-    protected bool IsPathComplete()
+    private bool IsPathComplete()
     {
         return !_agent.pathPending && 
                _agent.remainingDistance <= _agent.stoppingDistance && 
                _agent.velocity.sqrMagnitude == 0f;
-    }
-
-    [Rpc(SendTo.Owner)]
-    private void UpdateVelocityRpc(float velocity)
-    {
-        _networkAnimator.Animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, velocity);
     }
 }

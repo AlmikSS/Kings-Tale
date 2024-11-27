@@ -92,6 +92,53 @@ MonoBehaviour:
   - {fileID: -7011558710299706105}
   - {fileID: 8583312739188396294}
   - {fileID: 3436866408192922872}
+  - {fileID: 2521863567499220973}
+--- !u!114 &2521863567499220973
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd486065ce11414fa40e631affc4900, type: 3}
+  m_Name: ProbeVolumesOptions
+  m_EditorClassIdentifier: 
+  active: 1
+  normalBias:
+    m_OverrideState: 1
+    m_Value: 0
+  viewBias:
+    m_OverrideState: 1
+    m_Value: 0.1
+  scaleBiasWithMinProbeDistance:
+    m_OverrideState: 0
+    m_Value: 0
+  samplingNoise:
+    m_OverrideState: 0
+    m_Value: 0.1
+  animateSamplingNoise:
+    m_OverrideState: 0
+    m_Value: 1
+  leakReductionMode:
+    m_OverrideState: 0
+    m_Value: 2
+  minValidDotProductValue:
+    m_OverrideState: 0
+    m_Value: 0.1
+  occlusionOnlyReflectionNormalization:
+    m_OverrideState: 0
+    m_Value: 1
+  intensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  skyOcclusionIntensityMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  worldOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
 --- !u!114 &3436866408192922872
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -107,10 +154,10 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 0.8031088, z: 0.6106423, w: 0}
+    m_Value: {x: 0.9667333, y: 1, z: 0.98735607, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.8871974, y: 0.9174189, z: 1, w: 0.009930486}
+    m_Value: {x: 1, y: 0.97824216, z: 0.9715829, w: 0.009930486}
   gain:
     m_OverrideState: 0
     m_Value: {x: 0.9622747, y: 1, z: 0.9621135, w: -0.61674017}

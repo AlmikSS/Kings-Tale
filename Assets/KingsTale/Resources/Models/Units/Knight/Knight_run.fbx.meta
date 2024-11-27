@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: knight_run
+      name: Run
       takeName: "\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430.001|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430.001|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430|\u0410\u0440\u043C\u0430\u0442\u0443\u0440\u0430|\u0410\u0440.002"
       internalID: -3158162311190857641
       firstFrame: 0
@@ -43,7 +43,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

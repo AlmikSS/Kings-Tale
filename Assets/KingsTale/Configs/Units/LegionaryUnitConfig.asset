@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ed98ceff0e421d8f8367125e8071d5, type: 3}
   m_Name: LegionaryUnitConfig
   m_EditorClassIdentifier: 
-  _unitName: Legionary
+  _unitId: 5
   _maxHealth: 0
   _regeneration: 0
   _regenSpeed: 0
@@ -21,6 +21,12 @@ MonoBehaviour:
   _speed: 0
   _angularSpeed: 0
   _stopDistance: 0
+  _price:
+    Wood: 0
+    Gold: 0
+    Food: 0
   _damage: 0
   _attackSpeed: 0
+  _startAttackDistance: 0
+  _visionRange: 0
   _isLongRange: 0

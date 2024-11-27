@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1649833856695285960}
   - component: {fileID: 8821320194937225735}
   - component: {fileID: 7993063807080631793}
-  - component: {fileID: 8501197593023005986}
+  - component: {fileID: 2009732973018933421}
   m_Layer: 0
   m_Name: InLobbyPlayerObject
   m_TagString: Untagged
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8501197593023005986
+--- !u!114 &2009732973018933421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,13 +223,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5307658008687222976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffa926cc441cb44fb649bed5fb7b702, type: 3}
+  m_Script: {fileID: 11500000, guid: 189b2902a750a804ca40e80a42b9c3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerIcon: {fileID: 0}
-  _playerName: {fileID: 1712316046250944908}
-  _readyIndicator: {fileID: 0}
-  _ownerCrown: {fileID: 0}
+  _kickBtn: {fileID: 8889335717916798460}
+  _nickName: {fileID: 1712316046250944908}
 --- !u!1 &6782501604746583615
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +263,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 100}
+  m_SizeDelta: {x: 444.47, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &120114862649840632
 CanvasRenderer:

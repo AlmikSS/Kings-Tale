@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Netcode;
-using Unity.Netcode.Components;
 using UnityEngine;
 
 public class ArcherUnit : AttackUnit
@@ -9,8 +8,7 @@ public class ArcherUnit : AttackUnit
 
     protected override IEnumerator AttackTargetRoutine()
     {
-        // Включаем анимацию атаки
-        SetAttackAnimationServerRpc(true);
+        SetAttackAnimRpc();
         var request = new ServerSpawnProjectileRequestStruct
         {
             Id = NetworkObjectId,
@@ -19,9 +17,6 @@ public class ArcherUnit : AttackUnit
         };
 
         InputManager.Instance.HandleSpawnProjectileRequestRpc(request);
-        yield return null;
-        // Выключаем анимацию атаки
-        SetAttackAnimationServerRpc(false);
         yield return new WaitForSeconds(_attackSpeed);
     }
 
@@ -34,23 +29,10 @@ public class ArcherUnit : AttackUnit
                 projectile.Launch(_target, _damage);
         }
     }
-
-    // RPC для управления анимацией Attack
-    [ServerRpc(RequireOwnership = false)]
-    private void SetAttackAnimationServerRpc(bool isAttacking)
+    
+    [Rpc(SendTo.Server)]
+    private void SetAttackAnimRpc()
     {
-        SetAttackAnimationClientRpc(isAttacking);
+        _networkAnimator.Animator.Play(GamePlayConstants.ATTACK_ANIMATOR_PAR);
     }
-
-    [ClientRpc]
-    private void SetAttackAnimationClientRpc(bool isAttacking)
-    {
-        if (_networkAnimator == null || _networkAnimator.Animator == null)
-        {
-            Debug.LogError("_networkAnimator or Animator is null on " + gameObject.name);
-            return;
-        }
-        _networkAnimator.Animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, isAttacking);
-    }
-
 }

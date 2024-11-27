@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3372135507
+  GlobalObjectIdHash: 3852539686
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -76,6 +76,9 @@ MonoBehaviour:
   - {fileID: -7326458508237107965, guid: 37e88f0762fc9224eb3b53b9181c474a, type: 3}
   - {fileID: 8370742508194790819, guid: c50ca40fb8685724984a9c4fb843a0bb, type: 3}
   - {fileID: 6409967015543127474, guid: 4ce50db5ddd0f2044a2005db12581fea, type: 3}
+  - {fileID: 4867827374888564098, guid: 4695e202d7e2c0f498fbbdb2707ace05, type: 3}
+  - {fileID: 8587794723322116139, guid: f8daf00238960f944b7c67bbcb465a69, type: 3}
+  - {fileID: 2746467932994070793, guid: 1498a24cf743d7a4e921b9d0b1bce1a3, type: 3}
   _buildingsPrefabs:
   - {fileID: 8267504762903409181, guid: bbdde281dde23af40a4302dd16b88ca7, type: 3}
   - {fileID: 174444555036807295, guid: 7ab51f4c68592e847b485139d958adcc, type: 3}
@@ -87,6 +90,7 @@ MonoBehaviour:
   - {fileID: 1591312807404395803, guid: 33ec42aa3280f7b40b389a138868f62f, type: 3}
   _projectilesPrefabs:
   - {fileID: 1297275145816667998, guid: 9ea69338abef9b548a5115f43482cfc8, type: 3}
+  - {fileID: 2397057239307041464, guid: 711251655f0a8064e8f1b729b88f19a3, type: 3}
   _playerObject: {fileID: 2600284017641609108, guid: 206a1a109b5cb6e418bcb516ee6ff2b9,
     type: 3}
   _mainBuildingPrefab: {fileID: 1591312807404395803, guid: be71c19d5050d454ea148940154ffc03,

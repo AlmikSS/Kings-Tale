@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WorkerUnitConfig
   m_EditorClassIdentifier: 
   _unitId: 0
-  _maxHealth: 0
+  _maxHealth: 100
   _regeneration: 0
   _regenSpeed: 0
   _magicResist: 0

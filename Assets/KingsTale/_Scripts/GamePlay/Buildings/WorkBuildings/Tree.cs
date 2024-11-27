@@ -33,6 +33,7 @@ public class Tree : WorkingBuilding
         var thirdAction = new WorkerActionStruct
         {
             Action = WorkerAction.GoToPoint,
+            Target = NetworkObject,
             ResourceToAdd = _resourcesToAdd
         };
 
@@ -52,13 +53,6 @@ public class Tree : WorkingBuilding
         _currentWork.Actions = actions;
 
         return _currentWork;
-    }
-
-    private NetworkObject GetNearStorage()
-    {
-        var mainBuilding = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(OwnerClientId).GetComponent<PlayerManager>().MainBuilding;
-
-        return mainBuilding.NetworkObject;
     }
 
     [Rpc(SendTo.Everyone)]
