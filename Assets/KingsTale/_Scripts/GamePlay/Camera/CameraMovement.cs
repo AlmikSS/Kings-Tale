@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera))]
-public class CameraMovement : NetworkBehaviour
+public class CameraMovement : MonoBehaviour
 {
 	[Range(0, 20)][SerializeField] private float _camSpeed;
 	[Range(0, 20)][SerializeField] private float _camSpeedForTouch;

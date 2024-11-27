@@ -117345,7 +117345,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8530941838929071998}
-  - component: {fileID: 3719573198771642654}
   m_Layer: 0
   m_Name: Lobby
   m_TagString: Untagged
@@ -118877,30 +118876,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7455749845825614444}
   m_CullTransparentMesh: 1
---- !u!114 &3719573198771642654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530651570051169514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6a4b6a39df4ac2b568b49d1a6be154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxPlayerSlider: {fileID: 4232878412298234281}
-  _gameModeDropdown: {fileID: 3595325516590217726}
-  _lobbyJoinCodeInputField: {fileID: 2918192839375768640}
-  _playerNickNameInputField: {fileID: 2857652292808276647}
-  _inLobbyPlayerObjectPrefab: {fileID: 5417576292720195690, guid: 72621dfc496b9054b9a5865ff0ba870f,
-    type: 3}
-  _gamePlaysceneName: GamePlay
-  _inLobbyMenuOrigin: {fileID: 6321261360319141366}
-  _inLobbyStartGameBtn: {fileID: 4144530918085428374}
-  _inLobbyMaxPlayersText: {fileID: 4540913442865599908}
-  _inLobbyMenuCodeText: {fileID: 4857655828691864809}
-  _inLobbyPlayersViewTransform: {fileID: 5185881606277754237}
 --- !u!1 &3766061734022362549
 GameObject:
   m_ObjectHideFlags: 0
@@ -119152,7 +119127,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3719573198771642654}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyController, Assembly-CSharp
         m_MethodName: JoinLobby
         m_Mode: 1
@@ -120054,7 +120029,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3719573198771642654}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -121039,7 +121014,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3719573198771642654}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyController, Assembly-CSharp
         m_MethodName: CreateLobby
         m_Mode: 1

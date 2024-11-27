@@ -42,8 +42,6 @@ public class Bootstrap : NetworkBehaviour
         _inputManager.NetworkObject.Spawn();
         _gameData.NetworkObject.Spawn();
         
-        _gameData.Initialize();
-        
         foreach (var client in clientscompleted)
         {
             _gameData.RegisterClient(client);

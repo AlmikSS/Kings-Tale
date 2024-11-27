@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -24,7 +23,7 @@ public class Projectile : NetworkBehaviour
     private IEnumerator FlyRoutine()
     {
         var startPosition = transform.position;
-        var targetPosition = _target.transform.position;
+        var targetPosition = new Vector3(_target.transform.position.x, _target.transform.position.y + 1f, _target.transform.position.z);
         
         var distance = Vector3.Distance(startPosition, targetPosition);
         var flightDuration = distance / _speed;
@@ -50,15 +49,12 @@ public class Projectile : NetworkBehaviour
             yield return null;
         }
         
-        Invoke(nameof(Despawn), 0.3f);
+        Invoke(nameof(Despawn), 3f);
     }
 
     private void Despawn()
     {
-        var request = new ServerDespawnRequestStruct
-        {
-            Id = NetworkObjectId
-        };
+        var request = new ServerDespawnRequestStruct { Id = NetworkObjectId };
         
         InputManager.Instance.HandleDespawnRequestRpc(request);
     }
@@ -77,6 +73,7 @@ public class Projectile : NetworkBehaviour
                 };
                 
                 InputManager.Instance.HandleTakeDamageRequestRpc(request);
+                Despawn();
             }
         }
     }

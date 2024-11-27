@@ -14,10 +14,11 @@ public class KnightUnit : AttackUnit
             Id = _target.NetworkObjectId
         };
 
-        _animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, true);
-        InputManager.Instance.HandleTakeDamageRequestRpc(request);
+        //_animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, true);
+        if (Vector3.Distance(transform.position, _target.transform.position) <= _startAttackDistance)
+            InputManager.Instance.HandleTakeDamageRequestRpc(request);
         yield return null;
-        _animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, false);
+        //_animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, false);
         yield return new WaitForSeconds(_attackSpeed);
     }
 }

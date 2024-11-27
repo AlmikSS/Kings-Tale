@@ -1802,7 +1802,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8200744520330921105, guid: eb2c0491cb3bf3a48af172f58624b12c, type: 3}
+    - {fileID: 8205868790910538334, guid: eb2c0491cb3bf3a48af172f58624b12c, type: 3}
+    - {fileID: 497155190280327585, guid: eb2c0491cb3bf3a48af172f58624b12c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2c0491cb3bf3a48af172f58624b12c, type: 3}
@@ -2331,11 +2334,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CamHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938435839805223101, guid: bb8675dbc3f87934faf7a0b105a62fa3,
-        type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 737147622
       objectReference: {fileID: 0}
     - target: {fileID: 7389519794053319054, guid: bb8675dbc3f87934faf7a0b105a62fa3,
         type: 3}

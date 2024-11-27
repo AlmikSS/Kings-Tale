@@ -8,6 +8,10 @@ public class ArcherUnit : AttackUnit
     
     protected override IEnumerator AttackTargetRoutine()
     {
+        //_animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, true);
+        //yield return new WaitForSeconds(1.9f);
+        //_animator.SetBool(GamePlayConstants.ATTACK_ANIMATOR_PAR, false);
+        
         var request = new ServerSpawnProjectileRequestStruct
         {
             Id = NetworkObjectId,

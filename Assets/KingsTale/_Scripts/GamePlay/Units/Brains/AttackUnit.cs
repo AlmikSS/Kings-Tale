@@ -9,10 +9,9 @@ public abstract class AttackUnit : UnitBrain
 
     protected NetworkObject _target;
     private AttackUnitState _currentState;
-    private bool _isLongRange;
     protected uint _damage;
     protected float _attackSpeed;
-    private float _startAttackDistance;
+    protected float _startAttackDistance;
     private float _visionRange;
 
     public override void OnNetworkSpawn()
@@ -25,7 +24,6 @@ public abstract class AttackUnit : UnitBrain
         _attackSpeed = ((UnitAttackConfigSO)_config).AttackSpeed;
         _startAttackDistance = ((UnitAttackConfigSO)_config).StartAttackDistance;
         _visionRange = ((UnitAttackConfigSO)_config).VisionRange;
-        _isLongRange = ((UnitAttackConfigSO)_config).IsLongRange;
 
         StartCoroutine(StateMachineRoutine());
     }

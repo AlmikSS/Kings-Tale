@@ -30,19 +30,15 @@ public class Tree : WorkingBuilding
             WithAction = true
         };
 
-        var nearest = GetNearStorage();
-
         var thirdAction = new WorkerActionStruct
         {
             Action = WorkerAction.GoToPoint,
-            Target = nearest,
             ResourceToAdd = _resourcesToAdd
         };
 
         var fthAction = new WorkerActionStruct
         {
             Action = WorkerAction.Wait,
-            Target = nearest,
             WaitTime = _restTime,
             WithAction = true,
             ResourceToAdd = _resourcesToAdd
