@@ -57,7 +57,7 @@ public class LobbyManager
             _currentLobby = lobby;
             HandleLobbyHeartBeatAsync();
             NetworkManager.Singleton.GetComponent<UnityTransport>()
-                .SetRelayServerData(new RelayServerData(allocation, "dtls"));
+                .SetRelayServerData(new RelayServerData(allocation, "udp"));
             NetworkManager.Singleton.StartHost();
             _isLobbyOwner = true;
             _isTryingToChangeLobby = false;
@@ -100,7 +100,7 @@ public class LobbyManager
             var lobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode, options);
             var joinAllocation = await JoinAllocationAsync(lobby.Data[StartMenuConstants.RELAY_CODE].Value);
             NetworkManager.Singleton.GetComponent<UnityTransport>()
-                .SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+                .SetRelayServerData(new RelayServerData(joinAllocation, "udp"));
             NetworkManager.Singleton.StartClient();
             _currentLobby = lobby;
             _isTryingToChangeLobby = false;

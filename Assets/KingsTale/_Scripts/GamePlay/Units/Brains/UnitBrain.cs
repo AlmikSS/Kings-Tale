@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,12 +8,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class UnitBrain : NetworkBehaviour, IDamagable
 {
-    [Header("Config")]
+    [Header("Config")] 
     [SerializeField] protected UnitBaseConfigSO _config;
     [SerializeField] private ushort _id;
 
-    [Header("GameObjects")]
-    [SerializeField] protected HealthSlider _healthSlider;
+    [Header("GameObjects")] [SerializeField]
+    protected HealthSlider _healthSlider;
 
     private const float ROTATION_X = 40f;
     private const float ROTATION_Y = -25f;
@@ -23,7 +24,8 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     public int Health => _currentHealth.Value;
     public bool IsDied { get; private set; }
     public ushort Id => _id;
-    
+
+    private NetworkVariable<float> _networkVelocity = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private float _speed;
     private float _stopDistance;
     private int _magicResist;
@@ -38,12 +40,15 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
 
     protected NavMeshAgent _agent;
     protected Animator _animator;
+    protected NetworkAnimator _networkAnimator;
+
 
     protected virtual void Awake()
     {
-        _currentHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);        
+        _currentHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Owner);
     }
-    
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
@@ -55,12 +60,43 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
         InitializeUnit();
         SetupComponents();
     }
-
+ 
     protected virtual void Update()
     {
         UpdateHealthSliderRotation();
-        //UpdateAnimatorVelocity();
+        UpdateVelocityRpc(_networkVelocity.Value);
+        if (_healthSlider)
+        {
+            _healthSlider.transform.rotation = Quaternion.Euler(40, -25, 0);
+        }
+
+        if (_agent == null)
+        {
+            Debug.LogError("_agent is null on " + gameObject.name);
+            return;
+        }
+
+        if (_networkAnimator == null || _networkAnimator.Animator == null)
+        {
+            Debug.LogError("_networkAnimator or Animator is null on " + gameObject.name);
+            return;
+        }
+
+
+        if (IsOwner)
+        {
+            _networkVelocity.Value = _agent.velocity.magnitude;
+        }
+
+        _networkAnimator.Animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _networkVelocity.Value);
+
+        // Determine if the unit is moving
+        bool isMoving = _agent.velocity.magnitude > 0.1f;
+
+        // Set the IsRunning parameter
+        _networkAnimator.Animator.SetBool(GamePlayConstants.RUN_ANIMATOR_PAR, isMoving);
     }
+
 
     protected IEnumerator InPath()
     {
@@ -96,15 +132,24 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
             Die();
         }
     }    
-
+    
     public virtual void Die()
     {
         if (IsDied) return;
-        
+       
         IsDied = true;
         CleanupOnDeath();
         Invoke(nameof(DieRpc), DIE_DELAY);
         //_animator?.SetBool(GamePlayConstants.DIE_ANIMATOR_PAR, true);
+        
+        if (_networkAnimator != null && _networkAnimator.Animator != null)
+        {
+            _networkAnimator.Animator.SetBool(GamePlayConstants.DIE_ANIMATOR_PAR, true);
+        }
+        else
+        {
+            Debug.LogError("Cannot play death animation, Animator is null on " + gameObject.name);
+        }
     }
 
     [Rpc(SendTo.Server)]
@@ -203,11 +248,9 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
                _agent.velocity.sqrMagnitude == 0f;
     }
 
-    /*private void UpdateAnimatorVelocity()
+    [Rpc(SendTo.Owner)]
+    private void UpdateVelocityRpc(float velocity)
     {
-        if (_animator != null)
-        {
-            _animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, _agent.velocity.magnitude);
-        }
-    }*/
+        _networkAnimator.Animator.SetFloat(GamePlayConstants.VELOCITY_ANIMATOR_PAR, velocity);
+    }
 }

@@ -1,14 +1,10 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 
-/// <summary>
-/// Represents a worker unit that can perform various tasks and interact with buildings
-/// </summary>
 public class Worker : UnitBrain
 {
-    private const float DISTANCE_CHECK_THRESHOLD = 0.1f;
-    
     private WorkingBuilding _currentBuilding;
     private WorkClass _currentWork;
     private Building _target;
@@ -17,8 +13,6 @@ public class Worker : UnitBrain
 
     protected override void Update()
     {
-        if (!IsSpawned) return;
-        
         base.Update();
 
         switch (_currentState)
@@ -34,19 +28,13 @@ public class Worker : UnitBrain
     private IEnumerator WorkingUpdateStateRoutine()
     {
         _currentState = WorkerState.Working;
-            
-        if (_currentWork?.Actions == null)
-        {
-            Debug.LogWarning($"Worker {NetworkObjectId}: No work actions found");
-            yield break;
-        }
 
         foreach (var action in _currentWork.Actions)
         {
             yield return PerformActionRoutine(action);
         }
-            
-        if (_currentBuilding != null)
+
+        if (_currentBuilding)
             StartWork();
 
         _currentState = WorkerState.Idle;
@@ -55,148 +43,79 @@ public class Worker : UnitBrain
     private IEnumerator PerformActionRoutine(WorkerActionStruct action)
     {
         _resourcesInInv = action.ResourceToAdd;
-        _target = action.Target?.GetComponent<Building>();
-            
+        _target = action.Target.GetComponent<Building>();
+
         switch (action.Action)
         {
             case WorkerAction.GoToPoint:
-                yield return HandleGoToPointAction(action);
+                _currentState = WorkerState.GoToTarget;
+                GoToPoint(action.Target.transform.position);
+                yield return InPath();
                 break;
-                    
             case WorkerAction.Wait:
-                yield return HandleWaitAction(action);
-                break;
-                
-            case WorkerAction.Main:
-                yield return HandleMainAction(action);
-                break;
-                
-            default:
-                Debug.LogWarning($"Worker {NetworkObjectId}: Unknown action type {action.Action}");
-                break;
-        }
-            
-        _currentState = WorkerState.Idle;
-    }
-
-    private IEnumerator HandleGoToPointAction(WorkerActionStruct action)
-    {
-        _currentState = WorkerState.GoToTarget;
-        Vector3 targetPosition;
-
-        if (action.Target != null)
-        {
-            targetPosition = action.Target.transform.position;
-        }
-        else
-        {
-            var mainBuilding = NetworkManager.Singleton.SpawnManager
-                .GetPlayerNetworkObject(OwnerClientId)?.GetComponent<PlayerManager>()?.MainBuilding;
-
-            if (mainBuilding == null)
-            {
-                Debug.LogError($"Worker {NetworkObjectId}: Main building not found");
-                yield break;
-            }
-
-            targetPosition = mainBuilding.transform.position;
-        }
-
-        GoToPoint(targetPosition);
-        yield return InPath();
-    }
-
-    private IEnumerator HandleWaitAction(WorkerActionStruct action)
-    {
-        _currentState = WorkerState.Working;
-        yield return new WaitForSeconds(action.WaitTime);
-
-        if (!action.WithAction || _target == null) yield break;
-
-        if (_target.TryGetComponent(out Building building))
-        {
-            if (building.IsBuilt)
-            {
-                switch (building)
+                _currentState = WorkerState.Working;
+                if (action.WithAction)
                 {
-                    case MainBuilding:
-                        HandleMainBuildingAction();
-                        break;
-                    case FieldBuilding fieldBuilding:
-                        fieldBuilding.Collect();
-                        break;
-                    case MineBuilding mineBuilding:
-                        mineBuilding.Mine();
-                        break;
+                    // Включаем анимацию работы
+                    SetWorkAnimationServerRpc(true);
                 }
-            }
-            else
-            {
-                _target.BuildRpc();
-            }
+                yield return new WaitForSeconds(action.WaitTime);
+                if (action.WithAction)
+                {
+                    if (_target.TryGetComponent(out Building building))
+                    {
+                        if (building.IsBuilt)
+                        {
+                            if (building is MainBuilding)
+                            {
+                                var request = new ServerAddResourcesRequestStruct
+                                {
+                                    PlayerId = OwnerClientId,
+                                    ResourcesToAdd = _resourcesInInv,
+                                };
+                                InputManager.Instance.HandleAddResourcesRequestRpc(request);
+                            }
+                            else if (building is FieldBuilding fieldBuilding)
+                                fieldBuilding.Collect();
+                            else if (building is MineBuilding mineBuilding)
+                                mineBuilding.Mine();
+                        }
+                        else
+                            _target.BuildRpc();
+                    }
+                    // Выключаем анимацию работы
+                    SetWorkAnimationServerRpc(false);
+                }
+                break;
+            case WorkerAction.Main:
+                _currentState = WorkerState.Working;
+                // Включаем анимацию добычи
+                SetMineAnimationServerRpc(true);
+                yield return new WaitForSeconds(action.WaitTime);
+                if (action.Target.TryGetComponent(out Tree tree))
+                    tree.MineRpc();
+                // Выключаем анимацию добычи
+                SetMineAnimationServerRpc(false);
+                break;
         }
-    }
-
-    private IEnumerator HandleMainAction(WorkerActionStruct action)
-    {
-        _currentState = WorkerState.Working;
-        yield return new WaitForSeconds(action.WaitTime);
-
-        if (action.Target != null && action.Target.TryGetComponent(out Tree tree))
-        {
-            tree.MineRpc();
-        }
-    }
-
-    private void HandleMainBuildingAction()
-    {
-        var request = new ServerAddResourcesRequestStruct
-        {
-            PlayerId = OwnerClientId,
-            ResourcesToAdd = _resourcesInInv,
-        };
-        InputManager.Instance.HandleAddResourcesRequestRpc(request);
     }
 
     private void GoToTargetUpdateState()
     {
-        if (!IsPathComplete()) return;
-        
-        if (_currentWork == null)
-            StartWork();
-    }
-
-    private bool IsPathComplete()
-    {
-        return !_agent.pathPending && 
-               _agent.remainingDistance <= _agent.stoppingDistance && 
-               _agent.velocity.sqrMagnitude <= DISTANCE_CHECK_THRESHOLD;
+        if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance && _agent.velocity.sqrMagnitude == 0f)
+        {
+            if (_currentWork == null)
+                StartWork();
+        }
     }
 
     private void StartWork()
     {
-        if (_currentBuilding == null)
-        {
-            ResetWorker();
-            return;
-        }
-
         _currentWork = _currentBuilding.GetWork();
         if (_currentWork != null)
             StartCoroutine(WorkingUpdateStateRoutine());
-        else 
+        else
             ResetWorker();
-    }
-
-    private void ResetWorker()
-    {
-        if (_currentBuilding != null)
-            _currentBuilding.RemoveUnit(NetworkObjectId);
-            
-        _target = null;
-        _currentBuilding = null;
-        _currentWork = null;
-        _currentState = WorkerState.Idle;
     }
 
     [Rpc(SendTo.Owner)]
@@ -205,46 +124,75 @@ public class Worker : UnitBrain
         GoToPoint(point);
         ResetWorker();
     }
-    
+
     [Rpc(SendTo.Owner)]
     public override void SetBuildingRpc(ulong buildingId)
     {
-        if (!NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(buildingId, out var obj))
+        var obj = NetworkManager.Singleton.SpawnManager.SpawnedObjects[buildingId];
+        WorkingBuilding workingBuilding = null;
+
+        if (obj.TryGetComponent(out Building building))
         {
-            Debug.LogError($"Worker {NetworkObjectId}: Building with ID {buildingId} not found");
-            return;
+            if (!building.IsBuilt)
+            {
+                _currentWork = building.BuildBuilding();
+                StartCoroutine(WorkingUpdateStateRoutine());
+            }
+            else if (building is WorkingBuilding a)
+                workingBuilding = a;
         }
 
-        if (!obj.TryGetComponent(out Building building))
-        {
-            Debug.LogError($"Worker {NetworkObjectId}: Object with ID {buildingId} is not a building");
+        if (workingBuilding == null)
             return;
-        }
 
-        if (!building.IsBuilt)
-        {
-            _currentWork = building.BuildBuilding();
-            StartCoroutine(WorkingUpdateStateRoutine());
+        if (!workingBuilding.HasPlace())
             return;
-        }
-
-        if (building is not WorkingBuilding workingBuilding || !workingBuilding.HasPlace())
-        {
-            Debug.LogWarning($"Worker {NetworkObjectId}: Building {buildingId} is not available for work");
-            return;
-        }
 
         ResetWorker();
-        
+
         _currentBuilding = workingBuilding;
         _currentBuilding.AddUnit(NetworkObjectId);
         _currentState = WorkerState.GoToTarget;
     }
+
+    private void ResetWorker()
+    {
+        if (_currentBuilding != null)
+            _currentBuilding.RemoveUnit(NetworkObjectId);
+        _target = null;
+        _currentBuilding = null;
+        _currentWork = null;
+        _currentState = WorkerState.Idle;
+    }
+
+    // RPC для управления анимацией Work
+    [ServerRpc(RequireOwnership = false)]
+    private void SetWorkAnimationServerRpc(bool isWorking)
+    {
+        SetWorkAnimationClientRpc(isWorking);
+    }
+
+    [ClientRpc]
+    private void SetWorkAnimationClientRpc(bool isWorking)
+    {
+        _networkAnimator.Animator.SetBool(GamePlayConstants.WORK_ANIMATOR_PAR, isWorking);
+    }
+
+    // RPC для управления анимацией Mine
+    [ServerRpc(RequireOwnership = false)]
+    private void SetMineAnimationServerRpc(bool isMining)
+    {
+        SetMineAnimationClientRpc(isMining);
+    }
+
+    [ClientRpc]
+    private void SetMineAnimationClientRpc(bool isMining)
+    {
+        _networkAnimator.Animator.SetBool(GamePlayConstants.MINE_ANIMATOR_PAR, isMining);
+    }
 }
 
-/// <summary>
-/// Represents the possible states of a worker unit
-/// </summary>
+// Определение WorkerState
 public enum WorkerState
 {
     Idle,
