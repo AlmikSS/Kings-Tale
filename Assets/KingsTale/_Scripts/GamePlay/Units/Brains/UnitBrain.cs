@@ -12,8 +12,8 @@ public abstract class UnitBrain : NetworkBehaviour, IDamagable
     [SerializeField] protected UnitBaseConfigSO _config;
     [SerializeField] private ushort _id;
 
-    [Header("GameObjects")] [SerializeField]
-    protected HealthSlider _healthSlider;
+    [Header("GameObjects")] 
+    [SerializeField] protected HealthSlider _healthSlider;
 
     private const float ROTATION_X = 40f;
     private const float ROTATION_Y = -25f;
